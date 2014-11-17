@@ -7,21 +7,19 @@ public class Dreadnought extends Ship
 
   public Dreadnought(){
     super();
-    // health = TBD;
+    health = 70;
   }
   
   @Override
   public int getSpeed()
   {
-    // Choose a value for speed and put it here
-    return 0;
+    return 3;
   }
 
   @Override
   public int getAttackPower()
   {
-    // Choose a value for AttackPower and put it here
-    return 0;
+    return 6;
   }
 
   @Override
@@ -39,15 +37,13 @@ public class Dreadnought extends Ship
   // Radius from the center of the ship determined by the Location
   @Override
   public int getVisibilityRadius(){
-    // Choose a value for visibilityRadius and put it here
-    return 0;
+    return 7;
   }
   
 //Radius from the center of the ship determined by the Location
   @Override
   public int getAttackRadius(){
-    // Choose a value for attackRadius and put it here
-    return 0;
+    return 10;
   }
 
   @Override

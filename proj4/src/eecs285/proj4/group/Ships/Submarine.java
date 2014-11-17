@@ -6,21 +6,19 @@ public class Submarine extends Ship
 
   public Submarine(){
     super();
-    // health = TBD;
+    health = 60;
   }
   
   @Override
   public int getSpeed()
   {
-    // Choose a value for speed and put it here
-    return 0;
+    return 5;
   }
 
   @Override
   public int getAttackPower()
   {
-    // Choose a value for AttackPower and put it here
-    return 0;
+    return 5;
   }
 
   @Override
@@ -38,15 +36,13 @@ public class Submarine extends Ship
   // Radius from the center of the ship determined by the Location
   @Override
   public int getVisibilityRadius(){
-    // Choose a value for visibilityRadius and put it here
-    return 0;
+    return 8;
   }
   
 //Radius from the center of the ship determined by the Location
   @Override
   public int getAttackRadius(){
-    // Choose a value for attackRadius and put it here
-    return 0;
+    return 15;
   }
 
   @Override
