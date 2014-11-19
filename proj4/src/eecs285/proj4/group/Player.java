@@ -20,10 +20,5 @@ public class Player
         //throws out of index reference
         return myBoard.getShip(shipNumber);
     }
-    
-    public void moveShip(Ship ship, Location location)
-    {
-      ship.setCurrentLoaction(location);
-    }
 
 }
