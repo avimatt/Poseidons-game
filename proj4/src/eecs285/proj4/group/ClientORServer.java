@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.*;
+import java.util.Vector;
 
 public class ClientORServer {
 	private String ipAddress;
@@ -70,5 +71,62 @@ public class ClientORServer {
 		}
 	}
 	
+	public void sendStartLocations(Location[] startLocations){
+		try
+		{
+			System.out.println("sending started...");
+			output.writeBytes("start_location");
+			output.writeByte(0);
+			for(Location loc : startLocations){
+				output.writeInt(loc.getX());
+				output.writeInt(loc.getY());
+			}
+			System.out.println("sending done...");
+		}
+		catch (IOException e)
+		{
+			System.out.println("Caught IOException sending start locations");
+			System.exit(-1);
+		}
+	}
+		
+	public void readMessage(){
+		Vector< Byte > byteVec = new Vector< Byte >();
+		byte [] byteAry;
+		byte recByte;
+		String receivedString = "";
+		try
+		{
+			// Get the initial string which tells you the type 
+			// of message being sent
+			recByte = input.readByte();
+			while (recByte != 0)
+			{
+				byteVec.add(recByte);
+				recByte = input.readByte();
+			}
+			byteAry = new byte[byteVec.size()];
+			for (int ind = 0; ind < byteVec.size(); ind++)
+			{
+				byteAry[ind] = byteVec.elementAt(ind).byteValue();
+			}
+			receivedString = new String(byteAry);
+			
+			System.out.println("recieved string: " + receivedString);
+			
+			if(receivedString.contentEquals("start_location")){
+				for(int i = 0; i < 6; ++i){
+					System.out.println("Ship " + i + "is at x: " + input.readInt() 
+							+ " y: " + input.readInt());
+				}
+			}
+		}
+		catch (IOException ioe)
+		{
+			System.out.println("ERROR: receiving string from socket");
+			System.exit(8);
+		}
+
+	}
 	
 }
