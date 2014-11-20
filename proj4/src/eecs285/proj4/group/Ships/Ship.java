@@ -8,7 +8,8 @@ public abstract class Ship
   private int id;
   private Location currentLoc;
   
-  public Ship(){
+  public Ship()
+  {
     id = nextID++;    
   }
   
@@ -20,8 +21,9 @@ public abstract class Ship
     return currentLoc;
   }
   
-  public void setCurrentLoaction(){
-    
+  public void setCurrentLoaction(Location newLoc)
+  {
+    currentLoc = newLoc;
   }
   
   public abstract int getSpeed();
