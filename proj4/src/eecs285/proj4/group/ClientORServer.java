@@ -78,8 +78,8 @@ public class ClientORServer {
 			output.writeBytes("start_location");
 			output.writeByte(0);
 			for(Location loc : startLocations){
-				output.writeInt(loc.getX());
-				output.writeInt(loc.getY());
+				output.writeDouble(loc.getX());
+				output.writeDouble(loc.getY());
 			}
 			System.out.println("sending done...");
 		}
@@ -114,10 +114,11 @@ public class ClientORServer {
 			
 			System.out.println("recieved string: " + receivedString);
 			
+			// Message for sending the starting locations of other players boats
 			if(receivedString.contentEquals("start_location")){
 				for(int i = 0; i < 6; ++i){
-					System.out.println("Ship " + i + "is at x: " + input.readInt() 
-							+ " y: " + input.readInt());
+					System.out.println("Ship " + i + "is at x: " + input.readDouble() 
+							+ " y: " + input.readDouble());
 				}
 			}
 		}
