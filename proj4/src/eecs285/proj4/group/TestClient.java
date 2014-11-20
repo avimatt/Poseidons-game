@@ -3,7 +3,9 @@ package eecs285.proj4.group;
 public class TestClient {
 
 	public static void main(String[] args) {
-		ClientORServer client = new ClientORServer("10.0.0.29", 8080);
+		ClientORServer client = new ClientORServer("141.213.55.73", 8080);
+		
+		System.out.println(ClientORServer.getIpAddress());
 		
 		Location[] locations = new Location[6];
 		locations[0] = new Location(0,0);

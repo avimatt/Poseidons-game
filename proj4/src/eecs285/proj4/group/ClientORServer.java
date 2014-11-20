@@ -42,6 +42,7 @@ public class ClientORServer {
 		ServerSocket serverSock;
 		
 		try{
+			System.out.println("Starting server");
 			// connects the server to a specific port
 			serverSock = new ServerSocket(portNum);
 			// wait for someone to connect
@@ -54,12 +55,14 @@ public class ClientORServer {
 			
 		} catch (IOException e){
 			// server unable to connect 
+			e.printStackTrace();
 			System.exit(7);
 		}
 	}
 	
 	public void startClient(){
 		try {
+			System.out.println("Starting Client");
 			// connect with server
 			socket = new Socket(ipAddress, portNum);
 			// initialize data streams
@@ -67,6 +70,7 @@ public class ClientORServer {
 			input = new DataInputStream(socket.getInputStream());
 		} catch (IOException ioe) {
 			// Unable to connect 
+			ioe.printStackTrace();
 			System.exit(10);
 		}
 	}
@@ -117,7 +121,7 @@ public class ClientORServer {
 			// Message for sending the starting locations of other players boats
 			if(receivedString.contentEquals("start_location")){
 				for(int i = 0; i < 6; ++i){
-					System.out.println("Ship " + i + "is at x: " + input.readDouble() 
+					System.out.println("Ship " + i + " is at x: " + input.readDouble() 
 							+ " y: " + input.readDouble());
 				}
 			}
