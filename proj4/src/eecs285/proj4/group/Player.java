@@ -5,7 +5,7 @@ import eecs285.proj4.group.Ships.*;
 public class Player
 {
     // array to contain players ship.
-    private int damage_Dealt;
+//    private int damage_Dealt;
     private static int ID = 0;
     private Board myBoard;
 
@@ -20,5 +20,10 @@ public class Player
         //throws out of index reference
         return myBoard.getShip(shipNumber);
     }
+
+  public int getID()
+  {
+    return ID;
+  }
 
 }

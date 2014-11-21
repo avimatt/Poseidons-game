@@ -3,8 +3,6 @@
  */
 package eecs285.proj4.group;
 
-import java.awt.image.BufferedImage;
-
 import eecs285.proj4.group.Ships.AircraftCarrier;
 import eecs285.proj4.group.Ships.Battleship;
 import eecs285.proj4.group.Ships.Destroyer;
