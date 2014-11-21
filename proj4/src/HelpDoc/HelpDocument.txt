@@ -1,0 +1,27 @@
+   		                         Help Document
+
+Sections
+1. How to Start a Game
+2. How to Join a Game Already Started
+3. How to Play
+4. Rules of Game
+
+
+
+1. How to Start a Game
+
+- To start a game push the “Start Game” button. A screen will come up displaying your computers IP address. Give this address to player two and have them enter it in the window that comes up when he/she pushes the "Join Game" button. Once both players are connected the game will begin.
+
+
+2. How to Join a Game Already Started
+
+- To join a game that has already been started (by player one) you must push the “Join Game” button. A screen will come up where you must exactly enter play one’s IP address (which will be displayed on their screen) into the field. Once you confirm that the IP address is correct press “OK”.
+
+
+3. How to Play
+**FILL IN LATER**
+
+
+
+4. Rules of Game
+**FILL IN LATER**
