@@ -21,6 +21,7 @@ public class GameGUI extends JFrame
   JButton okayButton;
   JDialog helpFrame;
   GameListener gameListener;
+  ClientORServer network;
 
   public GameGUI()
   {
@@ -69,6 +70,16 @@ public class GameGUI extends JFrame
     {
       if (e.getSource() == startGameButton)
       {
+    	// I think we can always use port 8080 and it should be fine
+    	String message = "Have your friend join a game with ip: " + ClientORServer.getIpAddress();
+    	JOptionPane.showMessageDialog(null, message, "Start Game", JOptionPane.PLAIN_MESSAGE);
+
+    	// Start Server (which blocks until other player connects)
+    	network = new ClientORServer(ClientORServer.getIpAddress(), 8080);
+    	network.startServer();
+    	
+    	// I feel like we should have a GamePlay class and right here call GamePlay.startGame()
+    	// passing in the server/client and letting it know whether its the client or server
         remove(gameOptions);
         setTitle("Poseidon's Game");
         setContentPane(new ImageBoard());
@@ -76,7 +87,16 @@ public class GameGUI extends JFrame
       }
       if(e.getSource() == joinGameButton)
       {
+        String ipAddress = JOptionPane.showInputDialog(null, "Enter your friends IP address: ", 
+        		"Join Game", JOptionPane.QUESTION_MESSAGE);
+        // maybe do some error checking on the ipAddress passed in
         
+        // Start Client 
+        network = new ClientORServer(ipAddress, 8080);
+    	network.startClient();
+    	
+    	// I feel like we should have a GamePlay class and right here call GamePlay.startGame()
+    	// passing in the server/client and letting it know whether its the client or server
       }
       if(e.getSource() == helpButton)
       {
@@ -84,6 +104,7 @@ public class GameGUI extends JFrame
       }
       if (e.getSource() == exitGameButton)
       {
+    	// why do we use dispose vs System.exit()
         dispose();
       }
       if(e.getSource() == okayButton)
@@ -116,7 +137,7 @@ public class GameGUI extends JFrame
        try
        {
          helpin = new BufferedReader(new FileReader(getClass()
-             .getClassLoader().getResource("HelpDoc/HelpDocument.txt").getPath()));
+                 .getClassLoader().getResource("HelpDoc/HelpDocument.txt").getPath()));
          String getline;
          String saveline = "";
          //gets the info. from the HelpDocument
@@ -134,6 +155,7 @@ public class GameGUI extends JFrame
        catch( IOException e )
        {
         //should never happen
+    	e.printStackTrace();
         System.out.println("error!");
        }
        ///////////////////////////////////////////////////////////////////////////
