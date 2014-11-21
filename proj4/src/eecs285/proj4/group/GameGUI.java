@@ -4,6 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class GameGUI extends JFrame
 {
   JButton startGameButton;
@@ -23,35 +24,12 @@ public class GameGUI extends JFrame
         .getClassLoader().getResource("images/battleship.jpg")));
     add(backg);
     backg.setLayout(new BorderLayout());
-    startGameButton = new JButton("Start Game");
-    Font buttonFont = new Font("Algerian", Font.BOLD, 24);
-    startGameButton.setForeground(Color.ORANGE);
-    startGameButton.setFont(buttonFont);
-    startGameButton.setOpaque(false);
-    startGameButton.setBorderPainted(false);
-    startGameButton.setContentAreaFilled(false);
     
-    joinGameButton = new JButton("Join Game");
-    joinGameButton.setForeground(Color.ORANGE);
-    joinGameButton.setFont(buttonFont);
-    joinGameButton.setOpaque(false);
-    joinGameButton.setBorderPainted(false);
-    joinGameButton.setContentAreaFilled(false);
-    
-    helpButton = new JButton("Help");
-    helpButton.setForeground(Color.ORANGE);
-    helpButton.setFont(buttonFont);
-    helpButton.setOpaque(false);
-    helpButton.setBorderPainted(false);
-    helpButton.setContentAreaFilled(false);
-    
-    exitGameButton = new JButton("Exit Game");
-    exitGameButton.setForeground(Color.ORANGE);
-    exitGameButton.setFont(buttonFont);
-    exitGameButton.setOpaque(false);
-    exitGameButton.setBorderPainted(false);
-    exitGameButton.setContentAreaFilled(false);
-    
+    startGameButton = new StartMenuButton("Start Game");
+    joinGameButton = new StartMenuButton("Join Game");
+    helpButton = new StartMenuButton("Help");
+    exitGameButton = new StartMenuButton("Exit Game");
+   
     gameOptions.add(startGameButton);
     gameOptions.add(joinGameButton);
     gameOptions.add(helpButton);
@@ -62,12 +40,5 @@ public class GameGUI extends JFrame
   
     
   }
-  
-  
-  
-  
-  
-  
-  
   
 }
