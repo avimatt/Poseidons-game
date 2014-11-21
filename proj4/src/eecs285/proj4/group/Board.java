@@ -11,12 +11,17 @@ import eecs285.proj4.group.Ships.PatrolBoat;
 import eecs285.proj4.group.Ships.Ship;
 import eecs285.proj4.group.Ships.Submarine;
 
+import java.util.ArrayList;
+
 /**
  * @author agambatra and akanarek
  *
  */
 public class Board
 {
+
+  private ArrayList<Ship> shipList;
+
   private Ship[] playerShips;
   private Ship[] opponentShips;
   
@@ -26,6 +31,16 @@ public class Board
    */
   public Board()
   {
+    for(int i = 0; i < 2; ++i)
+    {
+      shipList.add(new PatrolBoat());
+      shipList.add(new Submarine());
+      shipList.add(new Destroyer());
+      shipList.add(new Battleship());
+      shipList.add(new AircraftCarrier());
+      shipList.add(new Dreadnought());
+    }
+    /*
     playerShips = new Ship[6];
     playerShips[0] = new PatrolBoat();
     playerShips[1] = new Submarine();
@@ -41,12 +56,13 @@ public class Board
     opponentShips[3] = new Battleship();
     opponentShips[4] = new AircraftCarrier();
     opponentShips[5] = new Dreadnought();
+    */
   }
 
 
   public Ship getShip(int shipNumber)
   {
-    return playerShips[shipNumber];
+    return shipList.get(shipNumber);
   }
   
   public Ship getShip(Location curLoc)

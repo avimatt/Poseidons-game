@@ -22,7 +22,7 @@ public class ImageBoard extends JPanel{
     boardImage = new BufferedImage(500,500,BufferedImage.TYPE_INT_ARGB);
     boardGraphics = boardImage.createGraphics();
     BoardListener boardListner = new BoardListener();
-
+    this.addMouseListener(boardListner);
     super.paint(boardGraphics);
 
   }
