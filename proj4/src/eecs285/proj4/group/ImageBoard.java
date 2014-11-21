@@ -27,15 +27,14 @@ public class ImageBoard extends JPanel{
 
   }
 
+  /**
+   * Redraws the board based on the state.
+   */
   public void updateBoard(Board state)
   {
 
   }
 
-  public void moveBoat()
-  {
-
-  }
 
   public void drawObject()
   {
