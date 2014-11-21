@@ -19,7 +19,7 @@ public class ImageBoard extends JPanel{
   public ImageBoard()
   {
     super(new FlowLayout());
-    boardImage = new BufferedImage(200,200,BufferedImage.TYPE_INT_ARGB);
+    boardImage = new BufferedImage(500,500,BufferedImage.TYPE_INT_ARGB);
     boardGraphics = boardImage.createGraphics();
     BoardListener boardListner = new BoardListener();
 
@@ -56,22 +56,18 @@ public class ImageBoard extends JPanel{
 
     }
 
-    @Override
     public void mouseClicked(MouseEvent e) {
 
     }
 
-    @Override
     public void mousePressed(MouseEvent e) {
 
     }
 
-    @Override
     public void mouseReleased(MouseEvent e) {
 
     }
 
-    @Override
     public void mouseExited(MouseEvent e) {
 
     }
