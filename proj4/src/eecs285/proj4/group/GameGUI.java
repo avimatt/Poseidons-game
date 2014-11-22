@@ -105,7 +105,7 @@ public class GameGUI extends JFrame
       if (e.getSource() == exitGameButton)
       {
     	// why do we use dispose vs System.exit()
-        dispose();
+        System.exit(0);
       }
       if(e.getSource() == okayButton)
       {
