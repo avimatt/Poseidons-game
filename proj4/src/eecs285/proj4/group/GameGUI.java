@@ -51,8 +51,6 @@ public class GameGUI extends JFrame
     helpButton.addMouseListener(new GameListener());
     exitGameButton.addMouseListener(new GameListener());
 
-
-
     gameOptions.add(startGameButton);
     gameOptions.add(joinGameButton);
     gameOptions.add(helpButton);
@@ -71,15 +69,19 @@ public class GameGUI extends JFrame
       if (e.getSource() == startGameButton)
       {
     	// I think we can always use port 8080 and it should be fine
-    	String message = "Have your friend join a game with ip: " + ClientORServer.getIpAddress();
-    	JOptionPane.showMessageDialog(null, message, "Start Game", JOptionPane.PLAIN_MESSAGE);
+    	String message = "Have your friend join a game with ip: " + 
+    	ClientORServer.getIpAddress();
+    	JOptionPane.showMessageDialog(null, message, "Start Game", 
+    	    JOptionPane.PLAIN_MESSAGE);
 
     	// Start Server (which blocks until other player connects)
     	network = new ClientORServer(ClientORServer.getIpAddress(), 8080);
     	network.startServer();
     	
-    	// I feel like we should have a GamePlay class and right here call GamePlay.startGame()
-    	// passing in the server/client and letting it know whether its the client or server
+    	//I feel like we should have a GamePlay class and right here call 
+    	//GamePlay.startGame()
+    	//passing in the server/client and letting it know
+    	//whether its the client or the server
         remove(gameOptions);
         setTitle("Poseidon's Game");
         setContentPane(new ImageBoard());
@@ -87,7 +89,8 @@ public class GameGUI extends JFrame
       }
       if(e.getSource() == joinGameButton)
       {
-        String ipAddress = JOptionPane.showInputDialog(null, "Enter your friends IP address: ", 
+        String ipAddress = JOptionPane.showInputDialog(null, "Enter your "
+            + "friends IP address: ", 
         		"Join Game", JOptionPane.QUESTION_MESSAGE);
         // maybe do some error checking on the ipAddress passed in
         
@@ -95,8 +98,10 @@ public class GameGUI extends JFrame
         network = new ClientORServer(ipAddress, 8080);
     	network.startClient();
     	
-    	// I feel like we should have a GamePlay class and right here call GamePlay.startGame()
-    	// passing in the server/client and letting it know whether its the client or server
+    	// I feel like we should have a GamePlay class and right here call 
+    	//GamePlay.startGame()
+    	// passing in the server/client and letting it know whether its the 
+    	//client or the server
       }
       if(e.getSource() == helpButton)
       {
@@ -137,7 +142,8 @@ public class GameGUI extends JFrame
        try
        {
          helpin = new BufferedReader(new FileReader(getClass()
-                 .getClassLoader().getResource("HelpDoc/HelpDocument.txt").getPath()));
+                 .getClassLoader().getResource("HelpDoc/HelpDocument.txt").
+                 getPath()));
          String getline;
          String saveline = "";
          //gets the info. from the HelpDocument
@@ -158,9 +164,10 @@ public class GameGUI extends JFrame
     	e.printStackTrace();
         System.out.println("error!");
        }
-       ///////////////////////////////////////////////////////////////////////////
+       ///////////////////////////////////////////////////////////////////////
        JScrollPane scrollhelp = new JScrollPane(helpCon);
-       scrollhelp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+       scrollhelp.setHorizontalScrollBarPolicy
+       (JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
        helpFrame.add(scrollhelp, BorderLayout.CENTER);
        buttons.add(okayButton);
        helpFrame.add(buttons, BorderLayout.SOUTH);
