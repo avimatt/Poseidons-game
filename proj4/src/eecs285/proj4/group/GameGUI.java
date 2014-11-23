@@ -18,6 +18,7 @@ public class GameGUI extends JFrame
   JButton helpButton;
   JButton exitGameButton;
   JButton okayButton;
+  StatusPanel status;
   JDialog helpFrame;
   GameListener gameListener;
   ClientORServer network;
@@ -74,8 +75,8 @@ public class GameGUI extends JFrame
     	    JOptionPane.PLAIN_MESSAGE);
 
     	// Start Server (which blocks until other player connects)
-    	network = new ClientORServer(ClientORServer.getIpAddress(), 8080);
-    	network.startServer();
+    	//network = new ClientORServer(ClientORServer.getIpAddress(), 8080);
+    	//network.startServer();
     	
     	//I feel like we should have a GamePlay class and right here call 
     	//GamePlay.startGame()
@@ -83,6 +84,8 @@ public class GameGUI extends JFrame
     	//whether its the client or the server
         remove(gameOptions);
         setTitle("Poseidon's Game");
+        status = new StatusPanel();
+        add(status);
         validate();
       }
       if(e.getSource() == joinGameButton)

@@ -11,9 +11,15 @@ public class StatusPanel extends JPanel
 {
   JPanel mainPan;
   JPanel totalHealthPan;
+  JPanel actionsLeftPan;
+  JPanel healthOfShipPan;
   JLabel totalHealthLabel;
-  JLabel StatusPanelTitle;
+  JLabel statusPanelTitle;
+  JLabel actionLeftTitle;
+  JLabel healthOfShipTitle;
+  JTextField actionLeftField;
   JTextField totalHealthField;
+  JTextField healthOfShipField;
   JLabel currentShipLabel;
   JButton attackButton;
   JButton moveButton;
@@ -23,8 +29,9 @@ public class StatusPanel extends JPanel
     mainPan = new JPanel (new GridLayout(7,1));
     
     Font TitleFont = new Font("Algerian", Font.BOLD, 24);    
-    StatusPanelTitle = new JLabel("Status Panel");
-    StatusPanelTitle.setFont(TitleFont);
+    statusPanelTitle = new JLabel("Status Panel");
+    statusPanelTitle.setFont(TitleFont);
+    mainPan.add(statusPanelTitle);
     
     
     //total health 
@@ -42,8 +49,37 @@ public class StatusPanel extends JPanel
     
     
     
-    currentShipLabel = new JLabel ("Current Ship: ");
+    currentShipLabel = new JLabel ("  Current Ship: ");
     mainPan.add(currentShipLabel);
+    
+    attackButton = new JButton("Attack!");
+    attackButton.setEnabled(false);
+    moveButton = new JButton("Move");
+    moveButton.setEnabled(false);
+    mainPan.add(attackButton);
+    mainPan.add(moveButton);
+    
+    healthOfShipPan = new JPanel(new FlowLayout());
+    healthOfShipTitle = new JLabel("Current Health of Ship: ");
+    healthOfShipField = new JTextField(5);
+    healthOfShipField.setText("");
+    healthOfShipField.setEditable(false);
+    healthOfShipPan.add(healthOfShipTitle);
+    healthOfShipPan.add(healthOfShipField);
+    mainPan.add(healthOfShipPan);
+    
+    actionsLeftPan = new JPanel(new FlowLayout());
+    actionLeftTitle = new JLabel("Actions Left: ");
+    actionLeftField = new JTextField(5);
+    actionLeftField.setText("");
+    actionLeftField.setEditable(false);
+    
+    actionsLeftPan.add(actionLeftTitle);
+    actionsLeftPan.add(actionLeftField);
+    mainPan.add(actionsLeftPan);
+    
+  
+    
     
    
     
