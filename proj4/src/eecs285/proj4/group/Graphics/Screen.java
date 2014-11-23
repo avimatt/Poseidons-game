@@ -30,10 +30,12 @@ public class Screen {
   {
     for (int y = 0; y < height; ++y)
     {
+      if(y >= height) break;
       for (int x = 0; x < width; ++x)
       {
-        int tileindex = (x / 16) + (y / 16) * 32;
-        pixels[x % width + y % height * width] = tiles[tileindex];
+        if(x >= width) break;
+        int tileIndex = (x >> 4) + (y >> 4) * 64;
+        pixels[x + y * width] = tiles[tileIndex];
       }
     }
   }
