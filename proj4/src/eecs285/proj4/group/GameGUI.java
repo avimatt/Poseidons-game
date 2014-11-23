@@ -11,6 +11,7 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class GameGUI extends JFrame
 {
+	GamePlay game;
   ImageBoard imageBoard;
   JPanel gameOptions;
   JButton startGameButton;
@@ -18,7 +19,6 @@ public class GameGUI extends JFrame
   JButton helpButton;
   JButton exitGameButton;
   JButton okayButton;
-  StatusPanel status;
   JDialog helpFrame;
   GameListener gameListener;
   ClientORServer network;
@@ -82,11 +82,12 @@ public class GameGUI extends JFrame
     	//GamePlay.startGame()
     	//passing in the server/client and letting it know
     	//whether its the client or the server
-        remove(gameOptions);
-        setTitle("Poseidon's Game");
-        status = new StatusPanel();
-        add(status);
-        validate();
+        dispose();
+        game = new GamePlay();
+        //status = new StatusPanel();
+        //add(status);
+        
+
       }
       if(e.getSource() == joinGameButton)
       {
