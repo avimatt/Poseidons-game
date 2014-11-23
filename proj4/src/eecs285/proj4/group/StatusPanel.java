@@ -32,6 +32,7 @@ public class StatusPanel extends JPanel
   JLabel actionLogTitle;
   JButton attackButton;
   JButton moveButton;
+  JButton cancelSelection;
   JButton helpButton;
   JButton endTurnButton;
   
@@ -56,7 +57,9 @@ public class StatusPanel extends JPanel
     totalHealthLabel = new JLabel ("Total Fleet Health: ");
     //need a function getTotalFleetHealth that returns the total health points
     totalHealthField= new JTextField(5);
-    totalHealthField.setText("100/100");
+    //needs a function to get a number for the total health of fleet
+    String totalHealthString = "100";
+    totalHealthField.setText(totalHealthString +"/100");
     totalHealthField.setBackground(Color.GREEN);
     totalHealthField.setEditable(false);
     totalHealthPan.add(totalHealthLabel);
@@ -65,14 +68,15 @@ public class StatusPanel extends JPanel
     
     actionsLeftPan = new JPanel(new FlowLayout());
     actionLeftTitle = new JLabel("Actions Left: ");
-    actionLeftField = new JLabel("");
+    //need function that can get actions left////////////
+    actionLeftField = new JLabel("5");
     actionLeftField.setFont(currentShipF);
     actionsLeftPan.add(actionLeftTitle);
     actionsLeftPan.add(actionLeftField);
     upperPan.add(actionsLeftPan);
     
     //Ship Info section/////////////////////////////////////////////////////
-    shipInfo = new JPanel(new GridLayout(4,1));    
+    shipInfo = new JPanel(new GridLayout(5,1));    
     Border blackline;
     TitledBorder shipTitle;
     Font shipFont = new Font("Times New Roman", Font.BOLD, 17);    
@@ -85,13 +89,16 @@ public class StatusPanel extends JPanel
     
     currentShipLabel = new JLabel ("Ship: ");
     attackButton = new JButton("Attack!");
+    cancelSelection = new JButton("Cancel Selection");
     attackButton.setEnabled(false);
     moveButton = new JButton("Move");
     moveButton.setEnabled(false);
+    cancelSelection.setEnabled(false);
     currentShipLabel.setFont(currentShipF);
     shipInfo.add(currentShipLabel);
     shipInfo.add(attackButton);
     shipInfo.add(moveButton);
+    shipInfo.add(cancelSelection);
     
     healthOfShipPan = new JPanel(new FlowLayout());
     healthOfShipTitle = new JLabel("Current Health of Ship: ");
@@ -104,12 +111,12 @@ public class StatusPanel extends JPanel
     ////////////////////////////////////////////////////////////////////////
     
     endTurnButton = new JButton("End Turn");
-    endTurnButton.setEnabled(false);
     helpButton = new JButton("Help");
     lowerPan.add(endTurnButton);
     lowerPan.add(helpButton);
   
     statusLog = new JTextArea(10,10);
+    statusLog.setEditable(false);
     actionLogTitle = new JLabel("Action Log: ");
     actionLogPan.add(statusLog, BorderLayout.SOUTH);
     actionLogPan.add(actionLogTitle, BorderLayout.NORTH);
@@ -128,13 +135,47 @@ public class StatusPanel extends JPanel
   }
   public void updateStatusPanel()
   {
-   
+    //totalHealthString needs a get totalHealth function
+    //have it return an int to be used in getHealthColor 
+    //function
+    String totalHealthString = "100";
+    totalHealthField.setText(totalHealthString +"/100");
+    getHealthColor(totalHealthField,100);
+    
+    //needs a function that returns the amount of actions left
+    //have it return an int.
+    actionLeftField = new JLabel("5");
+    
+    //need function to that will say what ship has been hit
+    statusLog.setText("NEED FUNCTION TO GET STATUS LOG!");
     
   }
   
   public void updateStatusPanel(Ship ship)
   {
+    //totalHealthString needs a get totalHealth function
+    //have it return an int to be used in getHealthColor 
+    //function
+    String totalHealthString = "100";
+    totalHealthField.setText(totalHealthString +"/100");
+    getHealthColor(totalHealthField,100);
     
+    //needs a function that returns the amount of actions left
+    //have it return an int.
+    actionLeftField = new JLabel("5");
+    
+    
+    currentShipLabel = new JLabel ("Ship: " + ship.toString());
+    attackButton.setEnabled(true);
+    moveButton.setEnabled(true);
+    cancelSelection.setEnabled(true);
+    
+    String healthS = Integer.toString(ship.getHealth());
+    healthOfShipField.setText(healthS + "/100");
+    getHealthColor(healthOfShipField,ship.getHealth());
+    
+    //need function to that will say what ship has been hit
+    statusLog.setText("NEED FUNCTION TO GET STATUS LOG!");
     
   }
   
