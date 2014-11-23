@@ -50,5 +50,10 @@ public class Submarine extends Ship
   {
     return 1;
   }
+  
+  public String getShipType()
+  {
+    return "Submarine";
+  }
 
 }

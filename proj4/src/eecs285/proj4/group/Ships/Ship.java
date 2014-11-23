@@ -40,4 +40,6 @@ public abstract class Ship
   
   public abstract int getSize();
   
+  public abstract String getShipType();
+  
 }

@@ -50,5 +50,10 @@ public class Destroyer extends Ship
   {
     return 3;
   }
+  
+  public String getShipType()
+  {
+    return "Destroyer";
+  }
 
 }

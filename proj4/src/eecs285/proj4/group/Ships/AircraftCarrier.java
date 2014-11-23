@@ -51,5 +51,10 @@ public class AircraftCarrier extends Ship
   {
     return 7;
   }
+  
+  public String getShipType()
+  {
+    return "AircraftCarrier";
+  }
 
 }

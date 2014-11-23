@@ -51,5 +51,9 @@ public class Dreadnought extends Ship
   {
     return 5;
   }
-
+  
+  public String getShipType()
+  {
+    return "Dreadnought";
+  }
 }

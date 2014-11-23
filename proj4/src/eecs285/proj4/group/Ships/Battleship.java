@@ -50,5 +50,10 @@ public class Battleship extends Ship
   {
     return 5;
   }
+  
+  public String getShipType()
+  {
+    return "Battleship";
+  }
 
 }

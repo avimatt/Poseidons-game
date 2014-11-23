@@ -51,5 +51,10 @@ public class PatrolBoat extends Ship
   {
     return 1;
   }
+  
+  public String getShipType()
+  {
+    return "PatrolBoat";
+  }
 
 }
