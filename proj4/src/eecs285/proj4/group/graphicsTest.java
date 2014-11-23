@@ -13,8 +13,8 @@ public class graphicsTest {
 	JFrame frame = new JFrame();
 	frame.setContentPane(gamePlay.getGame());
 	frame.validate();
+    frame.pack();
 	frame.setVisible(true);
-	frame.setSize(1000, 550);
 	gamePlay.run();
     //GamePlay gamePlay = new GamePlay();
    // gamePlay.start();
