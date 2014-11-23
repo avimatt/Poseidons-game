@@ -26,6 +26,11 @@ public abstract class Ship
     currentLoc = newLoc;
   }
   
+  public void takeHit(int attackPower)
+  {
+    setHealth(getHealth() - attackPower);
+  }
+  
   public abstract int getSpeed();
   
   public abstract int getAttackPower();

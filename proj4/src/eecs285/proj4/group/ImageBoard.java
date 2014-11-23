@@ -86,7 +86,7 @@ public class ImageBoard extends Canvas{
 
 
 
-  public Ship identifyPlayerShip(Location clicked_Location, Board state)
+  public Ship identifyPlayerShip(Location clicked_Location, Board state) throws Exception
   {
     //will throw a you don't have a ship there exception
     return state.getShip(clicked_Location);

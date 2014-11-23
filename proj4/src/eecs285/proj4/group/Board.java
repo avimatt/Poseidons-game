@@ -19,18 +19,57 @@ import java.util.ArrayList;
  */
 public class Board
 {
-
   private ArrayList<Ship> shipList;
-
-  private Ship[] playerShips;
-  private Ship[] opponentShips;
-  
+  //TODO: add functionality to do something with dead ships
   
   /**
    * 
    */
   public Board()
   {
+    resetBoard();
+  }
+
+
+  public Ship getShip(int shipNumber, int playerID) throws Exception
+  {
+    if (shipNumber * 2 + playerID > shipList.size())
+    {
+      throw new Exception("No such ship");
+    }
+    return shipList.get(shipNumber * 2 + playerID);
+  }
+  
+  public Ship getShip(Location curLoc) throws Exception
+  {
+    for (Ship curShip : shipList)
+    {
+      if (curShip.getCurrentLocation() == curLoc)
+      {
+        return curShip;
+      }
+    }
+    throw new Exception("No ship there");
+  }
+  
+  //in case of things other than ships that occupy locations
+  //and maybe to check if an attack was successful (TODO: confirm its a ship)
+  public boolean isLocOccupied(Location curLoc)
+  {
+    for (Ship curShip : shipList)
+    {
+      if (curShip.getCurrentLocation() == curLoc)
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  //TODO: replace raw adds with addShip
+  public void resetBoard()
+  {
+    shipList.clear();
     for(int i = 0; i < 2; ++i)
     {
       shipList.add(new PatrolBoat());
@@ -40,51 +79,12 @@ public class Board
       shipList.add(new AircraftCarrier());
       shipList.add(new Dreadnought());
     }
-    /*
-    playerShips = new Ship[6];
-    playerShips[0] = new PatrolBoat();
-    playerShips[1] = new Submarine();
-    playerShips[2] = new Destroyer();
-    playerShips[3] = new Battleship();
-    playerShips[4] = new AircraftCarrier();
-    playerShips[5] = new Dreadnought();
-    
-    opponentShips = new Ship[6];
-    opponentShips[0] = new PatrolBoat();
-    opponentShips[1] = new Submarine();
-    opponentShips[2] = new Destroyer();
-    opponentShips[3] = new Battleship();
-    opponentShips[4] = new AircraftCarrier();
-    opponentShips[5] = new Dreadnought();
-    */
-  }
-
-
-  public Ship getShip(int shipNumber)
-  {
-    return shipList.get(shipNumber);
   }
   
-  public Ship getShip(Location curLoc)
+  //helper to set up ship locations initially
+  public void addShip(Ship curShip, Location curLoc)
   {
-    for (Ship curShip : playerShips)
-    {
-      if (curShip.getCurrentLocation() == curLoc)
-      {
-        return curShip;
-      }
-
-      else
-      {
-        return null ;
-      }
-    }
-    return null;
+    curShip.setCurrentLoaction(curLoc);
+    shipList.add(curShip);
   }
-  
-  public void moveShip(Ship curShip, Location newLoc)
-  {
-    curShip.setCurrentLoaction(newLoc);
-  }
-
 }
