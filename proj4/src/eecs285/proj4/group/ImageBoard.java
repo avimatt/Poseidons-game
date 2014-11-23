@@ -31,24 +31,27 @@ public class ImageBoard extends Canvas{
     Dimension size = new Dimension(width * scale, height * scale);
     setPreferredSize(size);
 
-
-    boardImage = new BufferedImage(500,500,BufferedImage.TYPE_INT_ARGB);
-    boardGraphics = boardImage.createGraphics();
-    BoardListener boardListner = new BoardListener();
-    this.addMouseListener(boardListner);
-    super.paint(boardGraphics);
+    BoardListener boardListner = new BoardListener();;
 
   }
 
 
   public void render()
   {
-    BufferStrategy bs= getBufferStrategy();
-    if(bs == null)
+    BufferStrategy bufferStrategy= getBufferStrategy();
+    if(bufferStrategy == null)
     {
       createBufferStrategy(3);
       return;
     }
+
+    Graphics graphics = bufferStrategy.getDrawGraphics();
+
+    graphics.setColor(Color.blue);
+    graphics.fillRect(0, 0, getWidth(), getHeight());
+
+    graphics.dispose();
+    bufferStrategy.show();
 
   }
 
