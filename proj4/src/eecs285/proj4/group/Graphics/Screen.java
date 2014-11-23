@@ -1,33 +1,39 @@
 package eecs285.proj4.group.Graphics;
 
+import java.util.Random;
+
 /**
  * Created by yossier on 11/23/14.
  */
 public class Screen {
   private int width, height;
   public int[] pixels;
+  public int[] tiles;
 
-  private int counter = 0;
-  private int min = 0;
+  private Random random = new Random();
   
   public Screen(int inWidth, int inHeight)
   {
     width = inWidth;
     height =inHeight;
     pixels = new int[width * height];
+    tiles = new int[32 * 32];
+
+    for( int i = 0; i < tiles.length; ++i)
+    {
+      tiles[i] = random.nextInt(0xffffff);
+    }
 
   }
 
   public void render()
   {
-    if(((counter++) % 150) == 0)
-      min++;
-
     for (int y = 0; y < height; ++y)
     {
       for (int x = 0; x < width; ++x)
       {
-        pixels[min%width + min%height * width] = 0xff00ff;
+        int tileindex = (x / 16) + (y / 16) * 32;
+        pixels[x % width + y % height * width] = tiles[tileindex];
       }
     }
   }
