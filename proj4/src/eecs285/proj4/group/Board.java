@@ -73,6 +73,11 @@ public class Board
       {
         return curShip;
       }
+
+      else
+      {
+        return null ;
+      }
     }
     return null;
   }

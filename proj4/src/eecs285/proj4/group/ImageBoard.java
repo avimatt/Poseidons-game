@@ -6,18 +6,32 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 /**
  * Created by yossier on 11/19/14.
  */
 public class ImageBoard extends Canvas{
+
+  private static final long serialVersionUID = 1L;
+
   private BufferedImage boardImage;
   private MouseListener boardListener;
   private Graphics2D boardGraphics;
 
+
+  public static int width = 300;
+  public static int height = width * (9/16);
+  public static int scale = 3;
+
   public ImageBoard()
   {
+
+    Dimension size = new Dimension(width * scale, height * scale);
+    setPreferredSize(size);
+
+
     boardImage = new BufferedImage(500,500,BufferedImage.TYPE_INT_ARGB);
     boardGraphics = boardImage.createGraphics();
     BoardListener boardListner = new BoardListener();
@@ -25,6 +39,19 @@ public class ImageBoard extends Canvas{
     super.paint(boardGraphics);
 
   }
+
+
+  public void render()
+  {
+    BufferStrategy bs= getBufferStrategy();
+    if(bs == null)
+    {
+      createBufferStrategy(3);
+      return;
+    }
+
+  }
+
 
   /**
    * Redraws the board based on the state.
