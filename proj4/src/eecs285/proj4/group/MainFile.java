@@ -7,7 +7,7 @@ import eecs285.proj4.group.GameGUI;
 public class MainFile
 {
   public static GameGUI window;
-  
+
   public static void main( String[] args)
   {
     window = new GameGUI();
@@ -15,6 +15,7 @@ public class MainFile
     window.pack();
     window.setVisible(true);
     window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    
+
+
   }
 }

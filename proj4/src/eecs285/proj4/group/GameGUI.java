@@ -3,7 +3,6 @@ package eecs285.proj4.group;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -199,4 +198,9 @@ public class GameGUI extends JFrame
     }
   }
 
+  /**
+   * Created by yossier on 11/22/14.
+   */
+  public static class StartMenu extends JPanel {
+  }
 }
