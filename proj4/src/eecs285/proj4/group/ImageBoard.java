@@ -11,14 +11,13 @@ import java.awt.image.BufferedImage;
 /**
  * Created by yossier on 11/19/14.
  */
-public class ImageBoard extends JPanel{
+public class ImageBoard extends Canvas{
   private BufferedImage boardImage;
   private MouseListener boardListener;
   private Graphics2D boardGraphics;
 
   public ImageBoard()
   {
-    super(new FlowLayout());
     boardImage = new BufferedImage(500,500,BufferedImage.TYPE_INT_ARGB);
     boardGraphics = boardImage.createGraphics();
     BoardListener boardListner = new BoardListener();

@@ -83,7 +83,6 @@ public class GameGUI extends JFrame
     	//whether its the client or the server
         remove(gameOptions);
         setTitle("Poseidon's Game");
-        setContentPane(new ImageBoard());
         validate();
       }
       if(e.getSource() == joinGameButton)
@@ -196,11 +195,5 @@ public class GameGUI extends JFrame
     {
 
     }
-  }
-
-  /**
-   * Created by yossier on 11/22/14.
-   */
-  public static class StartMenu extends JPanel {
   }
 }
