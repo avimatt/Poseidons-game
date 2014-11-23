@@ -82,8 +82,12 @@ public class GameGUI extends JFrame
     	//GamePlay.startGame()
     	//passing in the server/client and letting it know
     	//whether its the client or the server
-        dispose();
+        setTitle("Poseidon's Game");
+        remove(gameOptions);
         game = new GamePlay();
+        setContentPane(game.getGame());
+        validate();
+        game.run();
         //status = new StatusPanel();
         //add(status);
         

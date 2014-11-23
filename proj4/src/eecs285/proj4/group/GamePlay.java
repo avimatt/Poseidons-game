@@ -8,7 +8,7 @@ import java.awt.*;
  */
 public class GamePlay implements Runnable{
 
-  private JFrame GameFrame;
+  private JPanel GamePanel;
   private ImageBoard boardImage;
   private StatusPanel status;
   private JPanel boardImagePanel;
@@ -21,10 +21,8 @@ public class GamePlay implements Runnable{
     running = true;
 
 
-    GameFrame = new JFrame();
-    GameFrame.setLayout(new BorderLayout());
-    GameFrame.setResizable(false);
-    GameFrame.setTitle("Poseidon's Game");
+    GamePanel = new JPanel();
+    GamePanel.setLayout(new BorderLayout());
     
     // add status panel and board image panel to frame
     status = new StatusPanel();
@@ -33,15 +31,8 @@ public class GamePlay implements Runnable{
     boardImagePanel = new JPanel(new FlowLayout());
     boardImagePanel.add(boardImage);
     
-    GameFrame.add(status, BorderLayout.WEST);
-    GameFrame.add(boardImagePanel, BorderLayout.EAST);
-
-    GameFrame.pack();
-    GameFrame.setVisible(true);
-    GameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    GameFrame.setLocationRelativeTo(null);
-
-    run();
+    GamePanel.add(status, BorderLayout.WEST);
+    GamePanel.add(boardImagePanel, BorderLayout.EAST);
   }
 
   public void stop()
@@ -77,6 +68,10 @@ public class GamePlay implements Runnable{
 
     //close game
 
+  }
+  
+  public JPanel getGame(){
+	  return GamePanel;
   }
 
 }
