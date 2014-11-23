@@ -5,25 +5,23 @@ import javax.swing.*;
 /**
  * Created by yossier on 11/22/14.
  */
-public class GamePlay {
+public class GamePlay implements Runnable{
 
   private JFrame GameFrame;
   private ImageBoard boardImage;
 
   private boolean running = false;
 
-  public GamePlay(){
+  public GamePlay()
+  {}
 
-  }
-
-  public void startGame()
+  public void start()
   {
     running = true;
 
     boardImage = new ImageBoard();
 
     GameFrame = new JFrame();
-
     GameFrame.setResizable(false);
     GameFrame.setTitle("Poseidon's Game");
 
@@ -32,9 +30,14 @@ public class GamePlay {
     GameFrame.pack();
     GameFrame.setVisible(true);
     GameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    GameFrame.setLocation(null);
+    GameFrame.setLocationRelativeTo(null);
 
+    run();
+  }
 
+  public void stop()
+  {
+    running = false;
   }
 
 
@@ -42,7 +45,7 @@ public class GamePlay {
   {
     while (running)
     {
-
+      boardImage.render();
     }
 
     //close game
