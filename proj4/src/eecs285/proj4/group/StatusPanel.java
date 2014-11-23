@@ -3,6 +3,8 @@ package eecs285.proj4.group;
 import java.awt.*;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 import eecs285.proj4.group.Ships.Ship;
 
@@ -10,6 +12,11 @@ import eecs285.proj4.group.Ships.Ship;
 public class StatusPanel extends JPanel
 {
   JPanel mainPan;
+  JPanel actionLogPan;
+  JPanel totalPan;
+  JPanel upperPan;
+  JPanel lowerPan;
+  JPanel shipInfo;
   JPanel totalHealthPan;
   JPanel actionsLeftPan;
   JPanel healthOfShipPan;
@@ -17,21 +24,31 @@ public class StatusPanel extends JPanel
   JLabel statusPanelTitle;
   JLabel actionLeftTitle;
   JLabel healthOfShipTitle;
-  JTextField actionLeftField;
+  JLabel actionLeftField;
   JTextField totalHealthField;
   JTextField healthOfShipField;
+  JTextArea statusLog;
   JLabel currentShipLabel;
+  JLabel actionLogTitle;
   JButton attackButton;
   JButton moveButton;
+  JButton helpButton;
+  JButton endTurnButton;
   
   public StatusPanel()
   {
-    mainPan = new JPanel (new GridLayout(7,1));
     
-    Font TitleFont = new Font("Algerian", Font.BOLD, 24);    
+    mainPan = new JPanel(new BorderLayout());
+    upperPan = new JPanel(new GridLayout(3,1));
+    lowerPan = new JPanel(new GridLayout(2,1));
+    actionLogPan = new JPanel(new BorderLayout());
+    totalPan = new JPanel(new BorderLayout());
+    Font currentShipF = new Font("Times New Roman", Font.BOLD, 15);
+    
+    Font TitleFont = new Font("Times New Roman", Font.BOLD, 24);    
     statusPanelTitle = new JLabel("Status Panel");
     statusPanelTitle.setFont(TitleFont);
-    mainPan.add(statusPanelTitle);
+    upperPan.add(statusPanelTitle);
     
     
     //total health 
@@ -44,20 +61,37 @@ public class StatusPanel extends JPanel
     totalHealthField.setEditable(false);
     totalHealthPan.add(totalHealthLabel);
     totalHealthPan.add(totalHealthField);
-    mainPan.add(totalHealthPan);
+    upperPan.add(totalHealthPan);
     
+    actionsLeftPan = new JPanel(new FlowLayout());
+    actionLeftTitle = new JLabel("Actions Left: ");
+    actionLeftField = new JLabel("");
+    actionLeftField.setFont(currentShipF);
+    actionsLeftPan.add(actionLeftTitle);
+    actionsLeftPan.add(actionLeftField);
+    upperPan.add(actionsLeftPan);
     
+    //Ship Info section/////////////////////////////////////////////////////
+    shipInfo = new JPanel(new GridLayout(4,1));    
+    Border blackline;
+    TitledBorder shipTitle;
+    Font shipFont = new Font("Times New Roman", Font.BOLD, 17);    
+    blackline = BorderFactory.createLineBorder(Color.black);
+    shipTitle = BorderFactory.createTitledBorder(blackline, "Ship Selected");
+    shipInfo.setBorder(shipTitle);
+    shipTitle.setTitleJustification(TitledBorder.CENTER);
+    shipTitle.setTitleFont(shipFont);
+    mainPan.add(shipInfo);
     
-    
-    currentShipLabel = new JLabel ("  Current Ship: ");
-    mainPan.add(currentShipLabel);
-    
+    currentShipLabel = new JLabel ("Ship: ");
     attackButton = new JButton("Attack!");
     attackButton.setEnabled(false);
     moveButton = new JButton("Move");
     moveButton.setEnabled(false);
-    mainPan.add(attackButton);
-    mainPan.add(moveButton);
+    currentShipLabel.setFont(currentShipF);
+    shipInfo.add(currentShipLabel);
+    shipInfo.add(attackButton);
+    shipInfo.add(moveButton);
     
     healthOfShipPan = new JPanel(new FlowLayout());
     healthOfShipTitle = new JLabel("Current Health of Ship: ");
@@ -66,24 +100,30 @@ public class StatusPanel extends JPanel
     healthOfShipField.setEditable(false);
     healthOfShipPan.add(healthOfShipTitle);
     healthOfShipPan.add(healthOfShipField);
-    mainPan.add(healthOfShipPan);
+    shipInfo.add(healthOfShipPan);
+    ////////////////////////////////////////////////////////////////////////
     
-    actionsLeftPan = new JPanel(new FlowLayout());
-    actionLeftTitle = new JLabel("Actions Left: ");
-    actionLeftField = new JTextField(5);
-    actionLeftField.setText("");
-    actionLeftField.setEditable(false);
-    
-    actionsLeftPan.add(actionLeftTitle);
-    actionsLeftPan.add(actionLeftField);
-    mainPan.add(actionsLeftPan);
-    
+    endTurnButton = new JButton("End Turn");
+    endTurnButton.setEnabled(false);
+    helpButton = new JButton("Help");
+    lowerPan.add(endTurnButton);
+    lowerPan.add(helpButton);
   
+    statusLog = new JTextArea(10,10);
+    actionLogTitle = new JLabel("Action Log: ");
+    actionLogPan.add(statusLog, BorderLayout.SOUTH);
+    actionLogPan.add(actionLogTitle, BorderLayout.NORTH);
     
     
+    mainPan.add(upperPan, BorderLayout.NORTH);
+    mainPan.add(shipInfo, BorderLayout.CENTER);
+    mainPan.add(lowerPan, BorderLayout.SOUTH);
+    
+    totalPan.add(mainPan,BorderLayout.NORTH);
+    totalPan.add(actionLogPan,BorderLayout.SOUTH);
    
     
-    add(mainPan);
+    add(totalPan);
    
   }
   public void updateStatusPanel()
@@ -99,13 +139,13 @@ public class StatusPanel extends JPanel
   }
   
   
-  private static void getHealthColor(JTextField healthField)
+  private static void getHealthColor(JTextField healthField, int healthPoints)
   {
-    /*  if (getTotalHealth() >= 70)
+      if (healthPoints >= 70)
     {
-      helthField.setBackground(Color.GREEN);
+      healthField.setBackground(Color.GREEN);
     }
-    else if (getTotalHealth() < 70 && getTotalHealth() >= 30 )
+    else if (healthPoints < 70 && healthPoints >= 30 )
     {
       healthField.setBackground(Color.YELLOW);
     }
@@ -113,7 +153,7 @@ public class StatusPanel extends JPanel
     {
       healthField.setBackground(Color.RED);
     }
-*/ 
+ 
   }
 }
 
