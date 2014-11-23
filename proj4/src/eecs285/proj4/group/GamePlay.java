@@ -41,7 +41,7 @@ public class GamePlay implements Runnable{
     GameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     GameFrame.setLocationRelativeTo(null);
 
-    //run();
+    run();
   }
 
   public void stop()
@@ -52,9 +52,27 @@ public class GamePlay implements Runnable{
 
   public void run()
   {
+    long lastTime = System.nanoTime();
+    final double ns = 1000000000.0 / 60.0;
+    double delta = 0;
+    long now;
+
+    int x = 0;
+
     while (running)
     {
-      boardImage.render();
+      /*now = System.nanoTime();
+
+      delta = (now - lastTime) / ns;
+
+      lastTime = now;
+      if(delta >= 1)
+      {
+      */
+      //if(x++ <= 1000)
+        boardImage.render();
+        //delta = 0;
+      //}
     }
 
     //close game
