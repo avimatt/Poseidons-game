@@ -28,6 +28,7 @@ public class StatusPanel extends JPanel
   JTextField totalHealthField;
   JTextField healthOfShipField;
   JTextArea statusLog;
+  JScrollPane statusLogScroll;
   JLabel currentShipLabel;
   JLabel actionLogTitle;
   JButton attackButton;
@@ -38,23 +39,33 @@ public class StatusPanel extends JPanel
   
   public StatusPanel()
   {
-    //sets up a gap so the buttons are not on each other
+    //This area sets up gaps in the layout to make things pretty
     GridLayout lowerButtons = new GridLayout(2,1);
-    lowerButtons.setVgap(3);
-    mainPan = new JPanel(new BorderLayout());
-    upperPan = new JPanel(new GridLayout(3,1));
+    lowerButtons.setVgap(4);
+    BorderLayout mainBorderLay = new BorderLayout();
+    mainBorderLay.setVgap(11);
+    BorderLayout totalBorderLay = new BorderLayout();
+    totalBorderLay.setVgap(5);
+    //////////////////////////////////////////////////////////////
+    
+    mainPan = new JPanel(mainBorderLay);
+    upperPan = new JPanel(new GridLayout(2,1));
     lowerPan = new JPanel(lowerButtons);
     actionLogPan = new JPanel(new BorderLayout());
-    totalPan = new JPanel(new BorderLayout());
+    totalPan = new JPanel(totalBorderLay);
     Font currentShipF = new Font("Times New Roman", Font.BOLD, 15);
     
-    Font TitleFont = new Font("Times New Roman", Font.BOLD, 24);    
-    statusPanelTitle = new JLabel("Status Panel");
-    statusPanelTitle.setFont(TitleFont);
-    upperPan.add(statusPanelTitle);
+    //adds a border around the status panel
+    Border blackline;
+    TitledBorder statusTitle;  
+    blackline = BorderFactory.createLineBorder(Color.black);
+    Font TitleFont = new Font("Times New Roman", Font.BOLD, 32);
+    statusTitle = BorderFactory.createTitledBorder(blackline, "Status Panel");
+    totalPan.setBorder(statusTitle);
+    statusTitle.setTitleJustification(TitledBorder.CENTER);
+    statusTitle.setTitleFont(TitleFont);
     
-    
-    //total health 
+    //total health of fleet 
     totalHealthPan = new JPanel (new FlowLayout());
     totalHealthLabel = new JLabel ("Total Fleet Health: ");
     //need a function getTotalFleetHealth that returns the total health points
@@ -78,15 +89,13 @@ public class StatusPanel extends JPanel
     upperPan.add(actionsLeftPan);
     
     //Ship Info section/////////////////////////////////////////////////////
-    //makes the gridlayout with gaps
+    //makes the gridlayout with gaps so buttons are not on top of each other
     GridLayout buttonGrid = new GridLayout(5,1);
-    buttonGrid.setVgap(3);
+    buttonGrid.setVgap(4);
     shipInfo = new JPanel(buttonGrid);    
-    Border blackline;
     TitledBorder shipTitle;
     //adds the boarder around the ship selection area
     Font shipFont = new Font("Times New Roman", Font.BOLD, 17);    
-    blackline = BorderFactory.createLineBorder(Color.black);
     shipTitle = BorderFactory.createTitledBorder(blackline, "Ship Selected");
     shipInfo.setBorder(shipTitle);
     shipTitle.setTitleJustification(TitledBorder.CENTER);
@@ -125,11 +134,15 @@ public class StatusPanel extends JPanel
     lowerPan.add(helpButton);
   
     //adds the status log
-    statusLog = new JTextArea(10,10);
+    statusLog = new JTextArea(17,10);
     statusLog.setEditable(false);
     actionLogTitle = new JLabel("Action Log: ");
-    actionLogPan.add(statusLog, BorderLayout.SOUTH);
+    statusLogScroll = new JScrollPane(statusLog);
+    statusLogScroll.setVerticalScrollBarPolicy(
+        JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    actionLogPan.add(statusLogScroll, BorderLayout.SOUTH);
     actionLogPan.add(actionLogTitle, BorderLayout.NORTH);
+    
     
     
     mainPan.add(upperPan, BorderLayout.NORTH);
@@ -137,6 +150,7 @@ public class StatusPanel extends JPanel
     mainPan.add(lowerPan, BorderLayout.SOUTH);
     
     totalPan.add(mainPan,BorderLayout.NORTH);
+    //totalPan.add(new JLabel("  "), BorderLayout.CENTER);
     totalPan.add(actionLogPan,BorderLayout.SOUTH);
    
     
