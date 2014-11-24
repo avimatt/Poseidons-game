@@ -25,7 +25,6 @@ public class ImageBoard extends Canvas{
   private int[] pixels = ((DataBufferInt)boardImage.getRaster().getDataBuffer()).getData();
   private Screen screen;
   private MouseListener boardListener;
-  private Graphics2D boardGraphics;
 
   private Board board;
 

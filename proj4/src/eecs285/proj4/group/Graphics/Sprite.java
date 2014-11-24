@@ -14,7 +14,7 @@ public class Sprite {
 
   private ImageLoader spriteSheet;
 
-  public static Sprite Ocean = new Sprite(16, 16, new Location(0,0), null, 16);
+  public static Sprite Ocean = new Sprite(16, 16, new Location(0,0), ImageLoader.spriteSheet, 16);
 
 
   public Sprite(int inWidth, int inHeight, Location inLoc, ImageLoader inSpriteSheet, int inSpriteSize)
@@ -43,4 +43,8 @@ public class Sprite {
     }
   }
 
+  public int getWIDTH()
+  {
+    return WIDTH;
+  }
 }

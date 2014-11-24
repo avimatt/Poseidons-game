@@ -14,7 +14,7 @@ public class ImageLoader
   private final int IMGHEIGHT;
   public int[] pixels;
 
-  public static ImageLoader spriteSheet = new ImageLoader("res/img/gimpFiles/spritesheet.png", 256, 256);
+  public static ImageLoader spriteSheet = new ImageLoader("/img/gimpFiles/spritesheet.png", 256, 256);
 
 
   public ImageLoader(String inPath, int inWidth, int inHeight)
