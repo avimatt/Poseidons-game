@@ -103,6 +103,7 @@ public class ImageBoard extends Canvas{
 
     public void mouseClicked(MouseEvent e) {
       Location clickLoc = new Location(e.getY(), e.getX());
+      System.out.println("X: " + clickLoc.getX() + " Y: " + clickLoc.getY());
 
 
 
