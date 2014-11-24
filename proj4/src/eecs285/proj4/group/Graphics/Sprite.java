@@ -14,7 +14,11 @@ public class Sprite {
 
   private ImageLoader spriteSheet;
 
-  public static Sprite Ocean = new Sprite(16, 16, new Location(0,0), ImageLoader.spriteSheet, 16);
+  public static Sprite OCEANTILE = new Sprite(16, 16, new Location(0,0), ImageLoader.spriteSheet, 16);
+
+  public static Sprite PATROLBOAT = new Sprite(16, 16, new Location(0,2), ImageLoader.spriteSheet, 16);
+
+  public static Sprite DESTROYER = new Sprite(32, 16, new Location(2,2), ImageLoader.spriteSheet, 16);
 
 
   public Sprite(int inWidth, int inHeight, Location inLoc, ImageLoader inSpriteSheet, int inSpriteSize)
@@ -25,7 +29,7 @@ public class Sprite {
 
     pixels = new int[WIDTH * HEIGHT];
 
-    loc = new Location(inLoc.getX() * SPRITESIZE, inLoc.getX() * SPRITESIZE);
+    loc = new Location(inLoc.getX() * SPRITESIZE, inLoc.getY() * SPRITESIZE);
     spriteSheet = inSpriteSheet;
 
     load();

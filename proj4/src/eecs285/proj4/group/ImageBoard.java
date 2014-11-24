@@ -17,8 +17,8 @@ import java.awt.image.DataBufferInt;
 public class ImageBoard extends Canvas{
 
   private static final long serialVersionUID = 1L;
-  public static int width = 304;
-  public static int height = 176;
+  public static int width = 400;
+  public static int height = 225;
   public static int scale = 3;
 
   private BufferedImage boardImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
