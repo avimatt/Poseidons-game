@@ -27,6 +27,8 @@ public class ImageBoard extends Canvas{
   private MouseListener boardListener;
   private Graphics2D boardGraphics;
 
+  private Board board;
+
 
 
 
@@ -38,7 +40,8 @@ public class ImageBoard extends Canvas{
 
     screen= new Screen(width, height);
 
-    BoardListener boardListner = new BoardListener();;
+    boardListener = new BoardListener();
+    addMouseListener(boardListener);
 
   }
 
@@ -100,6 +103,9 @@ public class ImageBoard extends Canvas{
     }
 
     public void mouseClicked(MouseEvent e) {
+      Location clickLoc = new Location(e.getY(), e.getX());
+
+
 
     }
 

@@ -2,13 +2,16 @@ package eecs285.proj4.group;
 
 public class Location
 {
-  private double x;
-  private double y;
+  private int x;
+  private int y;
+
+
+  //Tile Location List
 
   // ---------------------------------------------------------------------------
   // ---------------------------------------------------------------------------
 
-  public Location(double inX, double inY)
+  public Location(int inX, int inY)
   {
     x = inX;
     y = inY;
@@ -16,14 +19,14 @@ public class Location
 
   // ---------------------------------------------------------------------------
 
-  public double getX()
+  public int getX()
   {
     return x;
   }
 
   // ---------------------------------------------------------------------------
 
-  public double getY()
+  public int getY()
   {
     return y;
   }
