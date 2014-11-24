@@ -9,6 +9,8 @@ public class graphicsTest {
 
   public static void main(String[] args)
   {
+	  SetupWindow s = new SetupWindow();
+	  
 	  GamePlay gamePlay = new GamePlay();
 	  JFrame frame = new JFrame();
 	  frame.setContentPane(gamePlay.getGame());

@@ -11,7 +11,7 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class GameGUI extends JFrame
 {
-	GamePlay game;
+  GamePlay game;
   ImageBoard imageBoard;
   JPanel gameOptions;
   JButton startGameButton;
