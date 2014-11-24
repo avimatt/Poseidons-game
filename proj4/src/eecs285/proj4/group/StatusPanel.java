@@ -38,10 +38,12 @@ public class StatusPanel extends JPanel
   
   public StatusPanel()
   {
-    
+    //sets up a gap so the buttons are not on each other
+    GridLayout lowerButtons = new GridLayout(2,1);
+    lowerButtons.setVgap(3);
     mainPan = new JPanel(new BorderLayout());
     upperPan = new JPanel(new GridLayout(3,1));
-    lowerPan = new JPanel(new GridLayout(2,1));
+    lowerPan = new JPanel(lowerButtons);
     actionLogPan = new JPanel(new BorderLayout());
     totalPan = new JPanel(new BorderLayout());
     Font currentShipF = new Font("Times New Roman", Font.BOLD, 15);
@@ -76,9 +78,13 @@ public class StatusPanel extends JPanel
     upperPan.add(actionsLeftPan);
     
     //Ship Info section/////////////////////////////////////////////////////
-    shipInfo = new JPanel(new GridLayout(5,1));    
+    //makes the gridlayout with gaps
+    GridLayout buttonGrid = new GridLayout(5,1);
+    buttonGrid.setVgap(3);
+    shipInfo = new JPanel(buttonGrid);    
     Border blackline;
     TitledBorder shipTitle;
+    //adds the boarder around the ship selection area
     Font shipFont = new Font("Times New Roman", Font.BOLD, 17);    
     blackline = BorderFactory.createLineBorder(Color.black);
     shipTitle = BorderFactory.createTitledBorder(blackline, "Ship Selected");
@@ -87,6 +93,7 @@ public class StatusPanel extends JPanel
     shipTitle.setTitleFont(shipFont);
     mainPan.add(shipInfo);
     
+    //adds the buttons in the ship area
     currentShipLabel = new JLabel ("Ship: ");
     attackButton = new JButton("Attack!");
     cancelSelection = new JButton("Cancel Selection");
@@ -100,6 +107,7 @@ public class StatusPanel extends JPanel
     shipInfo.add(moveButton);
     shipInfo.add(cancelSelection);
     
+    //health status of a ship
     healthOfShipPan = new JPanel(new FlowLayout());
     healthOfShipTitle = new JLabel("Current Health of Ship: ");
     healthOfShipField = new JTextField(5);
@@ -110,11 +118,13 @@ public class StatusPanel extends JPanel
     shipInfo.add(healthOfShipPan);
     ////////////////////////////////////////////////////////////////////////
     
+    //adds buttons to lower panel
     endTurnButton = new JButton("End Turn");
     helpButton = new JButton("Help");
     lowerPan.add(endTurnButton);
     lowerPan.add(helpButton);
   
+    //adds the status log
     statusLog = new JTextArea(10,10);
     statusLog.setEditable(false);
     actionLogTitle = new JLabel("Action Log: ");
@@ -179,14 +189,18 @@ public class StatusPanel extends JPanel
     
   }
   
-  
+  //used to change the background color of the health fields
   private static void getHealthColor(JTextField healthField, int healthPoints)
-  {
-      if (healthPoints >= 70)
+  {  
+    int GREENBACK = 70;
+    int YELLOWBACK = 30;
+    //will be red once health is below YELLOWBACK
+    
+    if (healthPoints >= GREENBACK)
     {
       healthField.setBackground(Color.GREEN);
     }
-    else if (healthPoints < 70 && healthPoints >= 30 )
+    else if (healthPoints < GREENBACK && healthPoints >= YELLOWBACK )
     {
       healthField.setBackground(Color.YELLOW);
     }
