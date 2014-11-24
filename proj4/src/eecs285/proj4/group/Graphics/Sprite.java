@@ -18,7 +18,13 @@ public class Sprite {
 
   public static Sprite PATROLBOAT = new Sprite(16, 16, new Location(0,2), ImageLoader.spriteSheet, 16);
 
-  public static Sprite DESTROYER = new Sprite(32, 16, new Location(2,2), ImageLoader.spriteSheet, 16);
+  public static Sprite DESTROYER = new Sprite(32, 16, new Location(4,2), ImageLoader.spriteSheet, 16);
+
+  public static Sprite BATTLESHIP = new Sprite(32, 16, new Location(2, 2),ImageLoader.spriteSheet, 16);
+
+  public static Sprite SUBMARINE = new Sprite(16, 16, new Location(1,2), ImageLoader.spriteSheet, 16);
+
+  public static Sprite AIRCRAFTCARRIER = new Sprite(48, 16, new Location(6,2), ImageLoader.spriteSheet, 16);
 
 
   public Sprite(int inWidth, int inHeight, Location inLoc, ImageLoader inSpriteSheet, int inSpriteSize)
