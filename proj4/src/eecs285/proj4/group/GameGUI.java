@@ -87,6 +87,7 @@ public class GameGUI extends JFrame
         game = new GamePlay();
         setContentPane(game.getGame());
         validate();
+        pack();
         game.run();
         //status = new StatusPanel();
         //add(status);
