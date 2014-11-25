@@ -9,7 +9,7 @@ import java.awt.image.DataBufferInt;
  * Created by yossier on 11/23/14.
  */
 public class Sprite extends BufferedImage{
-  private final int SPRITESIZE;
+  private final static int SPRITESIZE = 16;
   private final int WIDTH;
   private final int HEIGHT;
   private Location loc;
@@ -19,21 +19,19 @@ public class Sprite extends BufferedImage{
 
 
 
-  public static Sprite OCEANTILE = new Sprite(16, 16, new Location(0,0), ImageLoader.spriteSheet, 16);
-  public static Sprite FOGTILE = new Sprite(16, 16, new Location(1,0), ImageLoader.spriteSheet, 16);
-  public static Sprite PATROLBOAT = new Sprite(16, 16, new Location(0,2), ImageLoader.spriteSheet, 16);
-  public static Sprite DESTROYER = new Sprite(32, 16, new Location(4,2), ImageLoader.spriteSheet, 16);
-  public static Sprite BATTLESHIP = new Sprite(32, 16, new Location(2, 2),ImageLoader.spriteSheet, 16);
-  public static Sprite SUBMARINE = new Sprite(16, 16, new Location(1,2), ImageLoader.spriteSheet, 16);
-  public static Sprite AIRCRAFTCARRIER = new Sprite(48, 16, new Location(6,2), ImageLoader.spriteSheet, 16);
+  public static Sprite OCEANTILE = new Sprite(16, 16, new Location(0,0), ImageLoader.spriteSheet);
+  public static Sprite FOGTILE = new Sprite(16, 16, new Location(1,0), ImageLoader.spriteSheet);
+  public static Sprite PATROLBOAT = new Sprite(16, 16, new Location(0,2), ImageLoader.spriteSheet);
+  public static Sprite DESTROYER = new Sprite(32, 16, new Location(4,2), ImageLoader.spriteSheet);
+  public static Sprite BATTLESHIP = new Sprite(32, 16, new Location(2, 2),ImageLoader.spriteSheet);
+  public static Sprite SUBMARINE = new Sprite(16, 16, new Location(1,2), ImageLoader.spriteSheet);
+  public static Sprite AIRCRAFTCARRIER = new Sprite(48, 16, new Location(6,2), ImageLoader.spriteSheet);
 
 
-  public Sprite(int inWidth, int inHeight, Location inLoc, ImageLoader inSpriteSheet, int inSpriteSize)
+  public Sprite(int inWidth, int inHeight, Location inLoc, ImageLoader inSpriteSheet)
   {
     super(inWidth, inHeight, BufferedImage.TYPE_INT_RGB);
 
-
-    SPRITESIZE = inSpriteSize;
     WIDTH = inWidth;
     HEIGHT = inHeight;
 
@@ -68,7 +66,7 @@ public class Sprite extends BufferedImage{
     return HEIGHT;
   }
 
-  public int getSPRITESIZE()
+  public static int getSPRITESIZE()
   {
     return SPRITESIZE;
   }

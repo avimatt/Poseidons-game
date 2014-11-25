@@ -62,7 +62,7 @@ public class Screen extends BufferedImage{
     Location shipLoc = ship.getCurrentLocation();
     Sprite shipSprite = ship.getSprite();
 
-    g.drawImage(shipSprite, shipLoc.getX() * shipSprite.getSPRITESIZE(), shipLoc.getY() * shipSprite.getSPRITESIZE(), shipSprite.getWIDTH(), shipSprite.getHEIGHT(), null);
+    g.drawImage(shipSprite, shipLoc.getX() * Sprite.getSPRITESIZE(), shipLoc.getY() * Sprite.getSPRITESIZE(), shipSprite.getWIDTH(), shipSprite.getHEIGHT(), null);
 
   }
 

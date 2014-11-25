@@ -1,6 +1,7 @@
 package eecs285.proj4.group;
 
 import eecs285.proj4.group.Graphics.Screen;
+import eecs285.proj4.group.Graphics.Sprite;
 import eecs285.proj4.group.Ships.*;
 
 import javax.swing.*;
@@ -21,8 +22,6 @@ public class ImageBoard extends JPanel{
   public static int height = 320;
   public static int scale = 2;
 
-  private BufferedImage boardImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-  private int[] pixels = ((DataBufferInt)boardImage.getRaster().getDataBuffer()).getData();
   private Screen screen;
 
 //  private Board board;
@@ -49,12 +48,8 @@ public class ImageBoard extends JPanel{
     screen.clear ();
     screen.render();
 
-    for(int i = 0; i < pixels.length; ++i)
-    {
-      pixels[i] = screen.pixels[i];
-    }
-
-    g.drawImage(boardImage, 0, 0, getWidth(), getHeight(), null);
+    //will draw board
+    g.drawImage(screen, 0, 0, getWidth(), getHeight(), null);
 
   }
   
@@ -85,7 +80,14 @@ public class ImageBoard extends JPanel{
   {
 	  
     public void mouseClicked(MouseEvent e) {
-      Location clickLoc = new Location(e.getX(), e.getY());
+      //Converts x pixel coordinate to x tile coordinate
+      int x = (int)Math.floor(e.getX() / (Sprite.getSPRITESIZE() * scale));
+
+      //Converts y pixel coordinate to y tile coordinate
+      int y = (int)Math.floor(e.getY() / (Sprite.getSPRITESIZE() * scale));
+
+
+      Location clickLoc = new Location( x, y);
       System.out.println("X: " + clickLoc.getX() + " Y: " + clickLoc.getY());
       //Ship selectedShip;
 
