@@ -1,6 +1,8 @@
 package eecs285.proj4.group.Ships;
 
 
+import eecs285.proj4.group.Graphics.Screen;
+
 public class Dreadnought extends Ship
 {
   private int health;
@@ -55,5 +57,10 @@ public class Dreadnought extends Ship
   public String getShipType()
   {
     return "Dreadnought";
+  }
+
+  @Override
+  public void render(Screen screen) {
+
   }
 }

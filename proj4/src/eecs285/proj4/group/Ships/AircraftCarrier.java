@@ -1,6 +1,8 @@
 package eecs285.proj4.group.Ships;
 
 
+import eecs285.proj4.group.Graphics.Screen;
+
 public class AircraftCarrier extends Ship
 {
   private int health;
@@ -55,6 +57,11 @@ public class AircraftCarrier extends Ship
   public String getShipType()
   {
     return "AircraftCarrier";
+  }
+
+  @Override
+  public void render(Screen screen) {
+
   }
 
 }
