@@ -36,7 +36,6 @@ public class ImageBoard extends JPanel{
 
     screen= new Screen(width, height);
 
-    addMouseListener(new BoardListener());
 
   }
 
@@ -50,6 +49,11 @@ public class ImageBoard extends JPanel{
 
     //will draw board
     g.drawImage(screen, 0, 0, getWidth(), getHeight(), null);
+
+  }
+
+  public void paintMouse(Graphics g, int x, int y)
+  {
 
   }
   
@@ -76,36 +80,6 @@ public class ImageBoard extends JPanel{
   }
 
 //---------------------------------------------------------------
-  public class BoardListener extends MouseAdapter
-  {
-	  
-    public void mouseClicked(MouseEvent e) {
-      //Converts x pixel coordinate to x tile coordinate
-      int x = (int)Math.floor(e.getX() / (Sprite.getSPRITESIZE() * scale));
 
-      //Converts y pixel coordinate to y tile coordinate
-      int y = (int)Math.floor(e.getY() / (Sprite.getSPRITESIZE() * scale));
-
-
-      Location clickLoc = new Location( x, y);
-      System.out.println("X: " + clickLoc.getX() + " Y: " + clickLoc.getY());
-      //Ship selectedShip;
-
-      try
-      {
-       // selectedShip = identifyPlayerShip(clickLoc, board);
-
-      }
-      catch(Exception e1)
-      {
-        System.out.println("No Ship at Location: " + clickLoc.getX() + "," + clickLoc.getY());
-
-      }
-
-
-
-    }
-    
-  }
 
 }
