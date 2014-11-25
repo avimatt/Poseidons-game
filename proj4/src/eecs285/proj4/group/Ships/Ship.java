@@ -1,6 +1,7 @@
 package eecs285.proj4.group.Ships;
 
 import eecs285.proj4.group.Graphics.Screen;
+import eecs285.proj4.group.Graphics.Sprite;
 import eecs285.proj4.group.Location;
 
 public abstract class Ship
@@ -48,6 +49,6 @@ public abstract class Ship
   
   public abstract String getShipType();
 
-  public abstract void render(Screen screen);
+  public abstract Sprite getSprite();
   
 }

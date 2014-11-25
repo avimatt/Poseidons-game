@@ -2,6 +2,7 @@ package eecs285.proj4.group.Ships;
 
 
 import eecs285.proj4.group.Graphics.Screen;
+import eecs285.proj4.group.Graphics.Sprite;
 
 public class AircraftCarrier extends Ship
 {
@@ -60,8 +61,8 @@ public class AircraftCarrier extends Ship
   }
 
   @Override
-  public void render(Screen screen) {
-
+  public Sprite getSprite() {
+    return Sprite.AIRCRAFTCARRIER;
   }
 
 }

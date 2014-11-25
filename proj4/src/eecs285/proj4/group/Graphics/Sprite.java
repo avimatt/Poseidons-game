@@ -20,6 +20,7 @@ public class Sprite extends BufferedImage{
 
 
   public static Sprite OCEANTILE = new Sprite(16, 16, new Location(0,0), ImageLoader.spriteSheet, 16);
+  public static Sprite FOGTILE = new Sprite(16, 16, new Location(1,0), ImageLoader.spriteSheet, 16);
   public static Sprite PATROLBOAT = new Sprite(16, 16, new Location(0,2), ImageLoader.spriteSheet, 16);
   public static Sprite DESTROYER = new Sprite(32, 16, new Location(4,2), ImageLoader.spriteSheet, 16);
   public static Sprite BATTLESHIP = new Sprite(32, 16, new Location(2, 2),ImageLoader.spriteSheet, 16);
@@ -61,4 +62,15 @@ public class Sprite extends BufferedImage{
   {
     return WIDTH;
   }
+
+  public int getHEIGHT()
+  {
+    return HEIGHT;
+  }
+
+  public int getSPRITESIZE()
+  {
+    return SPRITESIZE;
+  }
+
 }
