@@ -38,9 +38,9 @@ public class SetupWindow extends JFrame{
 		optionC = new JButton("C");
 		accept = new JButton("Confirm Setup");
 		
-		optionA.setPreferredSize(new Dimension(40,40));
-		optionB.setPreferredSize(new Dimension(40,40));
-		optionC.setPreferredSize(new Dimension(40,40));
+		optionA.setPreferredSize(new Dimension(50,40));
+		optionB.setPreferredSize(new Dimension(50,40));
+		optionC.setPreferredSize(new Dimension(50,40));
 		accept.setPreferredSize(new Dimension(150, 30));
 		
 		listener = new OptionListener();
