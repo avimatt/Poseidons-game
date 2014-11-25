@@ -8,21 +8,16 @@ import javax.swing.*;
 public class graphicsTest {
 
   public static void main(String[] args)
-  {
-	  SetupWindow s = new SetupWindow();
-	  
+  {  
 	  GamePlay gamePlay = new GamePlay();
 	  JFrame frame = new JFrame();
 	  frame.setContentPane(gamePlay.getGame());
 	  frame.validate();
-    frame.pack();
+      frame.pack();
 	  frame.setVisible(true);
-    frame.setResizable(false);
-    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+      frame.setResizable(false);
+      frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	  gamePlay.run();
-    //GamePlay gamePlay = new GamePlay();
-   // gamePlay.start();
-
   }
 
 }

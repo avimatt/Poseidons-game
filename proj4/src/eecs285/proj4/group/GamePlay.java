@@ -13,16 +13,15 @@ public class GamePlay implements Runnable{
   private StatusPanel status;
   private JPanel boardImagePanel;
 
-  private Board state;
+  //private Board state;
 
-  private boolean running = false;
+  //private boolean running = false;
 
   public GamePlay()
   {
   	
-    running = true;
-
-
+    //running = true;
+    
     GamePanel = new JPanel();
     GamePanel.setLayout(new BorderLayout());
     
@@ -36,39 +35,21 @@ public class GamePlay implements Runnable{
     GamePanel.add(status, BorderLayout.WEST);
     GamePanel.add(boardImagePanel, BorderLayout.EAST);
   }
-
-  public void stop()
+  
+//---------------------------------------------------------------
+  // What is this for? Do we still need this variable
+  /*public void stop()
   {
     running = false;
-  }
+  }*/
 
-
+//---------------------------------------------------------------
   public void run()
   {
-    long lastTime = System.nanoTime();
-    final double ns = 1000000000.0 / 60.0;
-    double delta = 0;
-    long now;
-
-    int x = 0;
-
-      /*now = System.nanoTime();
-
-      delta = (now - lastTime) / ns;
-
-      lastTime = now;
-      if(delta >= 1)
-      {
-      */
-      //if(x++ <= 1000)
-        boardImage.paintComponent(boardImage.getGraphics());
-        //delta = 0;
-      //}
-
-    //close game
-
+    boardImage.paintComponent(boardImage.getGraphics());
   }
   
+//---------------------------------------------------------------  
   public JPanel getGame(){
 	  return GamePanel;
   }

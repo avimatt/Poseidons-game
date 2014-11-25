@@ -8,7 +8,6 @@ import java.io.IOException;
 
 import javax.swing.*;
 
-@SuppressWarnings("serial")
 public class GameGUI
 {
   JFrame gameOptionsFrame;
@@ -24,7 +23,7 @@ public class GameGUI
   JDialog helpFrame;
   GameListener gameListener;
   ClientORServer network;
-
+//---------------------------------------------------------------
   public GameGUI()
   {
 
@@ -57,7 +56,6 @@ public class GameGUI
     gameOptions.add(joinGameButton);
     gameOptions.add(helpButton);
     gameOptions.add(exitGameButton);
-    //gameOptions.add(new JLabel(" "));
 
     backg.add(gameOptions,BorderLayout.SOUTH);
     gameOptionsFrame.pack();
@@ -66,32 +64,25 @@ public class GameGUI
 
 
   }
-
-  public class GameListener implements MouseListener
+//---------------------------------------------------------------
+  public class GameListener extends MouseAdapter
   {
+	//---------------------------------------------------------------
     public void mouseClicked(MouseEvent e)
     {
       if (e.getSource() == startGameButton)
       {
-      // I think we can always use port 8080 and it should be fine
-      String message = "Have your friend join a game with ip: " + 
-      ClientORServer.getIpAddress();
-      JOptionPane.showMessageDialog(null, message, "Start Game", 
-          JOptionPane.PLAIN_MESSAGE);
-
-      // Start Server (which blocks until other player connects)
-      //network = new ClientORServer(ClientORServer.getIpAddress(), 8080);
-      //network.startServer();
-      
-      //I feel like we should have a GamePlay class and right here call 
-      //GamePlay.startGame()
-      //passing in the server/client and letting it know
-      //whether its the client or the server
-        createAndDisplayGame();
-        //status = new StatusPanel();
-        //add(status);
-        
-
+	      // I think we can always use port 8080 and it should be fine	      
+	      // Start Server (which blocks until other player connects)
+	      network = new ClientORServer(ClientORServer.getIpAddress(), 8080);
+	      ServerThread thread = new ServerThread();
+	      thread.start();
+	      
+	      //passing in the server/client and letting it know
+	      //whether its the client or the server
+	      createAndDisplayGame();
+	      @SuppressWarnings("unused")
+		  StartServerWindow ssw = new StartServerWindow();
       }
       if(e.getSource() == joinGameButton)
       {
@@ -102,15 +93,13 @@ public class GameGUI
         
         // Start Client 
         network = new ClientORServer(ipAddress, 8080);
-      network.startClient();
-      createAndDisplayGame();
-      
-      // I feel like we should have a GamePlay class and right here call 
-      //GamePlay.startGame()
-      // passing in the server/client and letting it know whether its the 
-      //client or the server
-      
+        network.startClient();
         
+        // passing in the server/client and letting it know whether its the 
+        //client or the server 
+        createAndDisplayGame();
+        @SuppressWarnings("unused")
+		SetupWindow sw = new SetupWindow();
       }
       if(e.getSource() == helpButton)
       {
@@ -118,7 +107,6 @@ public class GameGUI
       }
       if (e.getSource() == exitGameButton)
       {
-      // why do we use dispose vs System.exit()
         System.exit(0);
       }
       if(e.getSource() == okayButton)
@@ -126,7 +114,7 @@ public class GameGUI
         helpFrame.dispose();
       }
     }
-    
+  //---------------------------------------------------------------
     private void createAndDisplayGame()
     {
       gameScreen = new JFrame("Poseidon's Game");
@@ -139,7 +127,7 @@ public class GameGUI
       gameScreen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
       game.run();
     }
-    
+  //---------------------------------------------------------------
     private void getHelpframe()
     {
        helpFrame = new JDialog();
@@ -183,7 +171,7 @@ public class GameGUI
        catch( IOException e )
        {
         //should never happen
-      e.printStackTrace();
+        e.printStackTrace();
         System.out.println("error!");
        }
        ///////////////////////////////////////////////////////////////////////
@@ -194,30 +182,16 @@ public class GameGUI
        buttons.add(okayButton);
        helpFrame.add(buttons, BorderLayout.SOUTH);
     }
-    
-    public void mousePressed(MouseEvent e)
-    {
-
-    }
-
-    public void mouseReleased(MouseEvent e)
-    {
-
-    }
-
-    public void mouseEntered(MouseEvent e)
-    {
-
-    }
-
-    public void mouseExited(MouseEvent e)
-    {
-
-    }
-
+  //---------------------------------------------------------------
     void saySomething(String eventDescription, MouseEvent e)
     {
 
+    }
+  //---------------------------------------------------------------
+    class ServerThread extends Thread {
+    	public void run(){
+    		network.startServer();
+    	}
     }
   }
 }

@@ -4,9 +4,10 @@ import eecs285.proj4.group.Graphics.Screen;
 import eecs285.proj4.group.Ships.*;
 
 import javax.swing.*;
+
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
@@ -26,9 +27,6 @@ public class ImageBoard extends JPanel{
 
 //  private Board board;
 
-
-
-
   public ImageBoard(/*Board inBoard*/)
   {
 
@@ -43,11 +41,10 @@ public class ImageBoard extends JPanel{
 
   }
 
-
+//---------------------------------------------------------------
   public void paintComponent(Graphics g)
   {
     super.paintComponent(g);
-
 
     screen.clear ();
     screen.render();
@@ -59,8 +56,9 @@ public class ImageBoard extends JPanel{
 
     g.drawImage(boardImage, 0, 0, getWidth(), getHeight(), null);
 
-
   }
+  
+//---------------------------------------------------------------
   /**
    * Redraws the board based on the state.
    */
@@ -69,40 +67,33 @@ public class ImageBoard extends JPanel{
 
   }
 
-
+//---------------------------------------------------------------
   public void drawObject()
   {
 
   }
 
-
-
+//---------------------------------------------------------------
   public Ship identifyPlayerShip(Location clicked_Location, Board state) throws Exception
   {
     //will throw a you don't have a ship there exception
     return state.getShip(clicked_Location);
   }
 
-  public class BoardListener implements MouseListener
+//---------------------------------------------------------------
+  public class BoardListener extends MouseAdapter
   {
-    public void mouseEntered(MouseEvent e)
-    {
-
-    }
-
+	  
     public void mouseClicked(MouseEvent e) {
       Location clickLoc = new Location(e.getX(), e.getY());
       System.out.println("X: " + clickLoc.getX() + " Y: " + clickLoc.getY());
-      Ship selectedShip;
+      //Ship selectedShip;
 
       try
       {
        // selectedShip = identifyPlayerShip(clickLoc, board);
 
-
-
       }
-
       catch(Exception e1)
       {
         System.out.println("No Ship at Location: " + clickLoc.getX() + "," + clickLoc.getY());
@@ -112,18 +103,7 @@ public class ImageBoard extends JPanel{
 
 
     }
-
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    public void mouseExited(MouseEvent e) {
-
-    }
+    
   }
 
 }

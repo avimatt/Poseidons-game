@@ -157,6 +157,8 @@ public class StatusPanel extends JPanel
     add(totalPan);
    
   }
+  
+//---------------------------------------------------------------
   public void updateStatusPanel()
   {
     //totalHealthString needs a get totalHealth function
@@ -175,6 +177,7 @@ public class StatusPanel extends JPanel
     
   }
   
+//---------------------------------------------------------------  
   public void updateStatusPanel(Ship ship)
   {
     //totalHealthString needs a get totalHealth function
@@ -202,7 +205,8 @@ public class StatusPanel extends JPanel
     statusLog.setText("NEED FUNCTION TO GET STATUS LOG!");
     
   }
-  
+
+//---------------------------------------------------------------
   //used to change the background color of the health fields
   private static void getHealthColor(JTextField healthField, int healthPoints)
   {  

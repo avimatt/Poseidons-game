@@ -12,7 +12,8 @@ public class ClientORServer {
 	private Socket socket;
 	private DataOutputStream output;
 	private DataInputStream input;
-	
+
+//---------------------------------------------------------------
 	public ClientORServer(String inIpAddress, int inPortNum){
 		ipAddress = inIpAddress;
 		portNum = inPortNum; 
@@ -21,6 +22,7 @@ public class ClientORServer {
 		input = null;
 	}
 	
+//---------------------------------------------------------------	
 	public static String getIpAddress(){
 		try{
 			InetAddress address;
@@ -34,10 +36,12 @@ public class ClientORServer {
 		return "";
 	}
 	
+//---------------------------------------------------------------
 	public int getPortNum(){
 		return portNum;
 	}
 	
+//---------------------------------------------------------------	
 	public void startServer(){
 		ServerSocket serverSock;
 		
@@ -60,6 +64,7 @@ public class ClientORServer {
 		}
 	}
 	
+//---------------------------------------------------------------	
 	public void startClient(){
 		try {
 			System.out.println("Starting Client");
@@ -75,6 +80,7 @@ public class ClientORServer {
 		}
 	}
 	
+//---------------------------------------------------------------	
 	public void sendStartLocations(Location[] startLocations){
 		try
 		{
@@ -93,7 +99,8 @@ public class ClientORServer {
 			System.exit(-1);
 		}
 	}
-		
+
+//---------------------------------------------------------------	
 	public void readMessage(){
 		Vector< Byte > byteVec = new Vector< Byte >();
 		byte [] byteAry;

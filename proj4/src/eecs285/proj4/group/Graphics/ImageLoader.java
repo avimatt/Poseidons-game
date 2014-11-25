@@ -16,7 +16,7 @@ public class ImageLoader
 
   public static ImageLoader spriteSheet = new ImageLoader("/img/gimpFiles/spritesheet.png", 256, 256);
 
-
+//---------------------------------------------------------------
   public ImageLoader(String inPath, int inWidth, int inHeight)
   {
     imgPath = inPath;
@@ -28,6 +28,7 @@ public class ImageLoader
     loadImg();
   }
 
+//---------------------------------------------------------------  
   private void loadImg()
   {
     try{
@@ -43,11 +44,13 @@ public class ImageLoader
     }
   }
 
+//---------------------------------------------------------------  
   public int getIMGWIDTH()
   {
     return IMGWIDTH;
   }
 
+//---------------------------------------------------------------  
   public int getIMGHEIGHT()
   {
     return IMGHEIGHT;

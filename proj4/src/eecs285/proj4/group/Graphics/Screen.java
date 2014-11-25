@@ -11,7 +11,8 @@ public class Screen {
   public int[] tiles;
 
   private Random random = new Random();
-  
+
+//---------------------------------------------------------------  
   public Screen(int inWidth, int inHeight)
   {
     width = inWidth;
@@ -26,6 +27,7 @@ public class Screen {
 
   }
 
+//---------------------------------------------------------------  
   public void render()
   {
     for (int y = 0; y < height; ++y)
@@ -36,12 +38,14 @@ public class Screen {
       {
         int xx = x ;
 //        if(xx < 0 || xx >= width) break;
-        int tileIndex = ((xx >> 4)&63) + ((yy >> 4)&63) * 64;
+        @SuppressWarnings("unused")
+		int tileIndex = ((xx >> 4)&63) + ((yy >> 4)&63) * 64;
         pixels[x + y * width] = Sprite.OCEANTILE.pixels[(x % Sprite.OCEANTILE.getWIDTH()) + (y % 16) * Sprite.OCEANTILE.getWIDTH()];
       }
     }
   }
 
+//---------------------------------------------------------------
   public void clear()
   {
     for (int i = 0; i < pixels.length; ++i)
