@@ -135,6 +135,7 @@ public class GameGUI
       gameScreen.pack();
       gameOptionsFrame.setVisible(false);
       gameScreen.setVisible(true);
+      gameScreen.setResizable(false);
       gameScreen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
       game.run();
     }

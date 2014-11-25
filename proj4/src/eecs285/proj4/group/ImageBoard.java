@@ -17,8 +17,8 @@ public class ImageBoard extends JPanel{
 
   private static final long serialVersionUID = 1L;
   public static int width = 400;
-  public static int height = 225;
-  public static int scale = 3;
+  public static int height = 320;
+  public static int scale = 2;
 
   private BufferedImage boardImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
   private int[] pixels = ((DataBufferInt)boardImage.getRaster().getDataBuffer()).getData();
@@ -91,7 +91,7 @@ public class ImageBoard extends JPanel{
     }
 
     public void mouseClicked(MouseEvent e) {
-      Location clickLoc = new Location(e.getY(), e.getX());
+      Location clickLoc = new Location(e.getX(), e.getY());
       System.out.println("X: " + clickLoc.getX() + " Y: " + clickLoc.getY());
       Ship selectedShip;
 
