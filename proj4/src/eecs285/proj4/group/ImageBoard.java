@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
@@ -62,27 +61,6 @@ public class ImageBoard extends JPanel{
 
 
   }
-
-/*
-  public void render()
-  {
-    BufferStrategy bufferStrategy= getBufferStrategy();
-    if(bufferStrategy == null)
-    {
-      createBufferStrategy(3);
-      return;
-    }
-
-    Graphics graphics = bufferStrategy.getDrawGraphics();
-
-//   graphics.setColor(Color.blue);
-//    graphics.fillRect(0, 0, getWidth(), getHeight());
-    graphics.drawImage(boardImage, 0, 0, getWidth(), getHeight(), null);
-    graphics.dispose();
-    bufferStrategy.show();
-
-  }
-*/
   /**
    * Redraws the board based on the state.
    */
