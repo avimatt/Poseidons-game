@@ -83,7 +83,7 @@ public class GamePlay implements Runnable{
       Graphics g = boardImage.getGraphics();
 
       g.setColor(Color.RED);
-      g.drawRect(x * Sprite.getSPRITESIZE() * ImageBoard.scale, y * Sprite.getSPRITESIZE() * ImageBoard.scale, Sprite.getSPRITESIZE() * ImageBoard.scale, Sprite.getSPRITESIZE() * ImageBoard.scale);
+     // g.drawRect(x * Sprite.getSPRITESIZE() * ImageBoard.scale, y * Sprite.getSPRITESIZE() * ImageBoard.scale, Sprite.getSPRITESIZE() * ImageBoard.scale, Sprite.getSPRITESIZE() * ImageBoard.scale);
     }
 
     public void mouseClicked(MouseEvent e) {

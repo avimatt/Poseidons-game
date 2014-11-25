@@ -18,7 +18,7 @@ import java.awt.image.DataBufferInt;
 public class ImageBoard extends JPanel{
 
   private static final long serialVersionUID = 1L;
-  public static int width = 400;
+  public static int width = 368;
   public static int height = 320;
   public static int scale = 2;
 

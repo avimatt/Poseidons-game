@@ -2,6 +2,7 @@ package eecs285.proj4.group.Graphics;
 
 import eecs285.proj4.group.Location;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
@@ -69,6 +70,14 @@ public class Sprite extends BufferedImage{
   public static int getSPRITESIZE()
   {
     return SPRITESIZE;
+  }
+
+  public Sprite flipSprite()
+  {
+    Sprite temp = new Sprite(WIDTH, HEIGHT, loc, spriteSheet);
+   // Graphics g = temp.getGraphics();
+   // g.drawImage(temp, loc.getX() + temp.WIDTH, loc.getY(), -temp.WIDTH, temp.HEIGHT, null);
+    return temp;
   }
 
 }

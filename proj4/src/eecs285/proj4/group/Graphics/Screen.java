@@ -51,7 +51,7 @@ public class Screen extends BufferedImage{
     }
 
       Ship test = new Submarine();
-      test.setCurrentLoaction(new Location(2,2));
+      test.setCurrentLoaction(new Location(3,2));
 
       render(test);
   }
@@ -62,7 +62,14 @@ public class Screen extends BufferedImage{
     Location shipLoc = ship.getCurrentLocation();
     Sprite shipSprite = ship.getSprite();
 
-    g.drawImage(shipSprite, shipLoc.getX() * Sprite.getSPRITESIZE(), shipLoc.getY() * Sprite.getSPRITESIZE(), shipSprite.getWIDTH(), shipSprite.getHEIGHT(), null);
+
+    int xStart = shipLoc.getX() * Sprite.getSPRITESIZE();
+    int yStart = shipLoc.getY() * Sprite.getSPRITESIZE();
+
+    int xWidth = shipSprite.getWIDTH();
+    int yHeight = shipSprite.getHEIGHT();
+
+    g.drawImage(shipSprite, xStart, yStart , xWidth, yHeight, null);
 
   }
 
