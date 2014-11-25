@@ -13,6 +13,8 @@ public class GamePlay implements Runnable{
   private StatusPanel status;
   private JPanel boardImagePanel;
 
+  private Board state;
+
   private boolean running = false;
 
   public GamePlay()
@@ -50,8 +52,6 @@ public class GamePlay implements Runnable{
 
     int x = 0;
 
-    while (running)
-    {
       /*now = System.nanoTime();
 
       delta = (now - lastTime) / ns;
@@ -61,10 +61,9 @@ public class GamePlay implements Runnable{
       {
       */
       //if(x++ <= 1000)
-        boardImage.render();
+        boardImage.paintComponent(boardImage.getGraphics());
         //delta = 0;
       //}
-    }
 
     //close game
 

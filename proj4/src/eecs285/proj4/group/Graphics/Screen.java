@@ -37,7 +37,7 @@ public class Screen {
         int xx = x ;
 //        if(xx < 0 || xx >= width) break;
         int tileIndex = ((xx >> 4)&63) + ((yy >> 4)&63) * 64;
-        pixels[x + y * width] = Sprite.SUBMARINE.pixels[(x & 15) + (y & 15) * Sprite.SUBMARINE.getWIDTH()];
+        pixels[x + y * width] = Sprite.OCEANTILE.pixels[(x % Sprite.OCEANTILE.getWIDTH()) + (y % 16) * Sprite.OCEANTILE.getWIDTH()];
       }
     }
   }

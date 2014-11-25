@@ -14,45 +14,41 @@ import java.awt.image.DataBufferInt;
 /**
  * Created by yossier on 11/19/14.
  */
-public class ImageBoard extends Canvas{
+public class ImageBoard extends JPanel{
 
   private static final long serialVersionUID = 1L;
   public static int width = 400;
   public static int height = 225;
-  public static int scale = 3;
+  public static int scale = 2;
 
   private BufferedImage boardImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
   private int[] pixels = ((DataBufferInt)boardImage.getRaster().getDataBuffer()).getData();
   private Screen screen;
-  private MouseListener boardListener;
 
-  private Board board;
-
+//  private Board board;
 
 
 
-  public ImageBoard()
+
+  public ImageBoard(/*Board inBoard*/)
   {
 
     Dimension size = new Dimension(width * scale, height * scale);
     setPreferredSize(size);
 
+   // board = inBoard;
+
     screen= new Screen(width, height);
 
-    boardListener = new BoardListener();
-    addMouseListener(boardListener);
+    addMouseListener(new BoardListener());
 
   }
 
 
-  public void render()
+  public void paintComponent(Graphics g)
   {
-    BufferStrategy bufferStrategy= getBufferStrategy();
-    if(bufferStrategy == null)
-    {
-      createBufferStrategy(3);
-      return;
-    }
+    super.paintComponent(g);
+
 
     screen.clear ();
     screen.render();
@@ -62,6 +58,21 @@ public class ImageBoard extends Canvas{
       pixels[i] = screen.pixels[i];
     }
 
+    g.drawImage(boardImage, 0, 0, getWidth(), getHeight(), null);
+
+
+  }
+
+/*
+  public void render()
+  {
+    BufferStrategy bufferStrategy= getBufferStrategy();
+    if(bufferStrategy == null)
+    {
+      createBufferStrategy(3);
+      return;
+    }
+
     Graphics graphics = bufferStrategy.getDrawGraphics();
 
 //   graphics.setColor(Color.blue);
@@ -69,9 +80,9 @@ public class ImageBoard extends Canvas{
     graphics.drawImage(boardImage, 0, 0, getWidth(), getHeight(), null);
     graphics.dispose();
     bufferStrategy.show();
-    
-  }
 
+  }
+*/
   /**
    * Redraws the board based on the state.
    */
@@ -104,6 +115,21 @@ public class ImageBoard extends Canvas{
     public void mouseClicked(MouseEvent e) {
       Location clickLoc = new Location(e.getY(), e.getX());
       System.out.println("X: " + clickLoc.getX() + " Y: " + clickLoc.getY());
+      Ship selectedShip;
+
+      try
+      {
+       // selectedShip = identifyPlayerShip(clickLoc, board);
+
+
+
+      }
+
+      catch(Exception e1)
+      {
+        System.out.println("No Ship at Location: " + clickLoc.getX() + "," + clickLoc.getY());
+
+      }
 
 
 
