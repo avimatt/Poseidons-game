@@ -12,10 +12,5 @@ public class MainFile
   {
     window = new GameGUI();
     //window.setMinimumSize(new Dimension(400,400));
-    window.pack();
-    window.setVisible(true);
-    window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-
   }
 }

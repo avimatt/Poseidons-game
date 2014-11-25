@@ -9,8 +9,10 @@ import java.io.IOException;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
-public class GameGUI extends JFrame
+public class GameGUI
 {
+  JFrame gameOptionsFrame;
+  JFrame gameScreen;
   GamePlay game;
   ImageBoard imageBoard;
   JPanel gameOptions;
@@ -26,7 +28,7 @@ public class GameGUI extends JFrame
   public GameGUI()
   {
 
-    super("Start Menu");
+    gameOptionsFrame = new JFrame("Start Menu");
     //creates new Jpanel to put buttons in
     //setSize(400,800);
     gameOptions = new JPanel();
@@ -38,7 +40,7 @@ public class GameGUI extends JFrame
     //gravity-battleship-1.jpg
     JLabel backg = new JLabel(new ImageIcon(getClass()
         .getClassLoader().getResource("images/battleship.jpg")));
-    add(backg);
+    gameOptionsFrame.add(backg);
     backg.setLayout(new BorderLayout());
 
     startGameButton = new StartMenuButton("Start Game");
@@ -58,6 +60,9 @@ public class GameGUI extends JFrame
     //gameOptions.add(new JLabel(" "));
 
     backg.add(gameOptions,BorderLayout.SOUTH);
+    gameOptionsFrame.pack();
+    gameOptionsFrame.setVisible(true);
+    gameOptionsFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
   }
@@ -68,27 +73,21 @@ public class GameGUI extends JFrame
     {
       if (e.getSource() == startGameButton)
       {
-    	// I think we can always use port 8080 and it should be fine
-    	String message = "Have your friend join a game with ip: " + 
-    	ClientORServer.getIpAddress();
-    	JOptionPane.showMessageDialog(null, message, "Start Game", 
-    	    JOptionPane.PLAIN_MESSAGE);
+      // I think we can always use port 8080 and it should be fine
+      String message = "Have your friend join a game with ip: " + 
+      ClientORServer.getIpAddress();
+      JOptionPane.showMessageDialog(null, message, "Start Game", 
+          JOptionPane.PLAIN_MESSAGE);
 
-    	// Start Server (which blocks until other player connects)
-    	//network = new ClientORServer(ClientORServer.getIpAddress(), 8080);
-    	//network.startServer();
-    	
-    	//I feel like we should have a GamePlay class and right here call 
-    	//GamePlay.startGame()
-    	//passing in the server/client and letting it know
-    	//whether its the client or the server
-        setTitle("Poseidon's Game");
-        remove(gameOptions);
-        game = new GamePlay();
-        setContentPane(game.getGame());
-        validate();
-        pack();
-        game.run();
+      // Start Server (which blocks until other player connects)
+      //network = new ClientORServer(ClientORServer.getIpAddress(), 8080);
+      //network.startServer();
+      
+      //I feel like we should have a GamePlay class and right here call 
+      //GamePlay.startGame()
+      //passing in the server/client and letting it know
+      //whether its the client or the server
+        createAndDisplayGame();
         //status = new StatusPanel();
         //add(status);
         
@@ -98,17 +97,20 @@ public class GameGUI extends JFrame
       {
         String ipAddress = JOptionPane.showInputDialog(null, "Enter your "
             + "friends IP address: ", 
-        		"Join Game", JOptionPane.QUESTION_MESSAGE);
+            "Join Game", JOptionPane.QUESTION_MESSAGE);
         // maybe do some error checking on the ipAddress passed in
         
         // Start Client 
         network = new ClientORServer(ipAddress, 8080);
-    	network.startClient();
-    	
-    	// I feel like we should have a GamePlay class and right here call 
-    	//GamePlay.startGame()
-    	// passing in the server/client and letting it know whether its the 
-    	//client or the server
+      network.startClient();
+      createAndDisplayGame();
+      
+      // I feel like we should have a GamePlay class and right here call 
+      //GamePlay.startGame()
+      // passing in the server/client and letting it know whether its the 
+      //client or the server
+      
+        
       }
       if(e.getSource() == helpButton)
       {
@@ -116,13 +118,25 @@ public class GameGUI extends JFrame
       }
       if (e.getSource() == exitGameButton)
       {
-    	// why do we use dispose vs System.exit()
+      // why do we use dispose vs System.exit()
         System.exit(0);
       }
       if(e.getSource() == okayButton)
       {
         helpFrame.dispose();
       }
+    }
+    
+    private void createAndDisplayGame()
+    {
+      gameScreen = new JFrame("Poseidon's Game");
+      game = new GamePlay();
+      gameScreen.add(game.getGame());
+      gameScreen.pack();
+      gameOptionsFrame.setVisible(false);
+      gameScreen.setVisible(true);
+      gameScreen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+      game.run();
     }
     
     private void getHelpframe()
@@ -138,7 +152,7 @@ public class GameGUI extends JFrame
        helpFrame.setVisible(true);
        helpFrame.setSize(600,400);
        helpFrame.setResizable(false);
-       helpFrame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+       helpFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
        helpCon.setEditable(false);
        helpCon.setWrapStyleWord(true);
        helpCon.setLineWrap(true);
@@ -168,7 +182,7 @@ public class GameGUI extends JFrame
        catch( IOException e )
        {
         //should never happen
-    	e.printStackTrace();
+      e.printStackTrace();
         System.out.println("error!");
        }
        ///////////////////////////////////////////////////////////////////////
