@@ -48,7 +48,6 @@ public class ImageBoard extends JPanel{
   {
     g.drawImage(screen, 0, 0, getWidth(), getHeight(), null);
     g.dispose();
-
   }
 
   public void paintMouse(Graphics g, int x, int y)
@@ -60,12 +59,10 @@ public class ImageBoard extends JPanel{
   /**
    * Redraws the board based on the state.
    */
-  public void updateBoard(/*Board state*/)
+  public void updateBoard(Player player)
   {
-
     screen.clear ();
-    screen.render();
-
+    screen.render(player);
   }
 
 //---------------------------------------------------------------

@@ -59,6 +59,12 @@ public class Player
   //TODO: output message about what happened
   }
   
+  public Board getBoard(){
+	  return myBoard;
+  }
+  
+  
+  
   
 
 }

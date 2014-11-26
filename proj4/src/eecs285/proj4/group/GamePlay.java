@@ -18,6 +18,7 @@ public class GamePlay implements Runnable{
   private JPanel boardImagePanel;
   public static boolean update = false;
 
+  private Player player;
   //private Board state;
 
   //private boolean running = false;
@@ -38,13 +39,15 @@ public class GamePlay implements Runnable{
 
     BoardListener mouseTracker = new BoardListener();
 
-   boardImage.addMouseListener(mouseTracker);
-   boardImage.addMouseMotionListener(mouseTracker);
+    boardImage.addMouseListener(mouseTracker);
+    boardImage.addMouseMotionListener(mouseTracker);
 
     boardImagePanel.add(boardImage);
     
     GamePanel.add(status, BorderLayout.WEST);
     GamePanel.add(boardImagePanel, BorderLayout.EAST);
+    
+    player = new Player();
   }
   
 //---------------------------------------------------------------
@@ -57,7 +60,7 @@ public class GamePlay implements Runnable{
 //---------------------------------------------------------------
   public void run()
   {
-    boardImage.updateBoard();
+    boardImage.updateBoard(player);
     boardImage.paintComponent(boardImage.getGraphics());
 /*
     while (true)
@@ -75,7 +78,16 @@ public class GamePlay implements Runnable{
 
   public void displaySetupOptions(char option){
 	  if(option == 'A'){
-		  boardImage.getScreen().renderOptionA();
+		  boardImage.getScreen().renderOptionA(player);
+		  boardImage.paintComponent(boardImage.getGraphics());
+	  }
+	  if(option == 'B'){
+		  boardImage.getScreen().renderOptionB(player);
+		  boardImage.paintComponent(boardImage.getGraphics());
+	  }
+	  if(option == 'C'){
+		  boardImage.getScreen().renderOptionC(player);
+		  boardImage.paintComponent(boardImage.getGraphics());
 	  }
   }
   
@@ -86,7 +98,7 @@ public class GamePlay implements Runnable{
     {
 
 
-      boardImage.updateBoard();
+      boardImage.updateBoard(player);
       //Converts x pixel coordinate to x tile coordinate
       int x = (int)Math.floor(e.getX() / (Sprite.getSPRITESIZE() * ImageBoard.scale));
 

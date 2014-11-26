@@ -73,7 +73,7 @@ public class GameGUI
       {
 	      // I think we can always use port 8080 and it should be fine	      
 	      // Start Server (which blocks until other player connects)
-	      network = new ClientORServer(ClientORServer.getIpAddress(), 8080);
+	      network = new ClientORServer(ClientORServer.getIpAddress(), 8000);
 	      ServerThread thread = new ServerThread();
 	      thread.start();
 	      

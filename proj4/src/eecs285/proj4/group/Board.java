@@ -27,7 +27,8 @@ public class Board
    */
   public Board()
   {
-    resetBoard();
+	shipList = new ArrayList<Ship>();
+    //resetBoard();
   }
 
 
@@ -67,7 +68,7 @@ public class Board
   }
   
   //TODO: replace raw adds with addShip
-  public void resetBoard()
+  /*public void resetBoard()
   {
     shipList.clear();
     for(int i = 0; i < 2; ++i)
@@ -79,7 +80,7 @@ public class Board
       shipList.add(new AircraftCarrier());
       shipList.add(new Dreadnought());
     }
-  }
+  }*/
   
   //helper to set up ship locations initially
   public void addShip(Ship curShip, Location curLoc)
@@ -87,4 +88,23 @@ public class Board
     curShip.setCurrentLoaction(curLoc);
     shipList.add(curShip);
   }
+  
+  public void addShip(Ship curShip)
+  {
+    shipList.add(curShip);
+  }
+  
+  public void resetShips(){
+	  shipList.clear();
+  }
+  
+  public ArrayList<Ship> getShips(){
+	  return shipList;
+  }
+  
+  public boolean shipsIsEmpty(){
+	  return shipList.isEmpty();
+  }
+  
+  
 }

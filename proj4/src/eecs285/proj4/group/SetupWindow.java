@@ -90,12 +90,14 @@ public class SetupWindow extends JFrame{
 				optA = false;
 				optB = true;
 				optC = false;
+				game.displaySetupOptions('B');
 				// function for showing option B on the screen
 			}
 			if(e.getSource() == optionC){
 				optA = false;
 				optB = false;
 				optC = true;
+				game.displaySetupOptions('C');
 				// function for showing option C on the screen
 			}
 			if(e.getSource() == accept){
