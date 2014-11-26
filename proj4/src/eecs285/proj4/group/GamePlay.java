@@ -56,7 +56,11 @@ public class GamePlay implements Runnable{
 //---------------------------------------------------------------
   public void run()
   {
+    while (true)
+    {
+    boardImage.updateBoard();
     boardImage.paintComponent(boardImage.getGraphics());
+    }
   }
   
 //---------------------------------------------------------------  

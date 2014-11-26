@@ -82,5 +82,15 @@ public class Screen extends BufferedImage{
     }
   }
 
+  public int getWidth()
+  {
+    return width;
+  }
+
+  public int getHeight()
+  {
+    return height;
+  }
+
 
 }

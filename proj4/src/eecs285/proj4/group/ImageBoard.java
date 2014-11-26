@@ -22,6 +22,7 @@ public class ImageBoard extends JPanel{
   public static int height = 320;
   public static int scale = 2;
 
+
   private Screen screen;
 
 //  private Board board;
@@ -34,21 +35,23 @@ public class ImageBoard extends JPanel{
 
    // board = inBoard;
 
+    setDoubleBuffered(true);
     screen= new Screen(width, height);
 
 
   }
 
+
 //---------------------------------------------------------------
-  public void paintComponent(Graphics g)
+  public void paint(Graphics g)
   {
-    super.paintComponent(g);
 
-    screen.clear ();
-    screen.render();
+  }
 
-    //will draw board
+  public void paintComponent( Graphics g)
+  {
     g.drawImage(screen, 0, 0, getWidth(), getHeight(), null);
+    g.dispose();
 
   }
 
@@ -61,8 +64,11 @@ public class ImageBoard extends JPanel{
   /**
    * Redraws the board based on the state.
    */
-  public void updateBoard(Board state)
+  public void updateBoard(/*Board state*/)
   {
+
+    screen.clear ();
+    screen.render();
 
   }
 
