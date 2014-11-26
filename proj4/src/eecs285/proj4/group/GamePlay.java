@@ -16,6 +16,7 @@ public class GamePlay implements Runnable{
   private ImageBoard boardImage;
   private StatusPanel status;
   private JPanel boardImagePanel;
+  public static boolean update = false;
 
   //private Board state;
 
@@ -56,11 +57,14 @@ public class GamePlay implements Runnable{
 //---------------------------------------------------------------
   public void run()
   {
-    while (true)
-    {
     boardImage.updateBoard();
     boardImage.paintComponent(boardImage.getGraphics());
-    }
+
+    while (true)
+    {
+        boardImage.updateBoard();
+        boardImage.paintComponent(boardImage.getGraphics());
+      }
   }
   
 //---------------------------------------------------------------  
@@ -84,10 +88,13 @@ public class GamePlay implements Runnable{
       Location clickLoc = new Location( x, y);
       System.out.println("X: " + clickLoc.getX() + " Y: " + clickLoc.getY());
 
-      Graphics g = boardImage.getGraphics();
+      //GamePlay.update = true;
+
+      Graphics g = boardImage.getScreen().getGraphics();
 
       g.setColor(Color.RED);
-     // g.drawRect(x * Sprite.getSPRITESIZE() * ImageBoard.scale, y * Sprite.getSPRITESIZE() * ImageBoard.scale, Sprite.getSPRITESIZE() * ImageBoard.scale, Sprite.getSPRITESIZE() * ImageBoard.scale);
+      g.drawRect(x * Sprite.getSPRITESIZE(), y * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE());
+
     }
 
     public void mouseClicked(MouseEvent e) {
