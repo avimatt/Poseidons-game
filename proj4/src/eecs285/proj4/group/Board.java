@@ -113,11 +113,11 @@ public class Board
   }
   
   public ArrayList<Ship> getOpponentShips(){
-	  return shipList;
+	  return opponentShipList;
   }
   
   public boolean opponentShipIsEmpty(){
-	  return shipList.isEmpty();
+	  return opponentShipList.isEmpty();
   }
   
   

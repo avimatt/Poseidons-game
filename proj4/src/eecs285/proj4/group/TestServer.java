@@ -11,6 +11,6 @@ public class TestServer {
 		System.out.println(ClientORServer.getIpAddress());
 		
 		server.startServer();		
-		server.readMessage();
+		//server.readMessage();
 	}
 }
