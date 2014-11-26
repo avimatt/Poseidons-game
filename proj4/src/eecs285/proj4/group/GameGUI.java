@@ -13,7 +13,6 @@ public class GameGUI
   JFrame gameOptionsFrame;
   JFrame gameScreen;
   GamePlay game;
-  ImageBoard imageBoard;
   JPanel gameOptions;
   JButton startGameButton;
   JButton joinGameButton;
@@ -81,8 +80,7 @@ public class GameGUI
 	      //passing in the server/client and letting it know
 	      //whether its the client or the server
 	      createAndDisplayGame();
-	      @SuppressWarnings("unused")
-		  StartServerWindow ssw = new StartServerWindow();
+	      StartServerWindow ssw = new StartServerWindow(game);
       }
       if(e.getSource() == joinGameButton)
       {
@@ -99,7 +97,7 @@ public class GameGUI
         //client or the server 
         createAndDisplayGame();
         @SuppressWarnings("unused")
-		SetupWindow sw = new SetupWindow();
+  	  	SetupWindow sw = new SetupWindow(game);
       }
       if(e.getSource() == helpButton)
       {

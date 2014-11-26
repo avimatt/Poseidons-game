@@ -21,11 +21,13 @@ public class SetupWindow extends JFrame{
 	
 	private OptionListener listener;
 	
+	private GamePlay game;
+	
 	boolean optA;
 	boolean optB;
 	boolean optC;
 	
-	public SetupWindow(){
+	public SetupWindow(GamePlay gameIn){
 		super("Setup");
 	
 		setLayout(new BorderLayout());
@@ -63,6 +65,8 @@ public class SetupWindow extends JFrame{
 		optB = false;
 		optC = false;
 		
+		game = gameIn;
+		
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setResizable(false);
 		setVisible(true);
@@ -79,6 +83,7 @@ public class SetupWindow extends JFrame{
 				optA = true;
 				optB = false;
 				optC = false;
+				game.displaySetupOptions('A');
 				// function for showing option A on the screen
 			}
 			if(e.getSource() == optionB){

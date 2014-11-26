@@ -73,6 +73,12 @@ public class GamePlay implements Runnable{
 	  return GamePanel;
   }
 
+  public void displaySetupOptions(char option){
+	  if(option == 'A'){
+		  boardImage.getScreen().renderOptionA();
+	  }
+  }
+  
   public class BoardListener extends MouseAdapter
   {
 

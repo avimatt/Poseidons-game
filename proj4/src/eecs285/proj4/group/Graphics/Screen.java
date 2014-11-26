@@ -50,10 +50,10 @@ public class Screen extends BufferedImage{
       }
     }
 
-      Ship test = new Submarine();
-      test.setCurrentLoaction(new Location(3,2));
+      //Ship test = new Submarine();
+      //test.setCurrentLoaction(new Location(3,2));
 
-      render(test);
+      //render(test);
   }
 
 
@@ -71,6 +71,28 @@ public class Screen extends BufferedImage{
 
     g.drawImage(shipSprite, xStart, yStart , xWidth, yHeight, null);
 
+  }
+  
+  public void renderOptionA(){
+	  //render();
+	  
+	  Ship patrol1 = new PatrolBoat();
+	  patrol1.setCurrentLoaction(new Location(2,0));
+	  render(patrol1);
+	  Ship destroyer = new Destroyer();
+	  destroyer.setCurrentLoaction(new Location(0,1));
+	  render(destroyer);
+	  Ship battleship = new Battleship();
+	  battleship.setCurrentLoaction(new Location(0,2));
+	  render(battleship);
+	  Ship aircraft = new AircraftCarrier();
+	  aircraft.setCurrentLoaction(new Location(0,3));
+	  render(aircraft);
+	  Ship submarine = new Submarine();
+	  submarine.setCurrentLoaction(new Location(1,4));
+	  render(submarine);
+	  Ship patrol2 = new PatrolBoat();
+	  patrol2.setCurrentLoaction(new Location(2,5));
   }
 
 //---------------------------------------------------------------

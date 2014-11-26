@@ -18,7 +18,7 @@ public class StartServerWindow extends JFrame {
 	private JLabel label;
 	private JButton okButton;
 	
-	public StartServerWindow(){
+	public StartServerWindow(final GamePlay gameIn){
 		super("Start Game");
 		setLayout(new BorderLayout());
 		
@@ -29,10 +29,11 @@ public class StartServerWindow extends JFrame {
 		
 		okButton.addActionListener(new ActionListener(){
 
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				@SuppressWarnings("unused")
-				SetupWindow sw = new SetupWindow();
+				SetupWindow sw = new SetupWindow(gameIn);
 				dispose();
 			}
 			

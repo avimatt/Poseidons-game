@@ -1,16 +1,12 @@
 package eecs285.proj4.group;
 
 import eecs285.proj4.group.Graphics.Screen;
-import eecs285.proj4.group.Graphics.Sprite;
 import eecs285.proj4.group.Ships.*;
 
 import javax.swing.*;
 
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferInt;
+
 
 /**
  * Created by yossier on 11/19/14.
