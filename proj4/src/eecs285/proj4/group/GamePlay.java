@@ -59,12 +59,13 @@ public class GamePlay implements Runnable{
   {
     boardImage.updateBoard();
     boardImage.paintComponent(boardImage.getGraphics());
-
+/*
     while (true)
     {
         boardImage.updateBoard();
         boardImage.paintComponent(boardImage.getGraphics());
       }
+      */
   }
   
 //---------------------------------------------------------------  
@@ -78,6 +79,8 @@ public class GamePlay implements Runnable{
     public void mouseMoved(MouseEvent e)
     {
 
+
+      boardImage.updateBoard();
       //Converts x pixel coordinate to x tile coordinate
       int x = (int)Math.floor(e.getX() / (Sprite.getSPRITESIZE() * ImageBoard.scale));
 
@@ -94,6 +97,7 @@ public class GamePlay implements Runnable{
 
       g.setColor(Color.RED);
       g.drawRect(x * Sprite.getSPRITESIZE(), y * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE());
+      boardImage.paintComponent(boardImage.getGraphics());
 
     }
 
