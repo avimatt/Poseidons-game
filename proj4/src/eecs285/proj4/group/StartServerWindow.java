@@ -48,6 +48,7 @@ public class StartServerWindow extends JFrame {
 		add(topPanel, BorderLayout.NORTH);
 		add(botPanel, BorderLayout.SOUTH);
 		
+		setLocationRelativeTo(null);
 		setVisible(true);
 		setResizable(false);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

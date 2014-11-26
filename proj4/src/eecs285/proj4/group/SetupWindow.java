@@ -23,10 +23,6 @@ public class SetupWindow extends JFrame{
 	
 	private GamePlay game;
 	
-	boolean optA;
-	boolean optB;
-	boolean optC;
-	
 	public SetupWindow(GamePlay gameIn){
 		super("Setup");
 	
@@ -61,12 +57,9 @@ public class SetupWindow extends JFrame{
 		add(topPanel, BorderLayout.NORTH);
 		add(acceptPanel, BorderLayout.SOUTH);
 		
-		optA = false;
-		optB = false;
-		optC = false;
-		
 		game = gameIn;
 		
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setResizable(false);
 		setVisible(true);
@@ -80,29 +73,24 @@ public class SetupWindow extends JFrame{
 		public void mouseClicked(MouseEvent e)
 		{
 			if(e.getSource() == optionA){
-				optA = true;
-				optB = false;
-				optC = false;
+				// displays option A setup and sets players 
+				// ships array with the locations of the ships
 				game.displaySetupOptions('A');
-				// function for showing option A on the screen
 			}
 			if(e.getSource() == optionB){
-				optA = false;
-				optB = true;
-				optC = false;
+				// displays option B setup and sets players 
+				// ships array with the locations of the ships
 				game.displaySetupOptions('B');
-				// function for showing option B on the screen
 			}
 			if(e.getSource() == optionC){
-				optA = false;
-				optB = false;
-				optC = true;
+				// displays option C setup and sets players 
+				// ships array with the locations of the ships
 				game.displaySetupOptions('C');
-				// function for showing option C on the screen
 			}
 			if(e.getSource() == accept){
-				// function for setting the locations in the 
-				// array of ships in the Board class
+				// needs to send the locations to other player
+				game.getNetwork().sendStartLocations(game.getPlayer().getBoard().getShips());
+				game.getNetwork().readMessage(game);
 				dispose();
 			}
 		}

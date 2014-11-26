@@ -4,7 +4,10 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.Vector;
+
+import eecs285.proj4.group.Ships.Ship;
 
 public class ClientORServer {
 	private String ipAddress;
@@ -81,15 +84,18 @@ public class ClientORServer {
 	}
 	
 //---------------------------------------------------------------	
-	public void sendStartLocations(Location[] startLocations){
+	public void sendStartLocations(ArrayList<Ship> startLocations){
 		try
 		{
 			System.out.println("sending started...");
 			output.writeBytes("start_location");
 			output.writeByte(0);
-			for(Location loc : startLocations){
-				output.writeDouble(loc.getX());
-				output.writeDouble(loc.getY());
+			for(Ship curShip : startLocations){
+				output.writeBytes(curShip.getShipType());
+				output.writeByte(0);
+				output.writeInt(curShip.getID());
+				output.writeInt(curShip.getCurrentLocation().getX());
+				output.writeInt(curShip.getCurrentLocation().getY());	
 			}
 			System.out.println("sending done...");
 		}
@@ -101,7 +107,7 @@ public class ClientORServer {
 	}
 
 //---------------------------------------------------------------	
-	public void readMessage(){
+	public void readMessage(GamePlay game){
 		Vector< Byte > byteVec = new Vector< Byte >();
 		byte [] byteAry;
 		byte recByte;
@@ -128,8 +134,24 @@ public class ClientORServer {
 			// Message for sending the starting locations of other players boats
 			if(receivedString.contentEquals("start_location")){
 				for(int i = 0; i < 6; ++i){
-					System.out.println("Ship " + i + " is at x: " + input.readDouble() 
-							+ " y: " + input.readDouble());
+					// Receive Ship Type
+					byteVec.clear();
+					recByte = input.readByte();
+					while (recByte != 0){
+						byteVec.add(recByte);
+						recByte = input.readByte();
+					}
+					byteAry = new byte[byteVec.size()];
+					for (int ind = 0; ind < byteVec.size(); ind++){
+						byteAry[ind] = byteVec.elementAt(ind).byteValue();
+					}
+					receivedString = new String(byteAry);
+					
+					// create opponents ships
+					Ship curShip = Ship.shipFactory(receivedString);
+					curShip.setID(input.readInt());
+					curShip.setCurrentLoaction(new Location(input.readInt(),input.readInt()));
+					game.getPlayer().getBoard().addOpponentShip(curShip);
 				}
 			}
 		}

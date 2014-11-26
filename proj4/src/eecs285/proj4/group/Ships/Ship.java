@@ -19,6 +19,11 @@ public abstract class Ship
     return id;
   }
   
+  // only to be used for the opponents ships
+  public void setID(int idIn){
+	  id = idIn;
+  }
+  
   public Location getCurrentLocation(){
     return currentLoc;
   }
@@ -31,6 +36,24 @@ public abstract class Ship
   public void takeHit(int attackPower)
   {
     setHealth(getHealth() - attackPower);
+  }
+  
+  public static Ship shipFactory(String shipName){
+	  if (shipName.equals("PatrolBoat")) {
+		  return new PatrolBoat();
+	  } else if (shipName.equals("Submarine")) {
+		  return new Submarine();
+	  } else if (shipName.equals("Destroyer")) {
+		  return new Destroyer();
+	  } else if (shipName.equals("Battleship")) {
+		  return new Battleship();
+	  } else if (shipName.equals("AircraftCarrier")) {
+		  return new AircraftCarrier();
+	  } else {
+		  // throw exception
+	  }
+	  // should never reach here  
+	  return null;
   }
   
   public abstract int getSpeed();

@@ -56,6 +56,7 @@ public class GameGUI
     gameOptions.add(helpButton);
     gameOptions.add(exitGameButton);
 
+    gameOptionsFrame.setLocationRelativeTo(null);
     backg.add(gameOptions,BorderLayout.SOUTH);
     gameOptionsFrame.pack();
     gameOptionsFrame.setVisible(true);
@@ -90,7 +91,7 @@ public class GameGUI
         // maybe do some error checking on the ipAddress passed in
         
         // Start Client 
-        network = new ClientORServer(ipAddress, 8080);
+        network = new ClientORServer(ipAddress, 8000);
         network.startClient();
         
         // passing in the server/client and letting it know whether its the 
@@ -116,7 +117,7 @@ public class GameGUI
     private void createAndDisplayGame()
     {
       gameScreen = new JFrame("Poseidon's Game");
-      game = new GamePlay();
+      game = new GamePlay(network);
       gameScreen.add(game.getGame());
       gameScreen.pack();
       gameOptionsFrame.setVisible(false);

@@ -18,12 +18,13 @@ public class GamePlay implements Runnable{
   private JPanel boardImagePanel;
   public static boolean update = false;
 
+  private ClientORServer network;
   private Player player;
   //private Board state;
 
   //private boolean running = false;
 
-  public GamePlay()
+  public GamePlay(ClientORServer networkIn)
   {
   	
     //running = true;
@@ -48,6 +49,7 @@ public class GamePlay implements Runnable{
     GamePanel.add(boardImagePanel, BorderLayout.EAST);
     
     player = new Player();
+    network = networkIn;
   }
   
 //---------------------------------------------------------------
@@ -74,6 +76,14 @@ public class GamePlay implements Runnable{
 //---------------------------------------------------------------  
   public JPanel getGame(){
 	  return GamePanel;
+  }
+  
+  public ClientORServer getNetwork(){
+	  return network;
+  }
+  
+  public Player getPlayer(){
+	  return player;
   }
 
   public void displaySetupOptions(char option){
@@ -107,7 +117,7 @@ public class GamePlay implements Runnable{
 
 
       Location clickLoc = new Location( x, y);
-      System.out.println("X: " + clickLoc.getX() + " Y: " + clickLoc.getY());
+      System.out.println("Moved: X: " + clickLoc.getX() + " Y: " + clickLoc.getY());
 
       //GamePlay.update = true;
 
@@ -128,13 +138,12 @@ public class GamePlay implements Runnable{
 
 
       Location clickLoc = new Location( x, y);
-      System.out.println("X: " + clickLoc.getX() + " Y: " + clickLoc.getY());
+      System.out.println("Clicked X: " + clickLoc.getX() + " Y: " + clickLoc.getY());
       //Ship selectedShip;
 
       try
       {
         // selectedShip = identifyPlayerShip(clickLoc, board);
-
       }
       catch(Exception e1)
       {

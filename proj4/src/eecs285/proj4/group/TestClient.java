@@ -1,19 +1,37 @@
 package eecs285.proj4.group;
 
+import java.util.ArrayList;
+
+import eecs285.proj4.group.Ships.*;
+
 public class TestClient {
 
 	public static void main(String[] args) {
-		ClientORServer client = new ClientORServer("141.213.55.73", 8080);
+		ClientORServer client = new ClientORServer("10.0.0.14", 8080);
 		
 		System.out.println(ClientORServer.getIpAddress());
 		
-		Location[] locations = new Location[6];
-		locations[0] = new Location(0,0);
-		locations[1] = new Location(1,1);
-		locations[2] = new Location(2,2);
-		locations[3] = new Location(3,3);
-		locations[4] = new Location(4,4);
-		locations[5] = new Location(5,5);
+		ArrayList<Ship> locations = new ArrayList<Ship>();
+		Ship one = new PatrolBoat();
+		Ship two = new PatrolBoat();
+		Ship three = new Submarine();
+		Ship four = new AircraftCarrier();
+		Ship five = new Battleship();
+		Ship six = new Destroyer();
+		
+		one.setCurrentLoaction(new Location(0,0));
+		two.setCurrentLoaction(new Location(1,1));
+		three.setCurrentLoaction(new Location(2,2));
+		four.setCurrentLoaction(new Location(3,3));
+		five.setCurrentLoaction(new Location(4,4));
+		six.setCurrentLoaction(new Location(5,5));
+		
+		locations.add(one);
+		locations.add(two);
+		locations.add(three);
+		locations.add(four);
+		locations.add(five);
+		locations.add(six);
 		
 		client.startClient();
 		client.sendStartLocations(locations);

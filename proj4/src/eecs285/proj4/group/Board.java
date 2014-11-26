@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class Board
 {
   private ArrayList<Ship> shipList;
+  private ArrayList<Ship> opponentShipList;
   //TODO: add functionality to do something with dead ships
   
   /**
@@ -28,6 +29,7 @@ public class Board
   public Board()
   {
 	shipList = new ArrayList<Ship>();
+	opponentShipList = new ArrayList<Ship>();
     //resetBoard();
   }
 
@@ -102,7 +104,19 @@ public class Board
 	  return shipList;
   }
   
-  public boolean shipsIsEmpty(){
+  public boolean shipIsEmpty(){
+	  return shipList.isEmpty();
+  }
+  
+  public void addOpponentShip(Ship shipIn){
+	  opponentShipList.add(shipIn);
+  }
+  
+  public ArrayList<Ship> getOpponentShips(){
+	  return shipList;
+  }
+  
+  public boolean opponentShipIsEmpty(){
 	  return shipList.isEmpty();
   }
   

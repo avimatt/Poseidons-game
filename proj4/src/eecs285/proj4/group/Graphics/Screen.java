@@ -51,10 +51,16 @@ public class Screen extends BufferedImage{
       }
     }
 
-    if(!player.getBoard().shipsIsEmpty()){
+    if(!player.getBoard().shipIsEmpty()){
     	for(Ship curShip : player.getBoard().getShips()){
         	render(curShip);
         }
+    }
+    
+    if(!player.getBoard().opponentShipIsEmpty()){
+    	for(Ship curShip : player.getBoard().getOpponentShips()){
+    		render(curShip);
+    	}
     }
       //Ship test = new Submarine();
       //test.setCurrentLoaction(new Location(3,2));

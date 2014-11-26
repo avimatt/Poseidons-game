@@ -9,7 +9,7 @@ public class graphicsTest {
 
   public static void main(String[] args)
   {  
-	  GamePlay gamePlay = new GamePlay();
+	  GamePlay gamePlay = new GamePlay(new ClientORServer(ClientORServer.getIpAddress(), 8080));
 	  JFrame frame = new JFrame();
 	  frame.setContentPane(gamePlay.getGame());
 	  frame.validate();
