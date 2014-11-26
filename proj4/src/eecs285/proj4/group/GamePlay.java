@@ -1,6 +1,7 @@
 package eecs285.proj4.group;
 
 import eecs285.proj4.group.Graphics.Sprite;
+import eecs285.proj4.group.Ships.Ship;
 
 import javax.swing.*;
 import java.awt.*;
@@ -139,11 +140,12 @@ public class GamePlay implements Runnable{
 
       Location clickLoc = new Location( x, y);
       System.out.println("Clicked X: " + clickLoc.getX() + " Y: " + clickLoc.getY());
-      //Ship selectedShip;
+      Ship selectedShip;
 
       try
       {
-        // selectedShip = identifyPlayerShip(clickLoc, board);
+         selectedShip = boardImage.identifyPlayerShip(clickLoc, player.getBoard());
+         status.updateStatusPanel(selectedShip);
       }
       catch(Exception e1)
       {

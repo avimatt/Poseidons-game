@@ -20,7 +20,7 @@ public class Screen extends BufferedImage{
   private Random random = new Random();
   private Graphics g;
 
-//---------------------------------------------------------------  
+  //---------------------------------------------------------------
   public Screen(int inWidth, int inHeight)
   {
     super(inWidth, inHeight, BufferedImage.TYPE_INT_RGB);
@@ -39,7 +39,7 @@ public class Screen extends BufferedImage{
 
   }
 
-//---------------------------------------------------------------  
+  //---------------------------------------------------------------
   public void render(Player player)
   {
     for (int y = 0; y < height; y += Sprite.FOGTILE.getHEIGHT())
@@ -52,20 +52,20 @@ public class Screen extends BufferedImage{
     }
 
     if(!player.getBoard().shipIsEmpty()){
-    	for(Ship curShip : player.getBoard().getShips()){
-        	render(curShip);
-        }
+      for(Ship curShip : player.getBoard().getShips()){
+        render(curShip);
+      }
     }
-    
-    if(!player.getBoard().opponentShipIsEmpty()){
-    	for(Ship curShip : player.getBoard().getOpponentShips()){
-    		render(curShip);
-    	}
-    }
-      //Ship test = new Submarine();
-      //test.setCurrentLoaction(new Location(3,2));
 
-      //render(test);
+    if(!player.getBoard().opponentShipIsEmpty()){
+      for(Ship curShip : player.getBoard().getOpponentShips()){
+        render(curShip);
+      }
+    }
+    //Ship test = new Submarine();
+    //test.setCurrentLoaction(new Location(3,2));
+
+    //render(test);
   }
 
 
@@ -84,86 +84,86 @@ public class Screen extends BufferedImage{
     g.drawImage(shipSprite, xStart, yStart , xWidth, yHeight, null);
 
   }
-  
+
   public void renderOptionA(Player player){
-	  player.getBoard().resetShips();
-	  
-	  Ship patrol1 = new PatrolBoat();
-	  patrol1.setCurrentLoaction(new Location(2,0));
-	  Ship destroyer = new Destroyer();
-	  destroyer.setCurrentLoaction(new Location(0,1));
-	  Ship battleship = new Battleship();
-	  battleship.setCurrentLoaction(new Location(0,2));
-	  Ship aircraft = new AircraftCarrier();
-	  aircraft.setCurrentLoaction(new Location(0,3));
-	  Ship submarine = new Submarine();
-	  submarine.setCurrentLoaction(new Location(1,4));
-	  Ship patrol2 = new PatrolBoat();
-	  patrol2.setCurrentLoaction(new Location(2,5));
-	  
-	  player.getBoard().addShip(patrol1);
-	  player.getBoard().addShip(patrol2);
-	  player.getBoard().addShip(destroyer);
-	  player.getBoard().addShip(battleship);
-	  player.getBoard().addShip(aircraft);
-	  player.getBoard().addShip(submarine);
-	  
-	  render(player);
-  }
-  
-  public void renderOptionB(Player player){
-	  player.getBoard().resetShips();
-	  
-	  Ship patrol1 = new PatrolBoat();
-	  patrol1.setCurrentLoaction(new Location(2,19));
-	  Ship destroyer = new Destroyer();
-	  destroyer.setCurrentLoaction(new Location(0,18));
-	  Ship battleship = new Battleship();
-	  battleship.setCurrentLoaction(new Location(0,17));
-	  Ship aircraft = new AircraftCarrier();
-	  aircraft.setCurrentLoaction(new Location(0,16));
-	  Ship submarine = new Submarine();
-	  submarine.setCurrentLoaction(new Location(1,15));
-	  Ship patrol2 = new PatrolBoat();
-	  patrol2.setCurrentLoaction(new Location(2,14));
-	  
-	  player.getBoard().addShip(patrol1);
-	  player.getBoard().addShip(patrol2);
-	  player.getBoard().addShip(destroyer);
-	  player.getBoard().addShip(battleship);
-	  player.getBoard().addShip(aircraft);
-	  player.getBoard().addShip(submarine);
-	  
-	  render(player);
-  }
-  
-  public void renderOptionC(Player player){
-	  player.getBoard().resetShips();
-	  
-	  Ship patrol1 = new PatrolBoat();
-	  patrol1.setCurrentLoaction(new Location(2,1));
-	  Ship destroyer = new Destroyer();
-	  destroyer.setCurrentLoaction(new Location(1,11));
-	  Ship battleship = new Battleship();
-	  battleship.setCurrentLoaction(new Location(0,14));
-	  Ship aircraft = new AircraftCarrier();
-	  aircraft.setCurrentLoaction(new Location(0,4));
-	  Ship submarine = new Submarine();
-	  submarine.setCurrentLoaction(new Location(1,16));
-	  Ship patrol2 = new PatrolBoat();
-	  patrol2.setCurrentLoaction(new Location(2,7));
-	  
-	  player.getBoard().addShip(patrol1);
-	  player.getBoard().addShip(patrol2);
-	  player.getBoard().addShip(destroyer);
-	  player.getBoard().addShip(battleship);
-	  player.getBoard().addShip(aircraft);
-	  player.getBoard().addShip(submarine);
-	  
-	  render(player);
+    player.getBoard().resetShips();
+
+    Ship patrol1 = new PatrolBoat();
+    patrol1.setCurrentLoaction(new Location(2,0));
+    Ship destroyer = new Destroyer();
+    destroyer.setCurrentLoaction(new Location(0,1));
+    Ship battleship = new Battleship();
+    battleship.setCurrentLoaction(new Location(0,2));
+    Ship aircraft = new AircraftCarrier();
+    aircraft.setCurrentLoaction(new Location(0,3));
+    Ship submarine = new Submarine();
+    submarine.setCurrentLoaction(new Location(1,4));
+    Ship patrol2 = new PatrolBoat();
+    patrol2.setCurrentLoaction(new Location(2,5));
+
+    player.getBoard().addShip(patrol1);
+    player.getBoard().addShip(patrol2);
+    player.getBoard().addShip(destroyer);
+    player.getBoard().addShip(battleship);
+    player.getBoard().addShip(aircraft);
+    player.getBoard().addShip(submarine);
+
+    render(player);
   }
 
-//---------------------------------------------------------------
+  public void renderOptionB(Player player){
+    player.getBoard().resetShips();
+
+    Ship patrol1 = new PatrolBoat();
+    patrol1.setCurrentLoaction(new Location(2,19));
+    Ship destroyer = new Destroyer();
+    destroyer.setCurrentLoaction(new Location(0,18));
+    Ship battleship = new Battleship();
+    battleship.setCurrentLoaction(new Location(0,17));
+    Ship aircraft = new AircraftCarrier();
+    aircraft.setCurrentLoaction(new Location(0,16));
+    Ship submarine = new Submarine();
+    submarine.setCurrentLoaction(new Location(1,15));
+    Ship patrol2 = new PatrolBoat();
+    patrol2.setCurrentLoaction(new Location(2,14));
+
+    player.getBoard().addShip(patrol1);
+    player.getBoard().addShip(patrol2);
+    player.getBoard().addShip(destroyer);
+    player.getBoard().addShip(battleship);
+    player.getBoard().addShip(aircraft);
+    player.getBoard().addShip(submarine);
+
+    render(player);
+  }
+
+  public void renderOptionC(Player player){
+    player.getBoard().resetShips();
+
+    Ship patrol1 = new PatrolBoat();
+    patrol1.setCurrentLoaction(new Location(2,1));
+    Ship destroyer = new Destroyer();
+    destroyer.setCurrentLoaction(new Location(1,11));
+    Ship battleship = new Battleship();
+    battleship.setCurrentLoaction(new Location(0,14));
+    Ship aircraft = new AircraftCarrier();
+    aircraft.setCurrentLoaction(new Location(0,4));
+    Ship submarine = new Submarine();
+    submarine.setCurrentLoaction(new Location(1,16));
+    Ship patrol2 = new PatrolBoat();
+    patrol2.setCurrentLoaction(new Location(2,7));
+
+    player.getBoard().addShip(patrol1);
+    player.getBoard().addShip(patrol2);
+    player.getBoard().addShip(destroyer);
+    player.getBoard().addShip(battleship);
+    player.getBoard().addShip(aircraft);
+    player.getBoard().addShip(submarine);
+
+    render(player);
+  }
+
+  //---------------------------------------------------------------
   public void clear()
   {
     for (int i = 0; i < pixels.length; ++i)
