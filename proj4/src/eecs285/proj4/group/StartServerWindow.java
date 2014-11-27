@@ -33,7 +33,7 @@ public class StartServerWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				@SuppressWarnings("unused")
-				SetupWindow sw = new SetupWindow(gameIn);
+				SetupWindow sw = new SetupWindow(gameIn, true);
 				dispose();
 			}
 			

@@ -21,9 +21,11 @@ public class SetupWindow extends JFrame{
 	
 	private OptionListener listener;
 	
+	boolean server;
+	
 	private GamePlay game;
 	
-	public SetupWindow(GamePlay gameIn){
+	public SetupWindow(GamePlay gameIn, boolean serverIn){
 		super("Setup");
 	
 		setLayout(new BorderLayout());
@@ -58,6 +60,7 @@ public class SetupWindow extends JFrame{
 		add(acceptPanel, BorderLayout.SOUTH);
 		
 		game = gameIn;
+		server = serverIn;
 		
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -75,17 +78,17 @@ public class SetupWindow extends JFrame{
 			if(e.getSource() == optionA){
 				// displays option A setup and sets players 
 				// ships array with the locations of the ships
-				game.displaySetupOptions('A');
+				game.displaySetupOptions('A', server);
 			}
 			if(e.getSource() == optionB){
 				// displays option B setup and sets players 
 				// ships array with the locations of the ships
-				game.displaySetupOptions('B');
+				game.displaySetupOptions('B', server);
 			}
 			if(e.getSource() == optionC){
 				// displays option C setup and sets players 
 				// ships array with the locations of the ships
-				game.displaySetupOptions('C');
+				game.displaySetupOptions('C', server);
 			}
 			if(e.getSource() == accept){
 				// needs to send the locations to other player

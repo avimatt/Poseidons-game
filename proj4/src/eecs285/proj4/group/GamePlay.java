@@ -87,17 +87,17 @@ public class GamePlay implements Runnable{
 	  return player;
   }
 
-  public void displaySetupOptions(char option){
+  public void displaySetupOptions(char option, boolean server){
 	  if(option == 'A'){
-		  boardImage.getScreen().renderOptionA(player);
+		  boardImage.getScreen().renderOptionA(player, server);
 		  boardImage.paintComponent(boardImage.getGraphics());
 	  }
 	  if(option == 'B'){
-		  boardImage.getScreen().renderOptionB(player);
+		  boardImage.getScreen().renderOptionB(player, server);
 		  boardImage.paintComponent(boardImage.getGraphics());
 	  }
 	  if(option == 'C'){
-		  boardImage.getScreen().renderOptionC(player);
+		  boardImage.getScreen().renderOptionC(player, server);
 		  boardImage.paintComponent(boardImage.getGraphics());
 	  }
   }

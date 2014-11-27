@@ -98,7 +98,7 @@ public class GameGUI
         //client or the server 
         createAndDisplayGame();
         @SuppressWarnings("unused")
-  	  	SetupWindow sw = new SetupWindow(game);
+  	  	SetupWindow sw = new SetupWindow(game, false);
       }
       if(e.getSource() == helpButton)
       {
