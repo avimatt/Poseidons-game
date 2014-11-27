@@ -60,9 +60,10 @@ public class Screen extends BufferedImage{
     }
 
     if(!player.getBoard().opponentShipIsEmpty()){
-      for(Ship curShip : player.getBoard().getOpponentShips()){
+      System.out.println("opponentShips is not empty");
+      /*for(Ship curShip : player.getBoard().getOpponentShips()){
         render(curShip, 0, 0);
-      }
+      }*/
     }
     //Ship test = new Submarine();
     //test.setCurrentLoaction(new Location(3,2));
