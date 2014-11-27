@@ -1,5 +1,6 @@
 package eecs285.proj4.group.Graphics;
 
+import eecs285.proj4.group.Board;
 import eecs285.proj4.group.Location;
 import eecs285.proj4.group.Player;
 import eecs285.proj4.group.Ships.*;
@@ -53,13 +54,14 @@ public class Screen extends BufferedImage{
 
     if(!player.getBoard().shipIsEmpty()){
       for(Ship curShip : player.getBoard().getShips()){
-        render(curShip);
+        render(curShip, 0, 0);
+        renderVisibility(curShip, player.getBoard());
       }
     }
 
     if(!player.getBoard().opponentShipIsEmpty()){
       for(Ship curShip : player.getBoard().getOpponentShips()){
-        render(curShip);
+        render(curShip, 0, 0);
       }
     }
     //Ship test = new Submarine();
@@ -69,8 +71,15 @@ public class Screen extends BufferedImage{
   }
 
 
-
-  public void render(Ship ship){
+  /**
+   *
+   * Offsets will be used to animate movement, when we are up to it
+   *
+   * @param ship
+   * @param xOffset
+   * @param yOffset
+   */
+  public void render(Ship ship, int xOffset, int yOffset){
     Location shipLoc = ship.getCurrentLocation();
     Sprite shipSprite = ship.getSprite();
 
@@ -81,7 +90,7 @@ public class Screen extends BufferedImage{
     int xWidth = shipSprite.getWIDTH();
     int yHeight = shipSprite.getHEIGHT();
 
-    g.drawImage(shipSprite, xStart, yStart , xWidth, yHeight, null);
+    g.drawImage(shipSprite, xStart + xOffset, yStart + yOffset, xWidth, yHeight, null);
 
   }
 
@@ -92,20 +101,41 @@ public class Screen extends BufferedImage{
    *
    * @param ship
    */
-  public void renderVisibility(Ship ship)
+  public void renderVisibility(Ship ship, Board board)
   {
-    Queue<Location> visibileTiles;
-    Location currentTile;
+    int yRange;
+    int xRange = yRange = ship.getVisibilityRadius();
 
-    if(ship.getSize() == 1)
-    {
-      int visibleRange = ship.getVisibilityRadius();
-      while(visibleRange > 0){
 
+    for(int x = 0; x <= xRange; ++x)
+      for(int y = 1; y <= yRange; ++y)
+      {
+        Location checkUpLoc = new Location(ship.getCurrentLocation().getX() + x, ship.getCurrentLocation().getY() + y);
+        Location checkDownLoc = new Location(ship.getCurrentLocation().getX() - x, ship.getCurrentLocation().getY() - y);
+
+        // Check upwards logic
+        try
+        {
+          Ship potential = board.getShip(checkUpLoc);
+          render(potential, 0, 0);
+        }
+        catch (Exception exception)
+        {
+          g.drawImage(Sprite.OCEANTILE, checkUpLoc.getX() * Sprite.getSPRITESIZE(), checkUpLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
+        }
+
+        try
+        {
+          Ship potential = board.getShip(checkDownLoc);
+          render(potential, 0, 0);
+        }
+        catch (Exception exception)
+        {
+          g.drawImage(Sprite.OCEANTILE, checkDownLoc.getX() * Sprite.getSPRITESIZE(), checkDownLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
+        }
+
+        yRange -= 1;
       }
-
-    }
-
   }
 
 
