@@ -47,7 +47,8 @@ public class Board
   {
     for (Ship curShip : shipList)
     {
-      for (Location newLoc = curShip.getCurrentLocation(),
+      for (Location newLoc = 
+          new Location(curShip.getCurrentLocation().getX(), curShip.getCurrentLocation().getY()),
           endLoc = newLoc.add(curShip.getSize()); 
           !newLoc.compareLoc(endLoc); 
           newLoc.incrementX())
