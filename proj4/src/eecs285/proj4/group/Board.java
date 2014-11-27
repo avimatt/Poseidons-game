@@ -47,7 +47,7 @@ public class Board
   {
     for (Ship curShip : shipList)
     {
-      if (curShip.getCurrentLocation() == curLoc)
+      if (curShip.getCurrentLocation().equals(curLoc))
       {
         return curShip;
       }
