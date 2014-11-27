@@ -47,9 +47,15 @@ public class Board
   {
     for (Ship curShip : shipList)
     {
-      if (curShip.getCurrentLocation().equals(curLoc))
+      for (Location newLoc = curShip.getCurrentLocation(),
+          endLoc = newLoc.add(curShip.getSize()); 
+          !newLoc.compareLoc(endLoc); 
+          newLoc.incrementX())
       {
-        return curShip;
+        if (newLoc.compareLoc(curLoc))
+        {
+          return curShip;
+        }  
       }
     }
     throw new Exception("No ship there");
@@ -61,7 +67,7 @@ public class Board
   {
     for (Ship curShip : shipList)
     {
-      if (curShip.getCurrentLocation() == curLoc)
+      if (curShip.getCurrentLocation().compareLoc(curLoc))
       {
         return true;
       }

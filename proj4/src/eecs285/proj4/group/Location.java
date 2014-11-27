@@ -35,4 +35,19 @@ public class Location
     return (inLoc.getX() == x && inLoc.getY() == y);
   }
   
+  public Location add(int numTiles)
+  {
+    Location newLoc = new Location(this.x, this.y);
+    for (int i = 0; i < numTiles; ++i)
+    {
+      newLoc.incrementX();
+    }
+    return newLoc;
+  }
+  
+  public void incrementX()
+  {
+    ++x;
+  }
+  
 }
