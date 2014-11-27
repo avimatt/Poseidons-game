@@ -1,6 +1,6 @@
 package eecs285.proj4.group.Ships;
 
-import eecs285.proj4.group.Graphics.Screen;
+
 import eecs285.proj4.group.Graphics.Sprite;
 import eecs285.proj4.group.Location;
 
@@ -39,7 +39,7 @@ public abstract class Ship
   }
   
   public static Ship shipFactory(String shipName){
-	  if (shipName.equals("PatrolBoat")) {
+	  if (shipName.equals("Patrol Boat")) {
 		  return new PatrolBoat();
 	  } else if (shipName.equals("Submarine")) {
 		  return new Submarine();
@@ -47,7 +47,7 @@ public abstract class Ship
 		  return new Destroyer();
 	  } else if (shipName.equals("Battleship")) {
 		  return new Battleship();
-	  } else if (shipName.equals("AircraftCarrier")) {
+	  } else if (shipName.equals("Aircraft Carrier")) {
 		  return new AircraftCarrier();
 	  } else {
 		  // throw exception
@@ -59,6 +59,8 @@ public abstract class Ship
   public abstract int getSpeed();
   
   public abstract int getAttackPower();
+
+  public abstract int getInitialHealth();
   
   public abstract int getHealth();
   

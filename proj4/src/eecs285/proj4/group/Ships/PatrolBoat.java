@@ -1,7 +1,6 @@
 package eecs285.proj4.group.Ships;
 
 
-import eecs285.proj4.group.Graphics.Screen;
 import eecs285.proj4.group.Graphics.Sprite;
 
 public class PatrolBoat extends Ship
@@ -57,12 +56,17 @@ public class PatrolBoat extends Ship
   
   public String getShipType()
   {
-    return "PatrolBoat";
+    return "Patrol Boat";
   }
 
   @Override
   public Sprite getSprite() {
     return Sprite.PATROLBOAT;
+  }
+
+  @Override
+  public int getInitialHealth() {
+	return 75;
   }
 
 }

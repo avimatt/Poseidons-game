@@ -191,15 +191,14 @@ public class StatusPanel extends JPanel
     //have it return an int.
     actionLeftField = new JLabel("5");
     
-    
-    currentShipLabel = new JLabel ("Ship: " + ship.toString());
+    currentShipLabel.setText("Ship: " + ship.getShipType());
     attackButton.setEnabled(true);
     moveButton.setEnabled(true);
     cancelSelection.setEnabled(true);
     
-    String healthS = Integer.toString(ship.getHealth());
-    healthOfShipField.setText(healthS + "/100");
-    getHealthColor(healthOfShipField,ship.getHealth());
+    int health = (ship.getHealth()/ship.getInitialHealth()) * 100;
+    healthOfShipField.setText(" " + health + " %");
+    getHealthColor(healthOfShipField,health);
     
     //need function to that will say what ship has been hit
     statusLog.setText("NEED FUNCTION TO GET STATUS LOG!");

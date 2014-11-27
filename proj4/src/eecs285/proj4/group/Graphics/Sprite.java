@@ -75,7 +75,8 @@ public class Sprite extends BufferedImage{
   public Sprite flipSprite()
   {
     Sprite temp = new Sprite(WIDTH, HEIGHT, loc, spriteSheet);
-    Graphics g = temp.getGraphics();
+    @SuppressWarnings("unused")
+	Graphics g = temp.getGraphics();
     return temp;
   }
 

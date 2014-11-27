@@ -1,6 +1,5 @@
 package eecs285.proj4.group.Ships;
 
-import eecs285.proj4.group.Graphics.Screen;
 import eecs285.proj4.group.Graphics.Sprite;
 
 public class Destroyer extends Ship
@@ -24,6 +23,11 @@ public class Destroyer extends Ship
     return 7;
   }
 
+  @Override
+  public int getInitialHealth(){
+	  return 65;
+  }
+  
   @Override
   public int getHealth()
   {
