@@ -7,7 +7,7 @@ import eecs285.proj4.group.Ships.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by yossier on 11/23/14.
@@ -84,6 +84,30 @@ public class Screen extends BufferedImage{
     g.drawImage(shipSprite, xStart, yStart , xWidth, yHeight, null);
 
   }
+
+  /**
+   * Makes the tiles surrounding the ship visible
+   *
+   * //breadth first approach
+   *
+   * @param ship
+   */
+  public void renderVisibility(Ship ship)
+  {
+    Queue<Location> visibileTiles;
+    Location currentTile;
+
+    if(ship.getSize() == 1)
+    {
+      int visibleRange = ship.getVisibilityRadius();
+      while(visibleRange > 0){
+
+      }
+
+    }
+
+  }
+
 
   public void renderOptionA(Player player, boolean server){
     player.getBoard().resetShips();
@@ -217,6 +241,5 @@ public class Screen extends BufferedImage{
   {
     return height;
   }
-
 
 }
