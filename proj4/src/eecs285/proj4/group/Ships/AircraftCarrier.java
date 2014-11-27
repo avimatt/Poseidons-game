@@ -52,7 +52,7 @@ public class AircraftCarrier extends Ship
   @Override
   public int getSize()
   {
-    return 7;
+    return 3;
   }
   
   public String getShipType()

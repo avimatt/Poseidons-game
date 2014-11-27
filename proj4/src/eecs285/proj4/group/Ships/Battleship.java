@@ -51,7 +51,7 @@ public class Battleship extends Ship
   @Override
   public int getSize()
   {
-    return 5;
+    return 2;
   }
   
   public String getShipType()

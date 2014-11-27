@@ -51,7 +51,7 @@ public class Destroyer extends Ship
   @Override
   public int getSize()
   {
-    return 3;
+    return 2;
   }
   
   public String getShipType()
