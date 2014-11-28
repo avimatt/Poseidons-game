@@ -81,7 +81,8 @@ public class GameGUI
 	      //passing in the server/client and letting it know
 	      //whether its the client or the server
 	      createAndDisplayGame();
-	      StartServerWindow ssw = new StartServerWindow(game);
+	      @SuppressWarnings("unused")
+		StartServerWindow ssw = new StartServerWindow(game);
       }
       if(e.getSource() == joinGameButton)
       {

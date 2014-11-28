@@ -6,9 +6,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
-/**
- * Created by yossier on 11/23/14.
- */
 public class Sprite extends BufferedImage{
   private final static int SPRITESIZE = 16;
   private final int WIDTH;

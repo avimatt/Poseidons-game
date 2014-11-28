@@ -8,9 +8,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/**
- * Created by yossier on 11/22/14.
- */
 public class GamePlay implements Runnable{
 
   private JPanel GamePanel;
@@ -23,13 +20,9 @@ public class GamePlay implements Runnable{
   private Player player;
   //private Board state;
 
-  //private boolean running = false;
-
   public GamePlay(ClientORServer networkIn)
   {
-  	
-    //running = true;
-    
+  	    
     GamePanel = new JPanel();
     GamePanel.setLayout(new BorderLayout());
     
@@ -52,26 +45,12 @@ public class GamePlay implements Runnable{
     player = new Player();
     network = networkIn;
   }
-  
-//---------------------------------------------------------------
-  // What is this for? Do we still need this variable
-  /*public void stop()
-  {
-    running = false;
-  }*/
 
 //---------------------------------------------------------------
   public void run()
   {
     boardImage.updateBoard(player);
     boardImage.paintComponent(boardImage.getGraphics());
-/*
-    while (true)
-    {
-        boardImage.updateBoard();
-        boardImage.paintComponent(boardImage.getGraphics());
-      }
-      */
   }
   
 //---------------------------------------------------------------  
@@ -79,14 +58,17 @@ public class GamePlay implements Runnable{
 	  return GamePanel;
   }
   
+//---------------------------------------------------------------  
   public ClientORServer getNetwork(){
 	  return network;
   }
-  
+
+//---------------------------------------------------------------  
   public Player getPlayer(){
 	  return player;
   }
 
+//---------------------------------------------------------------  
   public void displaySetupOptions(char option, boolean server){
 	  if(option == 'A'){
 		  boardImage.getScreen().renderOptionA(player, server);
@@ -102,6 +84,7 @@ public class GamePlay implements Runnable{
 	  }
   }
 
+//---------------------------------------------------------------  
   public ImageBoard getBoardImage()
   {
     return boardImage;
@@ -110,6 +93,7 @@ public class GamePlay implements Runnable{
   public class BoardListener extends MouseAdapter
   {
 
+	//---------------------------------------------------------------
     public void mouseMoved(MouseEvent e)
     {
 
@@ -135,6 +119,7 @@ public class GamePlay implements Runnable{
 
     }
 
+    //---------------------------------------------------------------    
     public void mouseClicked(MouseEvent e) {
       //Converts x pixel coordinate to x tile coordinate
       int x = (int)Math.floor(e.getX() / (Sprite.getSPRITESIZE() * ImageBoard.scale));

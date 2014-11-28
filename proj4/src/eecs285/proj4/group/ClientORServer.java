@@ -84,10 +84,15 @@ public class ClientORServer {
 	}
 	
 //---------------------------------------------------------------	
+	/**
+	 * Sends the initial setup to the other player
+	 * 
+	 * @param startLocations
+	 */
 	public void sendStartLocations(ArrayList<Ship> startLocations){
 		try
 		{
-			System.out.println("sending started...");
+			System.out.println("sending of initial setup started...");
 			output.writeBytes("start_location");
 			output.writeByte(0);
 			for(Ship curShip : startLocations){
@@ -105,6 +110,39 @@ public class ClientORServer {
 			System.exit(-1);
 		}
 	}
+	
+//---------------------------------------------------------------
+	/**
+	 * Sends the ship id of the attacked ship and its new health
+	 * 
+	 * @param attackedShip
+	 */
+	public void sendAttackHit(Ship attackedShip){
+		try{
+			System.out.println("sending attack hit started...");
+			output.writeBytes("attack_hit_action");
+			output.writeInt(attackedShip.getID());
+			output.writeInt(attackedShip.getHealth());
+		} catch (IOException e){
+			System.out.println("Caught IOException sending attack hit");
+			System.exit(-1);
+		}
+		
+	}
+//---------------------------------------------------------------
+	/**
+	 * Sends message to alert player he was attacked but it missed
+	 */	
+	public void sendAttackMiss(){
+		try{
+			System.out.println("sending attack miss started...");
+			output.writeBytes("attack_miss_action");
+		} catch (IOException e){
+			System.out.println("Caught IOException sending attack miss");
+			System.exit(-1);
+		}
+	}
+	
 
 //---------------------------------------------------------------	
 	public void readMessage(GamePlay game){
@@ -153,6 +191,15 @@ public class ClientORServer {
 					curShip.setCurrentLoaction(new Location(input.readInt(),input.readInt()));
 					game.getPlayer().getBoard().addOpponentShip(curShip);
 				}
+			}
+			if(receivedString.contentEquals("attack_hit_action")){
+				Ship attackedShip = game.getPlayer().getBoard().getOpponentShip(input.readInt());
+				int newShipHealth = input.readInt();
+				attackedShip.setHealth(newShipHealth);
+				// update the log to say the ship has been hit 
+			}
+			if(receivedString.contentEquals("attack_miss_action")){
+				// update the log to say that there was an attack and it missed
 			}
 		}
 		catch (IOException ioe)

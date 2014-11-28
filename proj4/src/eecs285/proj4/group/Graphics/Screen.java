@@ -10,9 +10,6 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.*;
 
-/**
- * Created by yossier on 11/23/14.
- */
 public class Screen extends BufferedImage{
   private int width, height;
   public int[] pixels;

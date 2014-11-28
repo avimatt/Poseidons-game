@@ -7,10 +7,6 @@ import javax.swing.*;
 
 import java.awt.*;
 
-
-/**
- * Created by yossier on 11/19/14.
- */
 public class ImageBoard extends JPanel{
 
   private static final long serialVersionUID = 1L;

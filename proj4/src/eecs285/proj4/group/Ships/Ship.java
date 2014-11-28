@@ -15,29 +15,35 @@ public abstract class Ship
     id = nextID++;    
   }
   
+//---------------------------------------------------------------
   public int getID(){
     return id;
   }
-  
+
+//---------------------------------------------------------------
   // only to be used for the opponents ships
   public void setID(int idIn){
 	  id = idIn;
   }
-  
+ 
+//---------------------------------------------------------------
   public Location getCurrentLocation(){
     return currentLoc;
   }
   
+//---------------------------------------------------------------
   public void setCurrentLoaction(Location newLoc)
   {
     currentLoc = newLoc;
   }
   
+//---------------------------------------------------------------
   public void takeHit(int attackPower)
   {
     setHealth(getHealth() - attackPower);
   }
   
+//---------------------------------------------------------------
   public static Ship shipFactory(String shipName){
 	  if (shipName.equals("Patrol Boat")) {
 		  return new PatrolBoat();
@@ -56,6 +62,7 @@ public abstract class Ship
 	  return null;
   }
   
+//---------------------------------------------------------------
   public abstract int getSpeed();
   
   public abstract int getAttackPower();

@@ -31,10 +31,12 @@ public class Location
     return y;
   }
   
+  //---------------------------------------------------------------
   public boolean compareLoc(Location inLoc){
     return (inLoc.getX() == x && inLoc.getY() == y);
   }
   
+  //---------------------------------------------------------------
   public Location add(int numTiles)
   {
     Location newLoc = new Location(this.x, this.y);
@@ -45,6 +47,7 @@ public class Location
     return newLoc;
   }
   
+  //---------------------------------------------------------------
   public void incrementX()
   {
     ++x;

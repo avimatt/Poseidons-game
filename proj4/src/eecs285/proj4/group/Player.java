@@ -15,16 +15,19 @@ public class Player
     myBoard = new Board();
   }
 
+//---------------------------------------------------------------
   public Ship getPlayerShip(int shipNumber) throws Exception
   {
     return myBoard.getShip(shipNumber, ID);
   }
 
+//---------------------------------------------------------------
   public int getID()
   {
     return ID;
   }
   
+//---------------------------------------------------------------
   //called after ship and new location have been clicked
   public void moveShip(Ship curShip, Location newLoc)
   {
@@ -34,6 +37,7 @@ public class Player
     //which they use to tell ImageBoard to update
   }
   
+//---------------------------------------------------------------
   public void attackLoc(Ship curShip, Location targetLoc)
   {
     if (myBoard.isLocOccupied(targetLoc))
@@ -58,13 +62,10 @@ public class Player
     }
   //TODO: output message about what happened
   }
-  
+ 
+//---------------------------------------------------------------
   public Board getBoard(){
 	  return myBoard;
   }
-  
-  
-  
-  
 
 }

@@ -4,9 +4,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-/**
- * Created by yossier on 11/23/14.
- */
 public class ImageLoader
 {
   private String imgPath;
