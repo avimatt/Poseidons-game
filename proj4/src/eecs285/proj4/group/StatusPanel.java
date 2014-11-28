@@ -118,6 +118,7 @@ public class StatusPanel extends JPanel
     attackButton = new JButton("Attack!");
     attackButton.addActionListener(listener);
     cancelSelection = new JButton("Cancel Selection");
+    cancelSelection.addActionListener(listener);
     attackButton.setEnabled(false);
     moveButton = new JButton("Move");
     moveButton.addActionListener(listener);
@@ -258,6 +259,7 @@ public class StatusPanel extends JPanel
 			game.getBoardImage().getScreen().setPanelSelectedShip(selectedShip);
 			game.getBoardImage().getScreen().render(player);
 			game.getBoardImage().paintComponent(game.getBoardImage().getGraphics());
+			attackButton.setEnabled(false);
 		}
 		if(e.getSource() == attackButton){
 			game.getBoardImage().getScreen().setMove(false);
@@ -265,6 +267,16 @@ public class StatusPanel extends JPanel
 			game.getBoardImage().getScreen().setPanelSelectedShip(selectedShip);
 			game.getBoardImage().getScreen().render(player);
 			game.getBoardImage().paintComponent(game.getBoardImage().getGraphics());
+			moveButton.setEnabled(false);
+		}
+		if(e.getSource() == cancelSelection){
+			game.getBoardImage().getScreen().setMove(false);
+			game.getBoardImage().getScreen().setAttack(false);
+			game.getBoardImage().getScreen().setPanelSelectedShip(null);
+			game.getBoardImage().getScreen().render(player);
+			game.getBoardImage().paintComponent(game.getBoardImage().getGraphics());
+			moveButton.setEnabled(true);
+			attackButton.setEnabled(true);
 		}
 	}
 	  
