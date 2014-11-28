@@ -32,7 +32,7 @@ public abstract class Ship
   }
   
 //---------------------------------------------------------------
-  public void setCurrentLoaction(Location newLoc)
+  public void setCurrentLocation(Location newLoc)
   {
     currentLoc = newLoc;
   }

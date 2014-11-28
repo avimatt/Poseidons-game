@@ -31,7 +31,7 @@ public class Player
   //called after ship and new location have been clicked
   public void moveShip(Ship curShip, Location newLoc)
   {
-    curShip.setCurrentLoaction(newLoc);
+    curShip.setCurrentLocation(newLoc);
     //TODO: tell ImageBoard to update ?
     //I suggest that Ships have a broadcast function
     //which they use to tell ImageBoard to update

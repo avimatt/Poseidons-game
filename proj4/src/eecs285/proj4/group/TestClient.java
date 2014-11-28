@@ -19,12 +19,12 @@ public class TestClient {
 		Ship five = new Battleship();
 		Ship six = new Destroyer();
 		
-		one.setCurrentLoaction(new Location(0,0));
-		two.setCurrentLoaction(new Location(1,1));
-		three.setCurrentLoaction(new Location(2,2));
-		four.setCurrentLoaction(new Location(3,3));
-		five.setCurrentLoaction(new Location(4,4));
-		six.setCurrentLoaction(new Location(5,5));
+		one.setCurrentLocation(new Location(0,0));
+		two.setCurrentLocation(new Location(1,1));
+		three.setCurrentLocation(new Location(2,2));
+		four.setCurrentLocation(new Location(3,3));
+		five.setCurrentLocation(new Location(4,4));
+		six.setCurrentLocation(new Location(5,5));
 		
 		locations.add(one);
 		locations.add(two);

@@ -117,7 +117,7 @@ public class Board
   //helper to set up ship locations initially
   public void addShip(Ship curShip, Location curLoc)
   {
-    curShip.setCurrentLoaction(curLoc);
+    curShip.setCurrentLocation(curLoc);
     shipList.add(curShip);
   }
   

@@ -188,7 +188,7 @@ public class ClientORServer {
 					// create opponents ships
 					Ship curShip = Ship.shipFactory(receivedString);
 					curShip.setID(input.readInt());
-					curShip.setCurrentLoaction(new Location(input.readInt(),input.readInt()));
+					curShip.setCurrentLocation(new Location(input.readInt(),input.readInt()));
 					game.getPlayer().getBoard().addOpponentShip(curShip);
 				}
 			}

@@ -13,7 +13,6 @@ import java.util.*;
 public class Screen extends BufferedImage{
   private int width, height;
   public int[] pixels;
-  public int[] tiles;
 
   private Random random = new Random();
   private Graphics g;
@@ -27,13 +26,6 @@ public class Screen extends BufferedImage{
     pixels = ((DataBufferInt)this.getRaster().getDataBuffer()).getData();
 
     g = getGraphics();
-
-    tiles = new int[64 * 64];
-
-    for( int i = 0; i < tiles.length; ++i)
-    {
-      tiles[i] = random.nextInt(0xffffff);
-    }
 
   }
 
@@ -201,17 +193,17 @@ public class Screen extends BufferedImage{
     }
 
     Ship patrol1 = new PatrolBoat();
-    patrol1.setCurrentLoaction(new Location(Math.abs(oneOffset - 2),0));
+    patrol1.setCurrentLocation(new Location(Math.abs(oneOffset - 2),0));
     Ship destroyer = new Destroyer();
-    destroyer.setCurrentLoaction(new Location(Math.abs(twoOffset - 0),1));
+    destroyer.setCurrentLocation(new Location(Math.abs(twoOffset - 0),1));
     Ship battleship = new Battleship();
-    battleship.setCurrentLoaction(new Location(Math.abs(twoOffset - 0),2));
+    battleship.setCurrentLocation(new Location(Math.abs(twoOffset - 0),2));
     Ship aircraft = new AircraftCarrier();
-    aircraft.setCurrentLoaction(new Location(Math.abs(threeOffset - 0),3));
+    aircraft.setCurrentLocation(new Location(Math.abs(threeOffset - 0),3));
     Ship submarine = new Submarine();
-    submarine.setCurrentLoaction(new Location(Math.abs(oneOffset - 1),4));
+    submarine.setCurrentLocation(new Location(Math.abs(oneOffset - 1),4));
     Ship patrol2 = new PatrolBoat();
-    patrol2.setCurrentLoaction(new Location(Math.abs(oneOffset - 2),5));
+    patrol2.setCurrentLocation(new Location(Math.abs(oneOffset - 2),5));
 
     player.getBoard().addShip(patrol1);
     player.getBoard().addShip(patrol2);
@@ -247,17 +239,17 @@ public class Screen extends BufferedImage{
     //player.getBoard().addShip(ship1);
     
     Ship patrol1 = new PatrolBoat();
-    patrol1.setCurrentLoaction(new Location(Math.abs(oneOffset - 2),19));
+    patrol1.setCurrentLocation(new Location(Math.abs(oneOffset - 2),19));
     Ship destroyer = new Destroyer();
-    destroyer.setCurrentLoaction(new Location(Math.abs(twoOffset - 0),18));
+    destroyer.setCurrentLocation(new Location(Math.abs(twoOffset - 0),18));
     Ship battleship = new Battleship();
-    battleship.setCurrentLoaction(new Location(Math.abs(twoOffset - 0),17));
+    battleship.setCurrentLocation(new Location(Math.abs(twoOffset - 0),17));
     Ship aircraft = new AircraftCarrier();
-    aircraft.setCurrentLoaction(new Location(Math.abs(threeOffset - 0),16));
+    aircraft.setCurrentLocation(new Location(Math.abs(threeOffset - 0),16));
     Ship submarine = new Submarine();
-    submarine.setCurrentLoaction(new Location(Math.abs(oneOffset - 1),15));
+    submarine.setCurrentLocation(new Location(Math.abs(oneOffset - 1),15));
     Ship patrol2 = new PatrolBoat();
-    patrol2.setCurrentLoaction(new Location(Math.abs(oneOffset - 2),14));
+    patrol2.setCurrentLocation(new Location(Math.abs(oneOffset - 2),14));
 
     player.getBoard().addShip(patrol1);
     player.getBoard().addShip(patrol2);
@@ -285,17 +277,17 @@ public class Screen extends BufferedImage{
     }
     
     Ship patrol1 = new PatrolBoat();
-    patrol1.setCurrentLoaction(new Location(Math.abs(oneOffset - 2),1));
+    patrol1.setCurrentLocation(new Location(Math.abs(oneOffset - 2),1));
     Ship destroyer = new Destroyer();
-    destroyer.setCurrentLoaction(new Location(Math.abs(twoOffset - 1),11));
+    destroyer.setCurrentLocation(new Location(Math.abs(twoOffset - 1),11));
     Ship battleship = new Battleship();
-    battleship.setCurrentLoaction(new Location(Math.abs(twoOffset - 0),14));
+    battleship.setCurrentLocation(new Location(Math.abs(twoOffset - 0),14));
     Ship aircraft = new AircraftCarrier();
-    aircraft.setCurrentLoaction(new Location(Math.abs(threeOffset - 0),4));
+    aircraft.setCurrentLocation(new Location(Math.abs(threeOffset - 0),4));
     Ship submarine = new Submarine();
-    submarine.setCurrentLoaction(new Location(Math.abs(oneOffset - 1),16));
+    submarine.setCurrentLocation(new Location(Math.abs(oneOffset - 1),16));
     Ship patrol2 = new PatrolBoat();
-    patrol2.setCurrentLoaction(new Location(Math.abs(oneOffset - 2),7));
+    patrol2.setCurrentLocation(new Location(Math.abs(oneOffset - 2),7));
 
     player.getBoard().addShip(patrol1);
     player.getBoard().addShip(patrol2);

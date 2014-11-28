@@ -17,7 +17,7 @@ public class graphicsTest {
     board.addShip(sub1, new Location(7,7));
 
     Ship p1 = new PatrolBoat();
-    p1.setCurrentLoaction(new Location(10,7));
+    p1.setCurrentLocation(new Location(10,7));
     board.addOpponentShip(p1);
 
 
