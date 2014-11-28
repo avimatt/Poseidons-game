@@ -26,8 +26,10 @@ public class GamePlay implements Runnable{
     GamePanel = new JPanel();
     GamePanel.setLayout(new BorderLayout());
     
+    player = new Player();
+    
     // add status panel and board image panel to frame
-    status = new StatusPanel();
+    status = new StatusPanel(this, player);
     // add ImageBoard Canvas to ImageBoard Panel
     boardImage = new ImageBoard();
     boardImagePanel = new JPanel(new FlowLayout());
@@ -42,7 +44,6 @@ public class GamePlay implements Runnable{
     GamePanel.add(status, BorderLayout.WEST);
     GamePanel.add(boardImagePanel, BorderLayout.EAST);
     
-    player = new Player();
     network = networkIn;
   }
 

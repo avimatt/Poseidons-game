@@ -1,6 +1,8 @@
 package eecs285.proj4.group;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -37,8 +39,18 @@ public class StatusPanel extends JPanel
   JButton helpButton;
   JButton endTurnButton;
   
-  public StatusPanel()
+  StatusAction listener;
+  
+  GamePlay game;
+  Player player;
+  
+  Ship selectedShip;
+  
+  public StatusPanel(GamePlay gameIn, Player playerIn)
   {
+	game = gameIn;  
+	player = playerIn;
+	  
     //This area sets up gaps in the layout to make things pretty
     GridLayout lowerButtons = new GridLayout(2,1);
     lowerButtons.setVgap(4);
@@ -101,11 +113,14 @@ public class StatusPanel extends JPanel
     mainPan.add(shipInfo);
     
     //adds the buttons in the ship area
+    listener = new StatusAction();
     currentShipLabel = new JLabel ("Ship: ");
     attackButton = new JButton("Attack!");
+    attackButton.addActionListener(listener);
     cancelSelection = new JButton("Cancel Selection");
     attackButton.setEnabled(false);
     moveButton = new JButton("Move");
+    moveButton.addActionListener(listener);
     moveButton.setEnabled(false);
     cancelSelection.setEnabled(false);
     currentShipLabel.setFont(currentShipF);
@@ -180,7 +195,7 @@ public class StatusPanel extends JPanel
   {
     //totalHealthString needs a get totalHealth function
     //have it return an int to be used in getHealthColor 
-    //function
+    //function  
     String totalHealthString = "100";
     totalHealthField.setText(totalHealthString +" %");
     getHealthColor(totalHealthField,100,100);
@@ -195,12 +210,13 @@ public class StatusPanel extends JPanel
     cancelSelection.setEnabled(true);
     
     int health = (ship.getHealth()/ship.getInitialHealth()) * 100;
-    healthOfShipField.setText(" " + 
-    (((double)health/(double)ship.getOrginalHealth())*100) + " %");
+    healthOfShipField.setText(" " + health + " %");
     getHealthColor(healthOfShipField,health,ship.getOrginalHealth());
     
     //need function to that will say what ship has been hit
     statusLog.setText("NEED FUNCTION TO GET STATUS LOG!");
+    
+    selectedShip = ship;
     
   }
 
@@ -208,7 +224,7 @@ public class StatusPanel extends JPanel
   //used to change the background color of the health fields
   private static void getHealthColor(JTextField healthField, int healthPoints, int orginalHealth)
   { 
-    double ratio = (double)healthPoints / (double)orginalHealth;
+    double ratio = healthPoints / orginalHealth;
     ratio = ratio * 100;
     
     System.out.println(ratio);
@@ -230,6 +246,28 @@ public class StatusPanel extends JPanel
       healthField.setBackground(Color.RED);
     }
  
+  }
+  
+  class StatusAction implements ActionListener {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == moveButton){
+			game.getBoardImage().getScreen().setMove(true);
+			game.getBoardImage().getScreen().setAttack(false);
+			game.getBoardImage().getScreen().setPanelSelectedShip(selectedShip);
+			game.getBoardImage().getScreen().render(player);
+			game.getBoardImage().paintComponent(game.getBoardImage().getGraphics());
+		}
+		if(e.getSource() == attackButton){
+			game.getBoardImage().getScreen().setMove(false);
+			game.getBoardImage().getScreen().setAttack(true);
+			game.getBoardImage().getScreen().setPanelSelectedShip(selectedShip);
+			game.getBoardImage().getScreen().render(player);
+			game.getBoardImage().paintComponent(game.getBoardImage().getGraphics());
+		}
+	}
+	  
   }
 }
 

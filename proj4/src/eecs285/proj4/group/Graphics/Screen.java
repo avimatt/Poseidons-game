@@ -1,6 +1,6 @@
 package eecs285.proj4.group.Graphics;
 
-import com.sun.prism.paint.*;
+//import com.sun.prism.paint.*;
 import eecs285.proj4.group.Board;
 import eecs285.proj4.group.Location;
 import eecs285.proj4.group.Player;
@@ -18,6 +18,10 @@ public class Screen extends BufferedImage{
 
   private Random random = new Random();
   private Graphics g;
+  
+  private Ship panelSelectedShip;
+  private boolean move = false;
+  private boolean attack = false;
 
   //---------------------------------------------------------------
   public Screen(int inWidth, int inHeight)
@@ -28,7 +32,7 @@ public class Screen extends BufferedImage{
     pixels = ((DataBufferInt)this.getRaster().getDataBuffer()).getData();
 
     g = getGraphics();
-
+    panelSelectedShip = null;
   }
 
   //---------------------------------------------------------------
@@ -49,20 +53,39 @@ public class Screen extends BufferedImage{
         renderVisibility(curShip, player.getBoard());
       }
     }
+    
+    if(move && panelSelectedShip != null){
+    	renderMovementRange(panelSelectedShip);
+    }
+    
+    if(attack && panelSelectedShip != null){
+    	renderAttackRange(panelSelectedShip);
+    }
 
     if(!player.getBoard().opponentShipIsEmpty()){
       System.out.println("opponentShips is not empty");
-      /*for(Ship curShip : player.getBoard().getOpponentShips()){
-        render(curShip, 0, 0);
-      }*/
     }
-    //Ship test = new Submarine();
-    //test.setCurrentLoaction(new Location(3,2));
-
-    //render(test);
+  }
+  
+//---------------------------------------------------------------
+  
+  public void setPanelSelectedShip(Ship selectedShip){
+	  panelSelectedShip = selectedShip;
+  }
+  
+//---------------------------------------------------------------
+  
+  public void setMove(boolean moveIn){
+	  move = moveIn;
+  }
+  
+//---------------------------------------------------------------
+  
+  public void setAttack(boolean attackIn){
+	  attack = attackIn;
   }
 
-
+//---------------------------------------------------------------
   /**
    *
    * Offsets will be used to animate movement, when we are up to it
@@ -88,8 +111,6 @@ public class Screen extends BufferedImage{
 
   /**
    * Makes the tiles surrounding the ship visible
-   *
-   *
    *
    * @param ship
    */
