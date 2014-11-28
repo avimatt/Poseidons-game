@@ -70,9 +70,7 @@ public class StatusPanel extends JPanel
     totalHealthLabel = new JLabel ("Total Fleet Health: ");
     //need a function getTotalFleetHealth that returns the total health points
     totalHealthField= new JTextField(5);
-    //needs a function to get a number for the total health of fleet
-    String totalHealthString = "100";
-    totalHealthField.setText(totalHealthString +"/100");
+    totalHealthField.setText(" 100 %");
     totalHealthField.setBackground(Color.GREEN);
     totalHealthField.setEditable(false);
     totalHealthPan.add(totalHealthLabel);
@@ -165,8 +163,8 @@ public class StatusPanel extends JPanel
     //have it return an int to be used in getHealthColor 
     //function
     String totalHealthString = "100";
-    totalHealthField.setText(totalHealthString +"/100");
-    getHealthColor(totalHealthField,100);
+    totalHealthField.setText(totalHealthString +" % ");
+    getHealthColor(totalHealthField,100,100);
     
     //needs a function that returns the amount of actions left
     //have it return an int.
@@ -184,8 +182,8 @@ public class StatusPanel extends JPanel
     //have it return an int to be used in getHealthColor 
     //function
     String totalHealthString = "100";
-    totalHealthField.setText(totalHealthString +"/100");
-    getHealthColor(totalHealthField,100);
+    totalHealthField.setText(totalHealthString +" %");
+    getHealthColor(totalHealthField,100,100);
     
     //needs a function that returns the amount of actions left
     //have it return an int.
@@ -197,8 +195,9 @@ public class StatusPanel extends JPanel
     cancelSelection.setEnabled(true);
     
     int health = (ship.getHealth()/ship.getInitialHealth()) * 100;
-    healthOfShipField.setText(" " + health + " %");
-    getHealthColor(healthOfShipField,health);
+    healthOfShipField.setText(" " + 
+    (((double)health/(double)ship.getOrginalHealth())*100) + " %");
+    getHealthColor(healthOfShipField,health,ship.getOrginalHealth());
     
     //need function to that will say what ship has been hit
     statusLog.setText("NEED FUNCTION TO GET STATUS LOG!");
@@ -207,17 +206,22 @@ public class StatusPanel extends JPanel
 
 //---------------------------------------------------------------
   //used to change the background color of the health fields
-  private static void getHealthColor(JTextField healthField, int healthPoints)
-  {  
+  private static void getHealthColor(JTextField healthField, int healthPoints, int orginalHealth)
+  { 
+    double ratio = (double)healthPoints / (double)orginalHealth;
+    ratio = ratio * 100;
+    
+    System.out.println(ratio);
+    
     int GREENBACK = 70;
     int YELLOWBACK = 30;
     //will be red once health is below YELLOWBACK
     
-    if (healthPoints >= GREENBACK)
+    if (ratio >= GREENBACK)
     {
       healthField.setBackground(Color.GREEN);
     }
-    else if (healthPoints < GREENBACK && healthPoints >= YELLOWBACK )
+    else if (ratio < GREENBACK && ratio >= YELLOWBACK )
     {
       healthField.setBackground(Color.YELLOW);
     }

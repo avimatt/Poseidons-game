@@ -71,6 +71,8 @@ public abstract class Ship
   
   public abstract int getHealth();
   
+  public abstract int getOrginalHealth();
+  
   public abstract void setHealth(int healthIn);
   
   public abstract int getVisibilityRadius();

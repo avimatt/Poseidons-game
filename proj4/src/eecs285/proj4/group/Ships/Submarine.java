@@ -3,12 +3,14 @@ package eecs285.proj4.group.Ships;
 import eecs285.proj4.group.Graphics.Sprite;
 
 public class Submarine extends Ship
+
 {
   private int health;
+  private static final int ORGINALHEALTH = 60;
 
   public Submarine(){
     super();
-    health = 60;
+    health = ORGINALHEALTH;
   }
   
   @Override
@@ -66,6 +68,12 @@ public class Submarine extends Ship
   @Override
   public Sprite getSprite() {
     return Sprite.SUBMARINE;
+  }
+
+  @Override
+  public int getOrginalHealth()
+  {
+    return ORGINALHEALTH;
   }
 
 }

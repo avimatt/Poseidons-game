@@ -6,13 +6,15 @@ import eecs285.proj4.group.Graphics.Sprite;
 public class AircraftCarrier extends Ship
 {
   private int health;
+  private static final int ORGINALHEALTH = 50;
 
   public AircraftCarrier(){
     super();
-    health = 50;
+    health = ORGINALHEALTH;
   }
   
   @Override
+  
   public int getSpeed()
   {
     return 1;
@@ -67,6 +69,12 @@ public class AircraftCarrier extends Ship
   @Override
   public Sprite getSprite() {
     return Sprite.AIRCRAFTCARRIER;
+  }
+
+  @Override
+  public int getOrginalHealth()
+  {
+    return ORGINALHEALTH;
   }
 
 }
