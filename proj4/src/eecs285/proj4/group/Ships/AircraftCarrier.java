@@ -50,7 +50,7 @@ public class AircraftCarrier extends Ship
 //Radius from the center of the ship determined by the Location
   @Override
   public int getAttackRadius(){
-    return 30;
+    return 5;
   }
 
   @Override

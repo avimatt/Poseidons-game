@@ -1,11 +1,13 @@
 package eecs285.proj4.group.Graphics;
 
+import com.sun.prism.paint.*;
 import eecs285.proj4.group.Board;
 import eecs285.proj4.group.Location;
 import eecs285.proj4.group.Player;
 import eecs285.proj4.group.Ships.*;
 
 import java.awt.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.*;
@@ -176,6 +178,41 @@ public class Screen extends BufferedImage{
     }
   }
 
+  public void renderMovementRange(Ship ship)
+  {
+  }
+
+  public void renderAttackRange(Ship ship)
+  {
+    int xRange = ship.getAttackRadius();
+    int yRange;
+    Location loc = ship.getCurrentLocation();
+
+    for(int i = 0; i < ship.getSize(); ++i)
+    {
+      yRange = xRange;
+
+      for (int x = 0; x < xRange; ++x)
+      {
+        for (int y = 0; y < yRange; ++y)
+        {
+          int xPix = (x + i + loc.getX()) * Sprite.getSPRITESIZE();
+          int negXPix = (-x + i + loc.getX()) * Sprite.getSPRITESIZE();
+          int yPix = (y + loc.getY()) * Sprite.getSPRITESIZE();
+          int negYPix = (-y + loc.getY()) * Sprite.getSPRITESIZE();
+          g.setColor(Color.YELLOW);
+          g.drawRect(xPix , yPix, Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE());
+         // g.setColor(Color.YELLOW);
+          g.drawRect(negXPix , yPix, Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE());
+          g.drawRect(xPix , negYPix, Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE());
+          g.drawRect(negXPix , negYPix, Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE());
+        }
+        --yRange;
+      }
+    }
+
+  }
+
 
   public void renderOptionA(Player player, boolean server){
     player.getBoard().resetShips();
@@ -193,17 +230,17 @@ public class Screen extends BufferedImage{
     }
 
     Ship patrol1 = new PatrolBoat();
-    patrol1.setCurrentLocation(new Location(Math.abs(oneOffset - 2),0));
+    patrol1.setCurrentLocation(new Location(Math.abs(oneOffset - 2), 0));
     Ship destroyer = new Destroyer();
-    destroyer.setCurrentLocation(new Location(Math.abs(twoOffset - 0),1));
+    destroyer.setCurrentLocation(new Location(Math.abs(twoOffset - 0), 1));
     Ship battleship = new Battleship();
-    battleship.setCurrentLocation(new Location(Math.abs(twoOffset - 0),2));
+    battleship.setCurrentLocation(new Location(Math.abs(twoOffset - 0), 2));
     Ship aircraft = new AircraftCarrier();
-    aircraft.setCurrentLocation(new Location(Math.abs(threeOffset - 0),3));
+    aircraft.setCurrentLocation(new Location(Math.abs(threeOffset - 0), 3));
     Ship submarine = new Submarine();
-    submarine.setCurrentLocation(new Location(Math.abs(oneOffset - 1),4));
+    submarine.setCurrentLocation(new Location(Math.abs(oneOffset - 1), 4));
     Ship patrol2 = new PatrolBoat();
-    patrol2.setCurrentLocation(new Location(Math.abs(oneOffset - 2),5));
+    patrol2.setCurrentLocation(new Location(Math.abs(oneOffset - 2), 5));
 
     player.getBoard().addShip(patrol1);
     player.getBoard().addShip(patrol2);
@@ -235,21 +272,21 @@ public class Screen extends BufferedImage{
     // Also there is a problem with the showing visibility of enemy ships 
     // b/c it will show the whole ship if even one part is in the range
     //Ship ship1 = new Destroyer();
-    //ship1.setCurrentLoaction(new Location(7,7));
+    //ship1.setCurrentLocation(new Location(7,7));
     //player.getBoard().addShip(ship1);
     
     Ship patrol1 = new PatrolBoat();
-    patrol1.setCurrentLocation(new Location(Math.abs(oneOffset - 2),19));
+    patrol1.setCurrentLocation(new Location(Math.abs(oneOffset - 2), 19));
     Ship destroyer = new Destroyer();
-    destroyer.setCurrentLocation(new Location(Math.abs(twoOffset - 0),18));
+    destroyer.setCurrentLocation(new Location(Math.abs(twoOffset - 0), 18));
     Ship battleship = new Battleship();
-    battleship.setCurrentLocation(new Location(Math.abs(twoOffset - 0),17));
+    battleship.setCurrentLocation(new Location(Math.abs(twoOffset - 0), 17));
     Ship aircraft = new AircraftCarrier();
-    aircraft.setCurrentLocation(new Location(Math.abs(threeOffset - 0),16));
+    aircraft.setCurrentLocation(new Location(Math.abs(threeOffset - 0), 16));
     Ship submarine = new Submarine();
-    submarine.setCurrentLocation(new Location(Math.abs(oneOffset - 1),15));
+    submarine.setCurrentLocation(new Location(Math.abs(oneOffset - 1), 15));
     Ship patrol2 = new PatrolBoat();
-    patrol2.setCurrentLocation(new Location(Math.abs(oneOffset - 2),14));
+    patrol2.setCurrentLocation(new Location(Math.abs(oneOffset - 2), 14));
 
     player.getBoard().addShip(patrol1);
     player.getBoard().addShip(patrol2);
@@ -277,17 +314,17 @@ public class Screen extends BufferedImage{
     }
     
     Ship patrol1 = new PatrolBoat();
-    patrol1.setCurrentLocation(new Location(Math.abs(oneOffset - 2),1));
+    patrol1.setCurrentLocation(new Location(Math.abs(oneOffset - 2), 1));
     Ship destroyer = new Destroyer();
-    destroyer.setCurrentLocation(new Location(Math.abs(twoOffset - 1),11));
+    destroyer.setCurrentLocation(new Location(Math.abs(twoOffset - 1), 11));
     Ship battleship = new Battleship();
-    battleship.setCurrentLocation(new Location(Math.abs(twoOffset - 0),14));
+    battleship.setCurrentLocation(new Location(Math.abs(twoOffset - 0), 14));
     Ship aircraft = new AircraftCarrier();
-    aircraft.setCurrentLocation(new Location(Math.abs(threeOffset - 0),4));
+    aircraft.setCurrentLocation(new Location(Math.abs(threeOffset - 0), 4));
     Ship submarine = new Submarine();
-    submarine.setCurrentLocation(new Location(Math.abs(oneOffset - 1),16));
+    submarine.setCurrentLocation(new Location(Math.abs(oneOffset - 1), 16));
     Ship patrol2 = new PatrolBoat();
-    patrol2.setCurrentLocation(new Location(Math.abs(oneOffset - 2),7));
+    patrol2.setCurrentLocation(new Location(Math.abs(oneOffset - 2), 7));
 
     player.getBoard().addShip(patrol1);
     player.getBoard().addShip(patrol2);
