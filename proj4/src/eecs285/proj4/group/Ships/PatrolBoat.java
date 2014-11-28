@@ -39,7 +39,7 @@ public class PatrolBoat extends Ship
   // Radius from the center of the ship determined by the Location
   @Override
   public int getVisibilityRadius(){
-    return 10;
+    return 5;
   }
   
 //Radius from the center of the ship determined by the Location

@@ -101,6 +101,11 @@ public class GamePlay implements Runnable{
 		  boardImage.paintComponent(boardImage.getGraphics());
 	  }
   }
+
+  public ImageBoard getBoardImage()
+  {
+    return boardImage;
+  }
   
   public class BoardListener extends MouseAdapter
   {

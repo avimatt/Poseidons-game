@@ -43,7 +43,7 @@ public class Submarine extends Ship
   // Radius from the center of the ship determined by the Location
   @Override
   public int getVisibilityRadius(){
-    return 8;
+    return 0;
   }
   
 //Radius from the center of the ship determined by the Location

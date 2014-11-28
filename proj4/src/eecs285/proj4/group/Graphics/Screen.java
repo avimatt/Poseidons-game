@@ -98,7 +98,7 @@ public class Screen extends BufferedImage{
   /**
    * Makes the tiles surrounding the ship visible
    *
-   * //breadth first approach
+   *
    *
    * @param ship
    */
@@ -107,12 +107,19 @@ public class Screen extends BufferedImage{
     int yRange;
     int xRange = yRange = ship.getVisibilityRadius();
 
+//    g.setColor(Color.BLUE);
+//    g.fillOval((ship.getCurrentLocation().getX() - xRange) * 16, (ship.getCurrentLocation().getY() - yRange) * 16, 2 * xRange * 16, 2 * yRange * 16);
+
 
     for(int x = 0; x <= xRange; ++x)
-      for(int y = 1; y <= yRange; ++y)
+    {
+      for(int y = 0; y <= yRange; ++y)
       {
         Location checkUpLoc = new Location(ship.getCurrentLocation().getX() + x, ship.getCurrentLocation().getY() + y);
-        Location checkDownLoc = new Location(ship.getCurrentLocation().getX() - x, ship.getCurrentLocation().getY() - y);
+        Location checkDownLoc = new Location(ship.getCurrentLocation().getX() + x, ship.getCurrentLocation().getY() - y);
+
+        Location checkUpBackLoc = new Location(ship.getCurrentLocation().getX() - x, ship.getCurrentLocation().getY() + y);
+        Location checkDownBackLoc = new Location(ship.getCurrentLocation().getX() - x, ship.getCurrentLocation().getY() - y);
 
         // Check upwards logic
         try
@@ -135,8 +142,30 @@ public class Screen extends BufferedImage{
           g.drawImage(Sprite.OCEANTILE, checkDownLoc.getX() * Sprite.getSPRITESIZE(), checkDownLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
         }
 
-        yRange -= 1;
+        try
+        {
+          Ship potential = board.getShip(checkUpBackLoc);
+          render(potential, 0, 0);
+        }
+        catch (Exception exception)
+        {
+          g.drawImage(Sprite.OCEANTILE, checkUpBackLoc.getX() * Sprite.getSPRITESIZE(), checkUpBackLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
+        }
+
+        try
+        {
+          Ship potential = board.getShip(checkDownBackLoc);
+          render(potential, 0, 0);
+        }
+        catch (Exception exception)
+        {
+          g.drawImage(Sprite.OCEANTILE, checkDownBackLoc.getX() * Sprite.getSPRITESIZE(), checkDownBackLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
+        }
+
       }
+    yRange -= 1;
+  }
+
   }
 
 
