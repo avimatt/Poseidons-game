@@ -14,7 +14,7 @@ public class Destroyer extends Ship
   @Override
   public int getSpeed()
   {
-    return 4;
+    return 3;
   }
 
   @Override
@@ -43,7 +43,7 @@ public class Destroyer extends Ship
   // Radius from the center of the ship determined by the Location
   @Override
   public int getVisibilityRadius(){
-    return 0;
+    return 3;
   }
   
 //Radius from the center of the ship determined by the Location

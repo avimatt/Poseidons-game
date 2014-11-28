@@ -16,8 +16,12 @@ public class graphicsTest {
 	  JFrame frame = new JFrame();
 
     Board board = gamePlay.getPlayer().getBoard();
+    Ship sub1 = new AircraftCarrier();
+    board.addShip(sub1, new Location(7,7));
+
     Ship p1 = new PatrolBoat();
-    board.addShip(p1, new Location(7,7));
+    p1.setCurrentLoaction(new Location(10,7));
+    board.addOpponentShip(p1);
 
 
 
