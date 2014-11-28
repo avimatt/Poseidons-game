@@ -178,8 +178,29 @@ public class Screen extends BufferedImage{
     }
   }
 
+  //
   public void renderMovementRange(Ship ship)
   {
+    int xRange = ship.getSpeed();
+    int yRange = xRange;
+    Location loc = ship.getCurrentLocation();
+
+      for (int x = 0; x <= xRange; ++x)
+      {
+        for (int y = 0; y <= yRange; ++y)
+        {
+          int xPix = (x + loc.getX()) * Sprite.getSPRITESIZE();
+          int negXPix = (-x + loc.getX()) * Sprite.getSPRITESIZE();
+          int yPix = (y + loc.getY()) * Sprite.getSPRITESIZE();
+          int negYPix = (-y + loc.getY()) * Sprite.getSPRITESIZE();
+          g.setColor(Color.GREEN);
+          g.drawRect(xPix , yPix, Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE());
+          g.drawRect(negXPix , yPix, Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE());
+          g.drawRect(xPix , negYPix, Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE());
+          g.drawRect(negXPix , negYPix, Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE());
+        }
+        --yRange;
+      }
   }
 
   public void renderAttackRange(Ship ship)
@@ -192,9 +213,9 @@ public class Screen extends BufferedImage{
     {
       yRange = xRange;
 
-      for (int x = 0; x < xRange; ++x)
+      for (int x = 0; x <= xRange; ++x)
       {
-        for (int y = 0; y < yRange; ++y)
+        for (int y = 0; y <= yRange; ++y)
         {
           int xPix = (x + i + loc.getX()) * Sprite.getSPRITESIZE();
           int negXPix = (-x + i + loc.getX()) * Sprite.getSPRITESIZE();
