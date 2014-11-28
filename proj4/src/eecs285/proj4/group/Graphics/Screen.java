@@ -102,6 +102,8 @@ public class Screen extends BufferedImage{
    *
    * @param ship
    */
+  // there is a problem with the showing visibility of enemy ships 
+  // b/c it will show the whole ship if even one part is in the range
   public void renderVisibility(Ship ship, Board board)
   {
 //    g.setColor(Color.BLUE);
@@ -130,7 +132,12 @@ public class Screen extends BufferedImage{
           }
           catch (Exception exception)
           {
-            g.drawImage(Sprite.OCEANTILE, checkUpLoc.getX() * Sprite.getSPRITESIZE(), checkUpLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
+        	try {
+        		Ship potentialEnemy = board.getOpponentShip(checkUpLoc);
+        		render(potentialEnemy, 0, 0);
+        	} catch (Exception e){
+        		g.drawImage(Sprite.OCEANTILE, checkUpLoc.getX() * Sprite.getSPRITESIZE(), checkUpLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
+        	}
           }
           try
           {
@@ -139,7 +146,12 @@ public class Screen extends BufferedImage{
           }
           catch (Exception exception)
           {
-            g.drawImage(Sprite.OCEANTILE, checkDownLoc.getX() * Sprite.getSPRITESIZE(), checkDownLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
+        	try {
+        		Ship potentialEnemy = board.getOpponentShip(checkDownLoc);
+          		render(potentialEnemy, 0, 0);
+          	} catch (Exception e){
+          		g.drawImage(Sprite.OCEANTILE, checkDownLoc.getX() * Sprite.getSPRITESIZE(), checkDownLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
+          	}
           }
           try
           {
@@ -148,7 +160,12 @@ public class Screen extends BufferedImage{
           }
           catch (Exception exception)
           {
-            g.drawImage(Sprite.OCEANTILE, checkUpBackLoc.getX() * Sprite.getSPRITESIZE(), checkUpBackLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
+        	try {
+          		Ship potentialEnemy = board.getOpponentShip(checkUpBackLoc);
+          		render(potentialEnemy, 0, 0);
+          	} catch (Exception e){
+          		g.drawImage(Sprite.OCEANTILE, checkUpBackLoc.getX() * Sprite.getSPRITESIZE(), checkUpBackLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
+          	}          
           }
           try
           {
@@ -157,7 +174,12 @@ public class Screen extends BufferedImage{
           }
           catch (Exception exception)
           {
-            g.drawImage(Sprite.OCEANTILE, checkDownBackLoc.getX() * Sprite.getSPRITESIZE(), checkDownBackLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
+        	try {
+          		Ship potentialEnemy = board.getOpponentShip(checkDownBackLoc);
+          		render(potentialEnemy, 0, 0);
+          	} catch (Exception e){
+          		g.drawImage(Sprite.OCEANTILE, checkDownBackLoc.getX() * Sprite.getSPRITESIZE(), checkDownBackLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
+          	}          
           }
         }
         yRange -= 1;
@@ -218,6 +240,14 @@ public class Screen extends BufferedImage{
     	twoOffset = 21;
     	threeOffset = 20;
     }
+    
+    // testing visibility of enemy ships
+    // add these line and have one game use setup B and the other use C
+    // Also there is a problem with the showing visibility of enemy ships 
+    // b/c it will show the whole ship if even one part is in the range
+    //Ship ship1 = new Destroyer();
+    //ship1.setCurrentLoaction(new Location(7,7));
+    //player.getBoard().addShip(ship1);
     
     Ship patrol1 = new PatrolBoat();
     patrol1.setCurrentLoaction(new Location(Math.abs(oneOffset - 2),19));

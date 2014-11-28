@@ -62,6 +62,24 @@ public class Board
     throw new Exception("No ship there");
   }
   
+  public Ship getOpponentShip(Location curLoc) throws Exception
+  {
+	  for (Ship curShip : opponentShipList)
+	  {
+	    for (Location newLoc = 
+	        new Location(curShip.getCurrentLocation().getX(), curShip.getCurrentLocation().getY()),
+	        endLoc = newLoc.add(curShip.getSize()); 
+	        !newLoc.compareLoc(endLoc); 
+	        newLoc.incrementX())
+	    {
+	      if (newLoc.compareLoc(curLoc)){
+	        return curShip;
+	      }  
+	    }
+	  }
+	  throw new Exception("No ship there");
+  }
+  
   //in case of things other than ships that occupy locations
   //and maybe to check if an attack was successful (TODO: confirm its a ship)
   public boolean isLocOccupied(Location curLoc)
