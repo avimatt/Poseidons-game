@@ -204,7 +204,13 @@ public class Screen extends BufferedImage{
   {
     int xRange = ship.getSpeed();
     int yRange = xRange;
-    Location loc = ship.getCurrentLocation();
+    Location shipLoc = ship.getCurrentLocation();
+    Location loc = new Location(shipLoc.getX(), shipLoc.getY());
+
+    if(ship.getSize() == 3)
+    {
+      loc.incrementX();
+    }
 
       for (int x = 0; x <= xRange; ++x)
       {
