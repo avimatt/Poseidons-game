@@ -37,6 +37,7 @@ public class SetupWindow extends JFrame{
 		optionB = new JButton("B");
 		optionC = new JButton("C");
 		accept = new JButton("Confirm Setup");
+		accept.setEnabled(false);
 		
 		optionA.setPreferredSize(new Dimension(50,40));
 		optionB.setPreferredSize(new Dimension(50,40));
@@ -79,23 +80,26 @@ public class SetupWindow extends JFrame{
 				// displays option A setup and sets players 
 				// ships array with the locations of the ships
 				game.displaySetupOptions('A', server);
+				accept.setEnabled(true);
 			}
 			if(e.getSource() == optionB){
 				// displays option B setup and sets players 
 				// ships array with the locations of the ships
 				game.displaySetupOptions('B', server);
+				accept.setEnabled(true);
 			}
 			if(e.getSource() == optionC){
 				// displays option C setup and sets players 
 				// ships array with the locations of the ships
 				game.displaySetupOptions('C', server);
+				accept.setEnabled(true);
 			}
 			if(e.getSource() == accept){
 				// needs to send the locations to other player
+			  dispose();
 				game.getNetwork().sendStartLocations(game.getPlayer().getBoard().getShips(), server);
 				game.getNetwork().readMessage(game);
-				game.run();
-				dispose();
+				game.run();		
 			}
 		}
 
