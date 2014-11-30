@@ -169,6 +169,14 @@ public class StatusPanel extends JPanel
    
     
     add(totalPan);
+    
+    //test the status panel
+    /*
+    setLog("hey");
+    setLog("hey1");
+    setLog("hey2");
+    setLog("This is a very long line to test things out blah, blah");
+    */
    
   }
   
@@ -185,9 +193,6 @@ public class StatusPanel extends JPanel
     //needs a function that returns the amount of actions left
     //have it return an int.
     actionLeftField = new JLabel("5");
-    
-    //need function to that will say what ship has been hit
-    statusLog.setText("NEED FUNCTION TO GET STATUS LOG!");
     
   }
   
@@ -210,15 +215,31 @@ public class StatusPanel extends JPanel
     moveButton.setEnabled(true);
     cancelSelection.setEnabled(true);
     
-    int health = (ship.getHealth()/ship.getInitialHealth()) * 100;
+    int health = (ship.getHealth()/ship.getOrginalHealth()) * 100;
     healthOfShipField.setText(" " + health + " %");
     getHealthColor(healthOfShipField,health,ship.getOrginalHealth());
     
-    //need function to that will say what ship has been hit
-    statusLog.setText("NEED FUNCTION TO GET STATUS LOG!");
-    
     selectedShip = ship;
     
+  }
+  
+  //sets the status log
+  public void setLog(String status)
+  {
+    //keeps a history of the log
+    String save = statusLog.getText();
+    
+    //if-else statements stops the first newline  
+    if(statusLog.getText().isEmpty())
+    {
+      save = status;
+    }
+    else
+    {
+       save = save + "\n" + status;
+    }
+   
+    statusLog.setText(save);  
   }
 
 //---------------------------------------------------------------
