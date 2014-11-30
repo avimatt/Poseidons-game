@@ -2,11 +2,15 @@ package eecs285.proj4.group;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -37,7 +41,7 @@ public class SetupWindow extends JFrame{
 		optionB = new JButton("B");
 		optionC = new JButton("C");
 		accept = new JButton("Confirm Setup");
-		accept.setEnabled(false);
+		
 		
 		optionA.setPreferredSize(new Dimension(50,40));
 		optionB.setPreferredSize(new Dimension(50,40));
@@ -46,10 +50,12 @@ public class SetupWindow extends JFrame{
 		
 		listener = new OptionListener();
 		
-		optionA.addMouseListener(listener);
-		optionB.addMouseListener(listener);
-		optionC.addMouseListener(listener);
-		accept.addMouseListener(listener);
+		optionA.addActionListener(listener);
+		optionB.addActionListener(listener);
+		optionC.addActionListener(listener);
+		accept.addActionListener(listener);
+		accept.setEnabled(false);
+		
 		
 		topPanel.add(optionA);
 		topPanel.add(optionB);
@@ -72,9 +78,9 @@ public class SetupWindow extends JFrame{
 	}
 
 //---------------------------------------------------------------	
-	public class OptionListener extends MouseAdapter {
+	public class OptionListener implements ActionListener {
 		
-		public void mouseClicked(MouseEvent e)
+		public void actionPerformed(ActionEvent e)
 		{
 			if(e.getSource() == optionA){
 				// displays option A setup and sets players 
@@ -97,11 +103,21 @@ public class SetupWindow extends JFrame{
 			if(e.getSource() == accept){
 				// needs to send the locations to other player
 			  dispose();
+			  try
+			  {
 				game.getNetwork().sendStartLocations(game.getPlayer().getBoard().getShips(), server);
 				game.getNetwork().readMessage(game);
 				game.run();		
+			  }
+			  catch (Exception exception)
+			  {
+			    JOptionPane frame = new JOptionPane();
+			    JOptionPane.showMessageDialog(frame,
+			        "ERROR: You Are Not Connected to Another Player!",
+			        "Connection Error",
+			        JOptionPane.ERROR_MESSAGE);
+			  }
 			}
 		}
-
 	}
 }
