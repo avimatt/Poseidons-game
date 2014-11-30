@@ -16,10 +16,13 @@ public class Player
   }
 
 //---------------------------------------------------------------
-  public Ship getPlayerShip(int shipNumber) throws Exception
+  
+  // TODO is this ever used anywhere??????????????
+  
+  /*public Ship getPlayerShip(int shipNumber) throws Exception
   {
     return myBoard.getShip(shipNumber, ID);
-  }
+  }*/
 
 //---------------------------------------------------------------
   public int getID()

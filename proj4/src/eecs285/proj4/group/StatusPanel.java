@@ -225,6 +225,7 @@ public class StatusPanel extends JPanel
     
   }
   
+//---------------------------------------------------------------   
   //sets the status log
   public void setLog(String status)
   {

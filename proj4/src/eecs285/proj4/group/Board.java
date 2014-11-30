@@ -22,14 +22,15 @@ public class Board
   }
 
 //---------------------------------------------------------------
-  // what is this for?
-  public Ship getShip(int shipNumber, int playerID) throws Exception
+  public Ship getShip(int shipId)
   {
-    if (shipNumber * 2 + playerID > shipList.size())
-    {
-      throw new Exception("No such ship");
-    }
-    return shipList.get(shipNumber * 2 + playerID);
+	  for(Ship curShip : shipList){
+		  if(curShip.getID() == shipId){
+			  return curShip;
+		  }
+	  }
+	  // should never reach here
+	  return null;
   }
   
 //--------------------------------------------------------------- 

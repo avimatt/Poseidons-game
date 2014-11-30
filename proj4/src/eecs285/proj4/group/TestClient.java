@@ -34,7 +34,7 @@ public class TestClient {
 		locations.add(six);
 		
 		client.startClient();
-		client.sendStartLocations(locations);
+		client.sendStartLocations(locations, false);
 	}
 
 }
