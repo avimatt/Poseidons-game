@@ -94,7 +94,19 @@ public class Board
       {
         return true;
       }
+
+
+
     }
+
+    for (Ship curShip : opponentShipList)
+    {
+      if (curShip.getCurrentLocation().compareLoc(curLoc))
+      {
+        return true;
+      }
+    }
+
     return false;
   }
 
@@ -156,6 +168,90 @@ public class Board
 //---------------------------------------------------------------  
   public boolean opponentShipIsEmpty(){
 	  return opponentShipList.isEmpty();
+  }
+
+  public boolean isAttacklocationInRange(Ship ship, Location location)
+  {
+        return true;
+  }
+
+  public boolean isMoveValid(Ship ship, Location location)
+  {
+    int size = ship.getSize();
+    int y = location.getY();
+    int x = location.getX();
+    int yRange;
+    int xRange = yRange = ship.getSpeed();
+    Location basePoint = ship.getCurrentLocation();
+
+    if(size == 3)
+    {
+      //compensate for aircraft carrier.
+      location.decrementX();
+      --x;
+    }
+
+    for(int i = 0; i < size; ++i)
+    {
+      if(((x + i) < 0) || (y < 0) || ((x + i) > 22) || (y > 19))
+      {
+        return false;
+      }
+
+      try
+      {
+        Ship checkShip = getShip(location);
+        if(checkShip.getID() != ship.getID())
+        {
+        return false;
+        }
+      }
+
+      catch (Exception exception)
+      {
+
+      }
+
+    }
+
+    for(int xx = 0; xx <= xRange; ++xx)
+    {
+      for(int yy = 0; yy <= yRange; ++yy)
+      {
+        Location checkUpLoc = new Location(basePoint.getX() + xx, basePoint.getY() + yy);
+        Location checkDownLoc = new Location(basePoint.getX() + xx, basePoint.getY() - yy);
+        Location checkUpBackLoc = new Location(basePoint.getX() - xx, basePoint.getY() + yy);
+        Location checkDownBackLoc = new Location(basePoint.getX() - xx, basePoint.getY() - yy);
+
+        if(location.compareLoc(checkUpLoc) || location.compareLoc(checkDownLoc)
+            || location.compareLoc(checkUpBackLoc) || location.compareLoc(checkDownBackLoc))
+        {
+          return true;
+        }
+      }
+      --yRange;
+    }
+
+    return false;
+  }
+
+  public boolean moveShip(Ship ship, Location location)
+  {
+    if(isMoveValid(ship, location))
+    {
+      ship.setCurrentLocation(location);
+      return true;
+    }
+
+    return false;
+
+
+
+  }
+
+  public void attack()
+  {
+
   }
   
   

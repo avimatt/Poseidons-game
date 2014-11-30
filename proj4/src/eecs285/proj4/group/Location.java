@@ -52,5 +52,20 @@ public class Location
   {
     ++x;
   }
-  
+
+  public void incrementY()
+  {
+    ++y;
+  }
+
+  public void decrementX()
+  {
+    --x;
+  }
+
+  public void decrementY()
+  {
+    --y;
+  }
+
 }

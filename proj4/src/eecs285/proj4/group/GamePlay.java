@@ -1,5 +1,6 @@
 package eecs285.proj4.group;
 
+import eecs285.proj4.group.Graphics.Screen;
 import eecs285.proj4.group.Graphics.Sprite;
 import eecs285.proj4.group.Ships.Ship;
 
@@ -147,15 +148,35 @@ public class GamePlay implements Runnable{
       System.out.println("Clicked X: " + clickLoc.getX() + " Y: " + clickLoc.getY());
       Ship selectedShip;
 
-      try
-      {
-         selectedShip = boardImage.identifyPlayerShip(clickLoc, player.getBoard());
-         status.updateStatusPanel(selectedShip);
-      }
-      catch(Exception e1)
-      {
-        System.out.println("No Ship at Location: " + clickLoc.getX() + "," + clickLoc.getY());
+      Screen screen = boardImage.getScreen();
 
+      // if the move button has been pressed
+      if(screen.getMoveSelected())
+      {
+        if(player.getBoard().moveShip(screen.getPanelSelecetedShip(), clickLoc))
+        {
+          screen.setMove(false);
+        }
+
+      }
+
+      // if the attack button has been pressed
+      else if(screen.getAttackSelected())
+      {
+
+      }
+
+      else
+      {
+        try
+        {
+           selectedShip = boardImage.identifyPlayerShip(clickLoc, player.getBoard());
+           status.updateStatusPanel(selectedShip);
+        }
+        catch(Exception e1)
+        {
+          System.out.println("No Ship at Location: " + clickLoc.getX() + "," + clickLoc.getY());
+        }
       }
 
 

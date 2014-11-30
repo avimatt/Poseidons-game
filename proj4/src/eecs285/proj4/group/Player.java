@@ -8,6 +8,7 @@ public class Player
   // private int damage_Dealt;
   private static int ID = 0;
   private Board myBoard;
+  private int actionsLeft = 5;
 
   public Player()
   {
@@ -67,6 +68,16 @@ public class Player
   }
  
 //---------------------------------------------------------------
+  public void setActionsLeft(int actions)
+  {
+    actionsLeft = actions;
+  }
+
+  public int getActionsLeft()
+  {
+    return actionsLeft;
+  }
+
   public Board getBoard(){
 	  return myBoard;
   }

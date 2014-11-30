@@ -7,6 +7,7 @@ import eecs285.proj4.group.Player;
 import eecs285.proj4.group.Ships.*;
 
 import java.awt.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.*;
@@ -15,11 +16,11 @@ public class Screen extends BufferedImage{
   private int width, height;
   public int[] pixels;
 
-  @SuppressWarnings("unused")
   private Random random = new Random();
   private Graphics g;
   
   private Ship panelSelectedShip;
+  private Ship moveShip;
   private boolean move = false;
   private boolean attack = false;
 
@@ -61,10 +62,9 @@ public class Screen extends BufferedImage{
     if(attack && panelSelectedShip != null){
     	renderAttackRange(panelSelectedShip);
     }
-    
-    // this was a sanity check
+
     if(!player.getBoard().opponentShipIsEmpty()){
-      // System.out.println("opponentShips is not empty");
+      System.out.println("opponentShips is not empty");
     }
   }
   
@@ -73,11 +73,22 @@ public class Screen extends BufferedImage{
   public void setPanelSelectedShip(Ship selectedShip){
 	  panelSelectedShip = selectedShip;
   }
+
+  public Ship getPanelSelecetedShip()
+  {
+    return panelSelectedShip;
+  }
   
 //---------------------------------------------------------------
   
   public void setMove(boolean moveIn){
 	  move = moveIn;
+
+    if(move)
+    {
+      moveShip = panelSelectedShip;
+    }
+
   }
   
 //---------------------------------------------------------------
@@ -142,7 +153,6 @@ public class Screen extends BufferedImage{
         {
           Location checkUpLoc = new Location(basePoint.getX() + x, basePoint.getY() + y);
           Location checkDownLoc = new Location(basePoint.getX() + x, basePoint.getY() - y);
-
           Location checkUpBackLoc = new Location(basePoint.getX() - x, basePoint.getY() + y);
           Location checkDownBackLoc = new Location(basePoint.getX() - x, basePoint.getY() - y);
 
