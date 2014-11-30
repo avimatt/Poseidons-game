@@ -143,7 +143,9 @@ public class StatusPanel extends JPanel
     
     //adds buttons to lower panel
     endTurnButton = new JButton("End Turn");
+    endTurnButton.addActionListener(listener);
     helpButton = new JButton("Help");
+    helpButton.addActionListener(listener);
     lowerPan.add(endTurnButton);
     lowerPan.add(helpButton);
   
@@ -298,6 +300,10 @@ public class StatusPanel extends JPanel
 			game.getBoardImage().paintComponent(game.getBoardImage().getGraphics());
 			moveButton.setEnabled(true);
 			attackButton.setEnabled(true);
+		}
+		if(e.getSource() == helpButton)
+		{
+		  new HelpGUI();
 		}
 	}
 	  

@@ -103,16 +103,13 @@ public class GameGUI
       }
       if(e.getSource() == helpButton)
       {
-        getHelpframe();
+        new HelpGUI();
       }
       if (e.getSource() == exitGameButton)
       {
         System.exit(0);
       }
-      if(e.getSource() == okayButton)
-      {
-        helpFrame.dispose();
-      }
+      
     }
   //---------------------------------------------------------------
     private void createAndDisplayGame()
@@ -128,61 +125,7 @@ public class GameGUI
       game.run();
     }
   //---------------------------------------------------------------
-    private void getHelpframe()
-    {
-       helpFrame = new JDialog();
-       helpFrame.setLayout(new BorderLayout());
-       JPanel buttons = new JPanel();
-       buttons.setLayout(new FlowLayout());
-       JTextArea helpCon = new JTextArea();
-       okayButton = new JButton("OK");
-       okayButton.addMouseListener(new GameListener());
-       helpFrame.setTitle("Help!");
-       helpFrame.setVisible(true);
-       helpFrame.setSize(600,400);
-       helpFrame.setResizable(false);
-       helpFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-       helpCon.setEditable(false);
-       helpCon.setWrapStyleWord(true);
-       helpCon.setLineWrap(true);
-       
-       
-       ////////READS IN HELP DOCUMENT////////////////////////////////////////
-       BufferedReader helpin;
-       try
-       {
-         helpin = new BufferedReader(new FileReader(getClass()
-                 .getClassLoader().getResource("HelpDoc/HelpDocument.txt").
-                 getPath()));
-         String getline;
-         String saveline = "";
-         //gets the info. from the HelpDocument
-         saveline = new StringBuilder(helpin.readLine()).reverse().toString();
-         while((getline = helpin.readLine()) != null)
-         {
-           getline = new StringBuilder(getline).reverse().toString();
-           saveline = getline+"\n"+saveline;
-         }
-         helpin.close();
-         //reverses the string that comes in to display the help file correctly
-         helpCon.setText(new StringBuilder(saveline).reverse().toString());
-         helpCon.setCaretPosition(0);
-       }
-       catch( IOException e )
-       {
-        //should never happen
-        e.printStackTrace();
-        System.out.println("error!");
-       }
-       ///////////////////////////////////////////////////////////////////////
-       JScrollPane scrollhelp = new JScrollPane(helpCon);
-       scrollhelp.setHorizontalScrollBarPolicy
-       (JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-       helpFrame.add(scrollhelp, BorderLayout.CENTER);
-       buttons.add(okayButton);
-       helpFrame.add(buttons, BorderLayout.SOUTH);
-    }
-  //---------------------------------------------------------------
+  
     void saySomething(String eventDescription, MouseEvent e)
     {
 
