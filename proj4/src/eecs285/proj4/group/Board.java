@@ -189,12 +189,6 @@ public class Board
 	        Location checkUpBackLoc = new Location(basePoint.getX() - xx, basePoint.getY() + yy);
 	        Location checkDownBackLoc = new Location(basePoint.getX() - xx, basePoint.getY() - yy);
 	        
-	        System.out.println("up: " + checkUpLoc.getX() + ", " + checkUpLoc.getY());
-	        System.out.println("down: " + checkDownLoc.getX() + ", " + checkDownLoc.getY());
-	        System.out.println("upback: " + checkUpBackLoc.getX() + ", " + checkUpBackLoc.getY());
-	        System.out.println("downback: " + checkDownBackLoc.getX() + ", " + checkDownBackLoc.getY());
-
-	        
 	        if(location.compareLoc(checkUpLoc) || location.compareLoc(checkDownLoc)
 	            || location.compareLoc(checkUpBackLoc) || location.compareLoc(checkDownBackLoc))
 	        {

@@ -168,11 +168,27 @@ public class ClientORServer {
 		}
 		
 	}
-
 	
+//---------------------------------------------------------------	
+	public void sendEndTurn(){
+		try{
+			System.out.println("Sending end turn started...");
+			output.writeBytes("end_turn");
+			output.writeByte(0);
+		} catch (IOException e){
+			System.out.println("Caught IOException sending end turn");
+			System.exit(-1);
+		}
+	}
 
 //---------------------------------------------------------------	
-	public void readMessage(GamePlay game){
+	/**
+	 * Reads all types of messages that can be sent
+	 * - Returns 0 for everything besides end turn
+	 * 
+	 * @param game
+	 */
+	public int readMessage(GamePlay game){
 		Vector< Byte > byteVec = new Vector< Byte >();
 		byte [] byteAry;
 		byte recByte;
@@ -228,6 +244,8 @@ public class ClientORServer {
 				}
 				
 				game.setIsServer(isServer);
+				
+				return 0;
 			}
 			if(receivedString.contentEquals("attack_hit_action")){
 				Ship attackedShip = game.getPlayer().getBoard().getOpponentShip(input.readInt());
@@ -242,10 +260,14 @@ public class ClientORServer {
 					game.getStatusPanel().setLog("    It lost " + damageTaken + " health");
 				}
 				// update the log to say the ship has been hit 
+				
+				return 0;
 			}
 			if(receivedString.contentEquals("attack_miss_action")){
 				// update the log to say that there was an attack and it missed
 				game.getStatusPanel().setLog("You were attacked but the attack missed");
+				
+				return 0;
 			}
 			if(receivedString.contentEquals("move_ship")){
 				Ship movedShip = game.getPlayer().getBoard().getOpponentShip(input.readInt());
@@ -255,6 +277,11 @@ public class ClientORServer {
 				
 				// may want to re-render the board to show the moved ship immediately as 
 				// opposed to the next time they hover their mouse over a tile
+				
+				return 0;
+			}
+			if(receivedString.contentEquals("end_turn")){
+				return 1;
 			}
 		}
 		catch (IOException ioe)
@@ -262,7 +289,7 @@ public class ClientORServer {
 			System.out.println("ERROR: receiving string from socket");
 			System.exit(8);
 		}
-
+		return 0;
 	}
 	
 }
