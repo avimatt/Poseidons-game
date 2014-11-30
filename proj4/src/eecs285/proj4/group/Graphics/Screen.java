@@ -84,6 +84,16 @@ public class Screen extends BufferedImage{
   public void setAttack(boolean attackIn){
 	  attack = attackIn;
   }
+  
+//---------------------------------------------------------------
+  public boolean getAttackSelected(){
+	  return attack;
+  }
+  
+//---------------------------------------------------------------
+  public boolean getMoveSelected(){
+	  return move;
+  }
 
 //---------------------------------------------------------------
   /**
@@ -109,13 +119,12 @@ public class Screen extends BufferedImage{
 
   }
 
+//---------------------------------------------------------------  
   /**
    * Makes the tiles surrounding the ship visible
    *
    * @param ship
    */
-  // there is a problem with the showing visibility of enemy ships 
-  // b/c it will show the whole ship if even one part is in the range
   public void renderVisibility(Ship ship, Board board)
   {
 //    g.setColor(Color.BLUE);
@@ -199,7 +208,7 @@ public class Screen extends BufferedImage{
     }
   }
 
-  //
+//---------------------------------------------------------------
   public void renderMovementRange(Ship ship)
   {
     int xRange = ship.getSpeed();
@@ -230,6 +239,7 @@ public class Screen extends BufferedImage{
       }
   }
 
+//---------------------------------------------------------------  
   public void renderAttackRange(Ship ship)
   {
     int xRange = ship.getAttackRadius();
@@ -261,7 +271,7 @@ public class Screen extends BufferedImage{
 
   }
 
-
+//---------------------------------------------------------------
   public void renderOptionA(Player player, boolean server){
     player.getBoard().resetShips();
     int oneOffset;
@@ -300,6 +310,7 @@ public class Screen extends BufferedImage{
     render(player);
   }
 
+//---------------------------------------------------------------  
   public void renderOptionB(Player player, boolean server){
     player.getBoard().resetShips();
     int oneOffset;
@@ -314,14 +325,6 @@ public class Screen extends BufferedImage{
     	twoOffset = 21;
     	threeOffset = 20;
     }
-    
-    // testing visibility of enemy ships
-    // add these line and have one game use setup B and the other use C
-    // Also there is a problem with the showing visibility of enemy ships 
-    // b/c it will show the whole ship if even one part is in the range
-    //Ship ship1 = new Destroyer();
-    //ship1.setCurrentLocation(new Location(7,7));
-    //player.getBoard().addShip(ship1);
     
     Ship patrol1 = new PatrolBoat();
     patrol1.setCurrentLocation(new Location(Math.abs(oneOffset - 2), 19));
@@ -346,6 +349,7 @@ public class Screen extends BufferedImage{
     render(player);
   }
 
+//---------------------------------------------------------------  
   public void renderOptionC(Player player, boolean server){
     player.getBoard().resetShips();
     int oneOffset;
@@ -384,7 +388,7 @@ public class Screen extends BufferedImage{
     render(player);
   }
 
-  //---------------------------------------------------------------
+//---------------------------------------------------------------
   public void clear()
   {
     for (int i = 0; i < pixels.length; ++i)
@@ -393,11 +397,13 @@ public class Screen extends BufferedImage{
     }
   }
 
+//---------------------------------------------------------------  
   public int getWidth()
   {
     return width;
   }
 
+//---------------------------------------------------------------  
   public int getHeight()
   {
     return height;
