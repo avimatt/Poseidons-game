@@ -226,7 +226,11 @@ public class Board
         if(location.compareLoc(checkUpLoc) || location.compareLoc(checkDownLoc)
             || location.compareLoc(checkUpBackLoc) || location.compareLoc(checkDownBackLoc))
         {
-          return true;
+        	// check 
+        	if(!isLocOccupied(checkUpLoc) && !isLocOccupied(checkDownLoc) 
+        			&& !isLocOccupied(checkUpBackLoc) && !isLocOccupied(checkDownBackLoc)){
+        		return true;
+        	}
         }
       }
       --yRange;
@@ -239,6 +243,7 @@ public class Board
   {
     if(isMoveValid(ship, location))
     {
+      System.out.println("valid move!");
       ship.setCurrentLocation(location);
       return true;
     }
