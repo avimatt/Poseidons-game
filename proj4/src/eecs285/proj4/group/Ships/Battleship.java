@@ -5,11 +5,11 @@ import eecs285.proj4.group.Graphics.Sprite;
 public class Battleship extends Ship
 {
   private int health;
-  private static final int ORGINALHEALTH = 60;
+  private static final int ORIGINALHEALTH = 60;
 
   public Battleship(){
     super();
-    health = ORGINALHEALTH;
+    health = ORIGINALHEALTH;
   }
   
   @Override
@@ -74,9 +74,9 @@ public class Battleship extends Ship
   }
 
   @Override
-  public int getOrginalHealth()
+  public int getOriginalHealth()
   {
-    return ORGINALHEALTH;
+    return ORIGINALHEALTH;
   }
 
 

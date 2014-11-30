@@ -71,7 +71,7 @@ public abstract class Ship
   
   public abstract int getHealth();
   
-  public abstract int getOrginalHealth();
+  public abstract int getOriginalHealth();
   
   public abstract void setHealth(int healthIn);
   

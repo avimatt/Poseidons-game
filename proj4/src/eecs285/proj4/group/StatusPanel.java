@@ -217,9 +217,9 @@ public class StatusPanel extends JPanel
     moveButton.setEnabled(true);
     cancelSelection.setEnabled(true);
     
-    int health = (ship.getHealth()/ship.getOrginalHealth()) * 100;
+    int health = (ship.getHealth()/ship.getOriginalHealth()) * 100;
     healthOfShipField.setText(" " + health + " %");
-    getHealthColor(healthOfShipField,health,ship.getOrginalHealth());
+    getHealthColor(healthOfShipField,health,ship.getOriginalHealth());
     
     selectedShip = ship;
     

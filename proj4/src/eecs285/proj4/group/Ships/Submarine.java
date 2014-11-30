@@ -6,11 +6,11 @@ public class Submarine extends Ship
 
 {
   private int health;
-  private static final int ORGINALHEALTH = 60;
+  private static final int ORIGINALHEALTH = 60;
 
   public Submarine(){
     super();
-    health = ORGINALHEALTH;
+    health = ORIGINALHEALTH;
   }
   
   @Override
@@ -75,9 +75,9 @@ public class Submarine extends Ship
   }
 
   @Override
-  public int getOrginalHealth()
+  public int getOriginalHealth()
   {
-    return ORGINALHEALTH;
+    return ORIGINALHEALTH;
   }
 
 }
