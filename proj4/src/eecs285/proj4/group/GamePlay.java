@@ -163,7 +163,10 @@ public class GamePlay implements Runnable{
       // if the attack button has been pressed
       else if(screen.getAttackSelected())
       {
-
+        if(player.getBoard().attack(screen.getPanelSelecetedShip(), clickLoc))
+        {
+          screen.setAttack(false);
+        }
       }
 
       else

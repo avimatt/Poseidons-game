@@ -175,7 +175,47 @@ public class Board
 
   public boolean isAttacklocationInRange(Ship ship, Location location)
   {
-        return true;
+    int size = ship.getAttackRadius();
+    int y = location.getY();
+    int x = location.getX();
+    int yRange;
+    int xRange = yRange = ship.getAttackRadius();
+    Location basePoint = ship.getCurrentLocation();
+
+    if(size == 3)
+    {
+      //compensate for aircraft carrier.
+      location.decrementX(); 
+      --x;
+    }
+
+    for(int i = 0; i < size; ++i)
+    {
+        if(((x + i) < 0) || (y < 0) || ((x + i) > 22) || (y > 19))
+        {
+          return false;
+        }
+    }
+
+    for(int xx = 0; xx <= xRange; ++xx)
+    {
+      for(int yy = 0; yy <= yRange; ++yy)
+      {
+        Location checkUpLoc = new Location(basePoint.getX() + xx, basePoint.getY() + yy);
+        Location checkDownLoc = new Location(basePoint.getX() + xx, basePoint.getY() - yy);
+        Location checkUpBackLoc = new Location(basePoint.getX() - xx, basePoint.getY() + yy);
+        Location checkDownBackLoc = new Location(basePoint.getX() - xx, basePoint.getY() - yy);
+
+        if(location.compareLoc(checkUpLoc) || location.compareLoc(checkDownLoc)
+            || location.compareLoc(checkUpBackLoc) || location.compareLoc(checkDownBackLoc))
+        {
+          return true;
+        }
+      }
+      --yRange;
+    }
+
+    return false;
   }
 
   public boolean isMoveValid(Ship ship, Location location)
@@ -272,8 +312,17 @@ public class Board
 
   }
 
-  public void attack()
+  public boolean attack(Ship ship, Location location)
   {
+    if(isAttacklocationInRange(ship,location))
+    {
+      System.out.println("ATTACK!!!!");
+      return true;
+    }
+    else
+    {
+      return false;
+    }
 
   }
   
