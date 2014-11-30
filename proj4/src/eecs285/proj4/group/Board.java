@@ -229,10 +229,21 @@ public class Board
         if(location.compareLoc(checkUpLoc) || location.compareLoc(checkDownLoc)
             || location.compareLoc(checkUpBackLoc) || location.compareLoc(checkDownBackLoc))
         {
-        	// check 
-        	if(!isLocOccupied(checkUpLoc) && !isLocOccupied(checkDownLoc) 
-        			&& !isLocOccupied(checkUpBackLoc) && !isLocOccupied(checkDownBackLoc)){
-        		return true;
+        	if(ship.getSize() == 1){
+        		if(!isLocOccupied(location)){
+        			return true;
+        		}
+        	} else if(ship.getSize() == 2){
+        		Location upLoc = new Location(location.getX() + 1, location.getY());
+        		if(!isLocOccupied(location) && !isLocOccupied(upLoc)){
+        			return true;
+        		}
+        	} else if(ship.getSize() == 3){
+        		Location upOneLoc = new Location(location.getX() + 1, location.getY());
+        		Location upTwoLoc = new Location(location.getX() + 2, location.getY());
+        		if(!isLocOccupied(location) && !isLocOccupied(upOneLoc) && !isLocOccupied(upTwoLoc)){
+        			return true;
+        		}
         	}
         }
       }

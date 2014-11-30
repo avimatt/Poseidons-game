@@ -64,7 +64,7 @@ public class Screen extends BufferedImage{
     }
 
     if(!player.getBoard().opponentShipIsEmpty()){
-      System.out.println("opponentShips is not empty");
+      //System.out.println("opponentShips is not empty");
     }
   }
   
