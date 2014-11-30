@@ -185,7 +185,7 @@ public class Board
 
     for(int i = 0; i < ship.getSize(); ++i)
     {
-    	basePoint = new Location(current.getX() + i, current.getY());
+    	basePoint = new Location(current.getX(), current.getY());
     	yRange = ship.getAttackRadius();
 	    for(int xx = 0; xx <= xRange; ++xx)
 	    {
