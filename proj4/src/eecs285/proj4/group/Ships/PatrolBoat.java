@@ -62,6 +62,10 @@ public class PatrolBoat extends Ship
 
   @Override
   public Sprite getSprite() {
+    if(health <= 0)
+    {
+      return Sprite.ONETILEGRAVEYARD;
+    }
     return Sprite.PATROLBOAT;
   }
 

@@ -66,6 +66,10 @@ public class Battleship extends Ship
 
   @Override
   public Sprite getSprite() {
+    if(health <= 0)
+    {
+      return Sprite.TWOTILEGRAVEYARD;
+    }
     return Sprite.BATTLESHIP;
   }
 
