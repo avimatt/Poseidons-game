@@ -250,13 +250,13 @@ public class Board
       ship.setCurrentLocation(location);
       return true;
     }
-    //error message when a ship's move in invaid
+    //error message when a ship's move in invalid
     JOptionPane frame = new JOptionPane();
     JOptionPane.showMessageDialog(frame,
-        "ERROR: Invaid Move! Please Choose a New Location",
+        "ERROR: Invalid Move! Please Choose a New Location in the Green Highlighted Tiles",
         "Move Error",
         JOptionPane.ERROR_MESSAGE);
-    
+   
     return false;
 
   }
