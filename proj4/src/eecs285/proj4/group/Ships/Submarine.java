@@ -22,7 +22,7 @@ public class Submarine extends Ship
   @Override
   public int getAttackPower()
   {
-    return 5;
+    return 10;
   }
   
   @Override
@@ -51,7 +51,7 @@ public class Submarine extends Ship
 //Radius from the center of the ship determined by the Location
   @Override
   public int getAttackRadius(){
-    return 15;
+    return 3;
   }
 
   @Override

@@ -50,7 +50,7 @@ public class Destroyer extends Ship
 //Radius from the center of the ship determined by the Location
   @Override
   public int getAttackRadius(){
-    return 20;
+    return 4;
   }
 
   @Override

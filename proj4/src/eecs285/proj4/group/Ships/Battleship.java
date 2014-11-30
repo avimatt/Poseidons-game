@@ -50,7 +50,7 @@ public class Battleship extends Ship
 //Radius from the center of the ship determined by the Location
   @Override
   public int getAttackRadius(){
-    return 25;
+    return 4;
   }
 
   @Override

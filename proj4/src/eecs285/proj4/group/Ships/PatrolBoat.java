@@ -6,7 +6,7 @@ import eecs285.proj4.group.Graphics.Sprite;
 public class PatrolBoat extends Ship
 {
   private int health;
-  private static final int ORGINALHEALTH = 75;
+  private static final int ORGINALHEALTH = 45;
 
   public PatrolBoat(){
     super();

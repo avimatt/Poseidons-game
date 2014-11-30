@@ -23,7 +23,7 @@ public class AircraftCarrier extends Ship
   @Override
   public int getAttackPower()
   {
-    return 9;
+    return 15;
   }
 
   @Override
