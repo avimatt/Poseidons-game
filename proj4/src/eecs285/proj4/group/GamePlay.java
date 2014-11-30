@@ -4,6 +4,7 @@ import eecs285.proj4.group.Graphics.Sprite;
 import eecs285.proj4.group.Ships.Ship;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -15,6 +16,9 @@ public class GamePlay implements Runnable{
   private StatusPanel status;
   private JPanel boardImagePanel;
   public static boolean update = false;
+  
+  @SuppressWarnings("unused")
+  private boolean isServer;
 
   private ClientORServer network;
   private Player player;
@@ -70,6 +74,16 @@ public class GamePlay implements Runnable{
   }
 
 //---------------------------------------------------------------  
+  public StatusPanel getStatusPanel(){
+	  return status;
+  }
+
+//---------------------------------------------------------------  
+  public void setIsServer(boolean server){
+	  isServer = server;
+  }
+  
+//---------------------------------------------------------------  
   public void displaySetupOptions(char option, boolean server){
 	  if(option == 'A'){
 		  boardImage.getScreen().renderOptionA(player, server);
@@ -107,8 +121,8 @@ public class GamePlay implements Runnable{
       int y = (int)Math.floor(e.getY() / (Sprite.getSPRITESIZE() * ImageBoard.scale));
 
 
-      Location clickLoc = new Location( x, y);
-      System.out.println("Moved: X: " + clickLoc.getX() + " Y: " + clickLoc.getY());
+	  //Location movedLoc = new Location( x, y);
+      //System.out.println("Moved: X: " + movedLoc.getX() + " Y: " + movedLoc.getY());
 
       //GamePlay.update = true;
 

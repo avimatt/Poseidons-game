@@ -92,7 +92,7 @@ public class SetupWindow extends JFrame{
 			}
 			if(e.getSource() == accept){
 				// needs to send the locations to other player
-				game.getNetwork().sendStartLocations(game.getPlayer().getBoard().getShips());
+				game.getNetwork().sendStartLocations(game.getPlayer().getBoard().getShips(), server);
 				game.getNetwork().readMessage(game);
 				game.run();
 				dispose();

@@ -7,7 +7,6 @@ import eecs285.proj4.group.Player;
 import eecs285.proj4.group.Ships.*;
 
 import java.awt.*;
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.*;
@@ -16,6 +15,7 @@ public class Screen extends BufferedImage{
   private int width, height;
   public int[] pixels;
 
+  @SuppressWarnings("unused")
   private Random random = new Random();
   private Graphics g;
   
@@ -61,9 +61,10 @@ public class Screen extends BufferedImage{
     if(attack && panelSelectedShip != null){
     	renderAttackRange(panelSelectedShip);
     }
-
+    
+    // this was a sanity check
     if(!player.getBoard().opponentShipIsEmpty()){
-      System.out.println("opponentShips is not empty");
+      // System.out.println("opponentShips is not empty");
     }
   }
   

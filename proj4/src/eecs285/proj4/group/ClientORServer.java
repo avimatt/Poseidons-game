@@ -89,7 +89,7 @@ public class ClientORServer {
 	 * 
 	 * @param startLocations
 	 */
-	public void sendStartLocations(ArrayList<Ship> startLocations){
+	public void sendStartLocations(ArrayList<Ship> startLocations, boolean server){
 		try
 		{
 			System.out.println("sending of initial setup started...");
@@ -102,6 +102,7 @@ public class ClientORServer {
 				output.writeInt(curShip.getCurrentLocation().getX());
 				output.writeInt(curShip.getCurrentLocation().getY());	
 			}
+			output.writeBoolean(server);
 			System.out.println("sending done...");
 		}
 		catch (IOException e)
@@ -114,6 +115,7 @@ public class ClientORServer {
 //---------------------------------------------------------------
 	/**
 	 * Sends the ship id of the attacked ship and its new health
+	 * - Assumes "attackedShip" health has been updated 
 	 * 
 	 * @param attackedShip
 	 */
@@ -121,6 +123,7 @@ public class ClientORServer {
 		try{
 			System.out.println("sending attack hit started...");
 			output.writeBytes("attack_hit_action");
+			output.writeByte(0);
 			output.writeInt(attackedShip.getID());
 			output.writeInt(attackedShip.getHealth());
 		} catch (IOException e){
@@ -137,11 +140,35 @@ public class ClientORServer {
 		try{
 			System.out.println("sending attack miss started...");
 			output.writeBytes("attack_miss_action");
+			output.writeByte(0);
 		} catch (IOException e){
 			System.out.println("Caught IOException sending attack miss");
 			System.exit(-1);
 		}
 	}
+	
+//---------------------------------------------------------------
+	/**
+	 * Sends the ship id of the moved ship and its new location
+	 * - Assumes "movedShip" location has been updated
+	 * 
+	 * @param attackedShip
+	 */
+	public void sendShipMove(Ship movedShip){
+		try{
+			System.out.println("Sending ship move started...");
+			output.writeBytes("move_ship");
+			output.writeByte(0);
+			output.writeInt(movedShip.getID());
+			output.writeInt(movedShip.getCurrentLocation().getX());
+			output.writeInt(movedShip.getCurrentLocation().getY());
+		} catch (IOException e){
+			System.out.println("Caught IOException sending move ship");
+			System.exit(-1);
+		}
+		
+	}
+
 	
 
 //---------------------------------------------------------------	
@@ -191,15 +218,43 @@ public class ClientORServer {
 					curShip.setCurrentLocation(new Location(input.readInt(),input.readInt()));
 					game.getPlayer().getBoard().addOpponentShip(curShip);
 				}
+				boolean isServer = input.readBoolean();
+				if(isServer){
+					game.getStatusPanel().setLog("Your opponent has finished setting up");
+					game.getStatusPanel().setLog("It is your turn");
+				} else {
+					game.getStatusPanel().setLog("Your opponent has finished setting up");
+					game.getStatusPanel().setLog("Please wait for them to go");
+				}
+				
+				game.setIsServer(isServer);
 			}
 			if(receivedString.contentEquals("attack_hit_action")){
 				Ship attackedShip = game.getPlayer().getBoard().getOpponentShip(input.readInt());
 				int newShipHealth = input.readInt();
+				int damageTaken = attackedShip.getHealth() - newShipHealth;
 				attackedShip.setHealth(newShipHealth);
+				
+				if(newShipHealth == 0){
+					game.getStatusPanel().setLog("Your " + attackedShip.getShipType() + " has been sunk");
+				} else {
+					game.getStatusPanel().setLog("Your " + attackedShip.getShipType() + " has been hit");
+					game.getStatusPanel().setLog("    It lost " + damageTaken + " health");
+				}
 				// update the log to say the ship has been hit 
 			}
 			if(receivedString.contentEquals("attack_miss_action")){
 				// update the log to say that there was an attack and it missed
+				game.getStatusPanel().setLog("You were attacked but the attack missed");
+			}
+			if(receivedString.contentEquals("move_ship")){
+				Ship movedShip = game.getPlayer().getBoard().getOpponentShip(input.readInt());
+				Location newLoc = new Location(input.readInt(),input.readInt());
+				
+				movedShip.setCurrentLocation(newLoc);
+				
+				// may want to re-render the board to show the moved ship immediately as 
+				// opposed to the next time they hover their mouse over a tile
 			}
 		}
 		catch (IOException ioe)
