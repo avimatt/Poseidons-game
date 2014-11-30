@@ -175,12 +175,13 @@ public class Board
 
   public boolean isAttacklocationInRange(Ship ship, Location location)
   {
-    int size = ship.getAttackRadius();
+    int size = ship.getSize();
     int y = location.getY();
     int x = location.getX();
     int yRange;
     int xRange = yRange = ship.getAttackRadius();
-    Location basePoint = ship.getCurrentLocation();
+    Location current = ship.getCurrentLocation();
+    Location basePoint;// = ship.getCurrentLocation();
 
     if(size == 3)
     {
@@ -197,22 +198,33 @@ public class Board
         }
     }
 
-    for(int xx = 0; xx <= xRange; ++xx)
+    for(int i = 0; i < ship.getSize(); ++i)
     {
-      for(int yy = 0; yy <= yRange; ++yy)
-      {
-        Location checkUpLoc = new Location(basePoint.getX() + xx, basePoint.getY() + yy);
-        Location checkDownLoc = new Location(basePoint.getX() + xx, basePoint.getY() - yy);
-        Location checkUpBackLoc = new Location(basePoint.getX() - xx, basePoint.getY() + yy);
-        Location checkDownBackLoc = new Location(basePoint.getX() - xx, basePoint.getY() - yy);
+    	basePoint = new Location(current.getX() + i, current.getY());
+    	yRange = ship.getAttackRadius();
+	    for(int xx = 0; xx <= xRange; ++xx)
+	    {
+	      for(int yy = 0; yy <= yRange; ++yy)
+	      {
+	        Location checkUpLoc = new Location(basePoint.getX() + xx, basePoint.getY() + yy);
+	        Location checkDownLoc = new Location(basePoint.getX() + xx, basePoint.getY() - yy);
+	        Location checkUpBackLoc = new Location(basePoint.getX() - xx, basePoint.getY() + yy);
+	        Location checkDownBackLoc = new Location(basePoint.getX() - xx, basePoint.getY() - yy);
+	        
+	        System.out.println("up: " + checkUpLoc.getX() + ", " + checkUpLoc.getY());
+	        System.out.println("down: " + checkDownLoc.getX() + ", " + checkDownLoc.getY());
+	        System.out.println("upback: " + checkUpBackLoc.getX() + ", " + checkUpBackLoc.getY());
+	        System.out.println("downback: " + checkDownBackLoc.getX() + ", " + checkDownBackLoc.getY());
 
-        if(location.compareLoc(checkUpLoc) || location.compareLoc(checkDownLoc)
-            || location.compareLoc(checkUpBackLoc) || location.compareLoc(checkDownBackLoc))
-        {
-          return true;
-        }
-      }
-      --yRange;
+	        
+	        if(location.compareLoc(checkUpLoc) || location.compareLoc(checkDownLoc)
+	            || location.compareLoc(checkUpBackLoc) || location.compareLoc(checkDownBackLoc))
+	        {
+	          return true;
+	        }
+	      }
+	      --yRange;
+	    }
     }
 
     return false;
