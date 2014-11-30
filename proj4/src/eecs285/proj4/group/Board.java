@@ -113,22 +113,7 @@ public class Board
     return false;
   }
 
-//---------------------------------------------------------------  
-  //TODO: replace raw adds with addShip
-  /*public void resetBoard()
-  {
-    shipList.clear();
-    for(int i = 0; i < 2; ++i)
-    {
-      shipList.add(new PatrolBoat());
-      shipList.add(new Submarine());
-      shipList.add(new Destroyer());
-      shipList.add(new Battleship());
-      shipList.add(new AircraftCarrier());
-      shipList.add(new Dreadnought());
-    }
-  }*/
-
+//---------------------------------------------------------------
 //---------------------------------------------------------------  
   //helper to set up ship locations initially
   public void addShip(Ship curShip, Location curLoc)

@@ -24,6 +24,9 @@ public class Sprite extends BufferedImage{
   public static Sprite BATTLESHIP = new Sprite(32, 16, new Location(2, 2),ImageLoader.spriteSheet);
   public static Sprite SUBMARINE = new Sprite(16, 16, new Location(1,2), ImageLoader.spriteSheet);
   public static Sprite AIRCRAFTCARRIER = new Sprite(48, 16, new Location(6,2), ImageLoader.spriteSheet);
+  public static Sprite ONETILEGRAVEYARD = new Sprite(16, 16, new Location(0, 3), ImageLoader.spriteSheet);
+  public static Sprite TWOTILEGRAVEYARD = new Sprite(48, 16, new Location(2, 3), ImageLoader.spriteSheet);
+  public static Sprite THREETILEGRAVEYARD = new Sprite(16, 16, new Location(6, 3), ImageLoader.spriteSheet);
 
 
   public Sprite(int inWidth, int inHeight, Location inLoc, ImageLoader inSpriteSheet)

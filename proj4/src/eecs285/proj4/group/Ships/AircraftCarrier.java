@@ -68,6 +68,10 @@ public class AircraftCarrier extends Ship
 
   @Override
   public Sprite getSprite() {
+    if(health <= 0)
+    {
+      return Sprite.THREETILEGRAVEYARD;
+    }
     return Sprite.AIRCRAFTCARRIER;
   }
 

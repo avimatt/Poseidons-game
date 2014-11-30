@@ -66,7 +66,11 @@ public class Destroyer extends Ship
 
   @Override
   public Sprite getSprite() {
-  return Sprite.DESTROYER;
+    if(health <= 0)
+    {
+      return Sprite.TWOTILEGRAVEYARD;
+    }
+    return Sprite.DESTROYER;
   }
 
   @Override
