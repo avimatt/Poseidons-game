@@ -333,6 +333,11 @@ public class Board
     }
     else
     {
+      JOptionPane frame = new JOptionPane();
+      JOptionPane.showMessageDialog(frame,
+          "ERROR: Invalid Attack! You Have to Attack in Range!",
+          "Attack Error",
+          JOptionPane.ERROR_MESSAGE);
       return false;
     }
 
