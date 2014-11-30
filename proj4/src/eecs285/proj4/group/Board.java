@@ -168,13 +168,6 @@ public class Board
     Location current = ship.getCurrentLocation();
     Location basePoint;// = ship.getCurrentLocation();
 
-    if(size == 3)
-    {
-      //compensate for aircraft carrier.
-      location.decrementX(); 
-      --x;
-    }
-
     for(int i = 0; i < size; ++i)
     {
         if(((x + i) < 0) || (y < 0) || ((x + i) > 22) || (y > 19))
@@ -185,7 +178,7 @@ public class Board
 
     for(int i = 0; i < ship.getSize(); ++i)
     {
-    	basePoint = new Location(current.getX(), current.getY());
+    	basePoint = new Location(current.getX() + i, current.getY());
     	yRange = ship.getAttackRadius();
 	    for(int xx = 0; xx <= xRange; ++xx)
 	    {
