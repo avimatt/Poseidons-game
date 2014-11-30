@@ -166,7 +166,7 @@ public class Board
     int yRange;
     int xRange = yRange = ship.getAttackRadius();
     Location current = ship.getCurrentLocation();
-    Location basePoint;// = ship.getCurrentLocation();
+    Location basePoint;// = ship.getCurrentLocation(); 
 
     for(int i = 0; i < size; ++i)
     {
