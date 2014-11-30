@@ -4,7 +4,10 @@
 package eecs285.proj4.group;
 
 import eecs285.proj4.group.Ships.Ship;
+
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 public class Board
 {
@@ -209,7 +212,7 @@ public class Board
 
       catch (Exception exception)
       {
-
+        
       }
 
     }
@@ -247,10 +250,14 @@ public class Board
       ship.setCurrentLocation(location);
       return true;
     }
-
+    //error message when a ship's move in invaid
+    JOptionPane frame = new JOptionPane();
+    JOptionPane.showMessageDialog(frame,
+        "ERROR: Invaid Move! Please Choose a New Location",
+        "Move Error",
+        JOptionPane.ERROR_MESSAGE);
+    
     return false;
-
-
 
   }
 
