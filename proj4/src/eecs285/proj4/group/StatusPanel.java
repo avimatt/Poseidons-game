@@ -32,6 +32,7 @@ public class StatusPanel extends JPanel
   JTextArea statusLog;
   JScrollPane statusLogScroll;
   JLabel currentShipLabel;
+  JLabel attackPower;
   JLabel actionLogTitle;
   JButton attackButton;
   JButton moveButton;
@@ -100,7 +101,7 @@ public class StatusPanel extends JPanel
     
     //Ship Info section/////////////////////////////////////////////////////
     //makes the gridlayout with gaps so buttons are not on top of each other
-    GridLayout buttonGrid = new GridLayout(5,1);
+    GridLayout buttonGrid = new GridLayout(6,1);
     buttonGrid.setVgap(4);
     shipInfo = new JPanel(buttonGrid);    
     TitledBorder shipTitle;
@@ -115,6 +116,7 @@ public class StatusPanel extends JPanel
     //adds the buttons in the ship area
     listener = new StatusAction();
     currentShipLabel = new JLabel ("Ship: ");
+    attackPower = new JLabel("Attack Strength: ");
     attackButton = new JButton("Attack!");
     attackButton.addActionListener(listener);
     cancelSelection = new JButton("Cancel Selection");
@@ -125,7 +127,9 @@ public class StatusPanel extends JPanel
     moveButton.setEnabled(false);
     cancelSelection.setEnabled(false);
     currentShipLabel.setFont(currentShipF);
+    attackPower.setFont(currentShipF);
     shipInfo.add(currentShipLabel);
+    shipInfo.add(attackPower);
     shipInfo.add(attackButton);
     shipInfo.add(moveButton);
     shipInfo.add(cancelSelection);
@@ -150,7 +154,7 @@ public class StatusPanel extends JPanel
     lowerPan.add(helpButton);
   
     //adds the status log
-    statusLog = new JTextArea(17,10);
+    statusLog = new JTextArea(10,5);
     statusLog.setEditable(false);
     actionLogTitle = new JLabel("Action Log: ");
     statusLogScroll = new JScrollPane(statusLog);
@@ -213,7 +217,17 @@ public class StatusPanel extends JPanel
     actionLeftField = new JLabel("5");
     
     currentShipLabel.setText("Ship: " + ship.getShipType());
-    attackButton.setEnabled(true);
+    attackPower.setText("Attack Strength: " + ship.getAttackPower()
+        + " /15");
+    
+    if(ship.getShipType() == "Patrol Boat")
+    {
+      attackButton.setEnabled(false);
+    }
+    else 
+    {
+      attackButton.setEnabled(true);
+    }
     moveButton.setEnabled(true);
     cancelSelection.setEnabled(true);
     
