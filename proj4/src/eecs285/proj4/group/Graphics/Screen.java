@@ -7,19 +7,17 @@ import eecs285.proj4.group.Player;
 import eecs285.proj4.group.Ships.*;
 
 import java.awt.*;
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.util.*;
 
 public class Screen extends BufferedImage{
   private int width, height;
   public int[] pixels;
 
-  private Random random = new Random();
   private Graphics g;
   
   private Ship panelSelectedShip;
+  @SuppressWarnings("unused")
   private Ship moveShip;
   private boolean move = false;
   private boolean attack = false;

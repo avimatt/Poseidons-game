@@ -10,7 +10,6 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 
 import eecs285.proj4.group.Ships.Ship;
-import eecs285.proj4.group.Ships.TotalHealth;
 
 public class ClientORServer {
 	private String ipAddress;

@@ -2,9 +2,6 @@ package eecs285.proj4.group;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 import javax.swing.*;
 
