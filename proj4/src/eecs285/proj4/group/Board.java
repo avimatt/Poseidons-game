@@ -13,8 +13,7 @@ public class Board
 {
   private ArrayList<Ship> shipList;
   private ArrayList<Ship> opponentShipList;
-  //TODO: add functionality to do something with dead ships
-  
+
   /**
    * 
    */
@@ -67,8 +66,9 @@ public class Board
 	  for (Ship curShip : opponentShipList)
 	  {
 	    for (Location newLoc = 
-	        new Location(curShip.getCurrentLocation().getX(), curShip.getCurrentLocation().getY()),
-	        endLoc = newLoc.add(curShip.getSize()); 
+	        new Location(curShip.getCurrentLocation().getX(),
+              curShip.getCurrentLocation().getY()),
+	            endLoc = newLoc.add(curShip.getSize());
 	        !newLoc.compareLoc(endLoc); 
 	        newLoc.incrementX())
 	    {
@@ -93,7 +93,7 @@ public class Board
 
 //---------------------------------------------------------------  
   //in case of things other than ships that occupy locations
-  //and maybe to check if an attack was successful (TODO: confirm its a ship)
+  //and maybe to check if an attack was successful
   public boolean isLocOccupied(Location curLoc)
   {
     for (Ship curShip : shipList)
@@ -166,21 +166,10 @@ public class Board
 //---------------------------------------------------------------  
   public boolean isAttackLocationInRange(Ship ship, Location location)
   {
-    int size = ship.getSize();
-    int y = location.getY();
-    int x = location.getX();
     int yRange;
-    int xRange = yRange = ship.getAttackRadius();
+    int xRange = ship.getAttackRadius();
     Location current = ship.getCurrentLocation();
     Location basePoint;
-
-    for(int i = 0; i < size; ++i)
-    {
-        if(((x + i) < 0) || (y < 0) || ((x + i) > 22) || (y > 19))
-        {
-          return false;
-        }
-    }
 
     for(int i = 0; i < ship.getSize(); ++i)
     {
