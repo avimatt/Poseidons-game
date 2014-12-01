@@ -45,7 +45,7 @@ public class StatusPanel extends JPanel
   
   GamePlay game;
   Player player;
-  TotalHealth health = new TotalHealth();
+  
   Ship selectedShip;
   
   public StatusPanel(GamePlay gameIn, Player playerIn)
@@ -193,6 +193,7 @@ public class StatusPanel extends JPanel
     //totalHealthString needs a get totalHealth function
     //have it return an int to be used in getHealthColor 
     //function
+    TotalHealth health = new TotalHealth();
     double fleetRatio = ((double)health.getFleetHealth(player)/
         (double)health.getTotalFleetHealth())*100;
     totalHealthField.setText((int)fleetRatio +" % ");
@@ -210,7 +211,7 @@ public class StatusPanel extends JPanel
     //totalHealthString needs a get totalHealth function
     //have it return an int to be used in getHealthColor 
     //function  
-    
+    TotalHealth health = new TotalHealth();
     double fleetRatio = ((double)health.getFleetHealth(player)/
         (double)health.getTotalFleetHealth())*100;
     totalHealthField.setText((int)fleetRatio +" %");
