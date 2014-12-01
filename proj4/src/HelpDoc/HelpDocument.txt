@@ -10,17 +10,27 @@ Sections
 
 1. How to Start a Game
 
-- To start the game push the “Start Game” button. A screen will come up displaying your computer's IP address. Give this address to player 2 and have them enter it in the window that comes up when he/she pushes the "Join Game" button. Once both players are connected the game will begin.
+- To start the game push the “\Start Game\” button. A screen will come up displaying your computer's IP address. Give this address to player 2 and have them enter it in the window that comes up when he/she pushes the "Join Game" button. Once both players are connected the game will begin.
 
 
 2. How to Join a Game Already Started
 
-- To join a game that has already been started (by player one) you must push the “Join Game” button. A screen will come up where you must exactly enter IP address of player 1 (which will be displayed on their screen) into the field. Once you confirm that the IP address is correct press “OK”.
+- To join a game that has already been started (by player one) you must push the \“Join Game\” button. A screen will come up where you must exactly enter IP address of player 1 (which will be displayed on their screen) into the field. Once you confirm that the IP address is correct press \“OK\”.
 
 
 3. How to Play
-**FILL IN LATER**
+- Once the status log says it is your turn your attack, move, and cancel button will enable and you will be able to play! NOTE: You only have three turns! Use your actions wisely! To see how many actions you have left look at your status panel.
+To play click on one of your ships. The name, power, and health of a ship will show up in "Ship Selected" area. 
 
+-- To Move
+- When you push \"move\" a green grid will show up on the board. This is where your ship can move. If you click on an invalid tile an error message will pop up telling you to pick a title that is legal.
+
+-- To Attack another Ship
+- When you push \"attack\" a yellow grid will show up. This is where a ship can attack. Click on an enemy ship to attack it. NOTE: you can miss a ship and this will take up one of your actions!
+
+-If you want to choose another ship or another action for a ship click the \"Cancel Selection\" button
+
+NOTE: Once you run out of turns or you are happy with your ships positions click the \"End Turn\" button to end your turn 
 
 
 4. Rules of Game
