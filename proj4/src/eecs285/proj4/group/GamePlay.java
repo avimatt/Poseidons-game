@@ -27,6 +27,8 @@ public class GamePlay implements Runnable{
   
   private GamePlay game;
   //private Board state;
+  
+  boolean winner = false;
 
   public GamePlay(ClientORServer networkIn)
   {
@@ -135,6 +137,11 @@ public class GamePlay implements Runnable{
   }
   
 //---------------------------------------------------------------  
+  public void setWinner(){
+	  winner = true;
+  }
+  
+//---------------------------------------------------------------  
   public void playGame(boolean server){
 	  
 	  yourTurn = !server;
@@ -150,12 +157,25 @@ public class GamePlay implements Runnable{
 			  yourTurn = true;
 			  status.setYourTurn();
 		  }
+		  status.updateStatusPanel();
 	  }
+	  network.sendEndGame();
+	  JOptionPane.showMessageDialog(null, "You have lost :(", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+	  System.exit(0);
   }
  
 //---------------------------------------------------------------
   public void waitForTurn(){
-	  while(network.readMessage(this)){ System.out.println("recieving..."); }
+	  int x = 1;
+	  while(true){ 
+		  System.out.println("attempting to recieving: " + x); 
+		  if(!network.readMessage(this)){
+			  break;
+		  }
+		  status.updateStatusPanel();
+		  boardImage.paintComponent(boardImage.getGraphics());
+		  x++;
+	  }
   }
   
 //---------------------------------------------------------------  

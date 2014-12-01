@@ -9,7 +9,7 @@ public class TotalHealth
 {
   Board board = new Board();
   private ArrayList<Ship> shipList;
-  int health = 0;
+  //int health = 0;
   
   
   
@@ -26,11 +26,18 @@ public class TotalHealth
   
   public int getFleetHealth(Player play)
   {
+	int health = 0;
     shipList = play.getBoard().getShipArray();
     for(Ship currentShip: shipList)
     {
       health = currentShip.getHealth() + health;
     }
     return health;
+  }
+  
+  public void endGame(){
+	  for(Ship ship : shipList){
+		  ship.setHealth(0);
+	  }
   }
 }

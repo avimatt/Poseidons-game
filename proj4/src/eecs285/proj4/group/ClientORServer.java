@@ -7,7 +7,10 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 import eecs285.proj4.group.Ships.Ship;
+import eecs285.proj4.group.Ships.TotalHealth;
 
 public class ClientORServer {
 	private String ipAddress;
@@ -180,11 +183,23 @@ public class ClientORServer {
 			System.exit(-1);
 		}
 	}
+	
+//---------------------------------------------------------------	
+	public void sendEndGame(){
+		try{
+			System.out.println("Sending end game started...");
+			output.writeBytes("end_game");
+			output.writeByte(0);
+		} catch (IOException e){
+			System.out.println("Caught IOException sending end game");
+			System.exit(-1);
+		}
+	}
 
 //---------------------------------------------------------------	
 	/**
 	 * Reads all types of messages that can be sent
-	 * - Returns 1 for everything besides end turn
+	 * - Returns true for everything besides end turn
 	 * 
 	 * @param game
 	 */
@@ -292,6 +307,13 @@ public class ClientORServer {
 				game.getStatusPanel().setLog("Your opponent has finished their turn");
 				game.getStatusPanel().setLog("It is now your turn");
 				return false;
+			}
+			if(receivedString.contentEquals("end_game")){
+				TotalHealth health = new TotalHealth();
+				health.endGame();
+				game.setWinner();
+				JOptionPane.showMessageDialog(null, "You have won!!! :)", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+				System.exit(0);
 			}
 		}
 		catch (IOException ioe)
