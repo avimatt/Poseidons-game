@@ -222,7 +222,7 @@ public class StatusPanel extends JPanel
     
     currentShipLabel.setText("Ship: " + ship.getShipType());
     attackPower.setText("Attack Strength: " + ship.getAttackPower()
-        + " /15");
+        + " /25");
     
     if(ship.getShipType() == "Patrol Boat")
     {
