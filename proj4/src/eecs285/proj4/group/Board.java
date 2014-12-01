@@ -227,7 +227,7 @@ public class Board
 
     for(int i = 0; i < size; ++i)
     {
-      if((x < 0) || (y < 0) || ((x + 2) > 22) || (y > 19))
+      if((x < 0) || (y < 0) || ((x + i) > 22) || (y > 19))
       {
         return false;
       }
