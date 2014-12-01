@@ -16,7 +16,7 @@ public class PatrolBoat extends Ship
   @Override
   public int getSpeed()
   {
-    return 5;
+    return 6;
   }
 
   @Override
@@ -33,6 +33,7 @@ public class PatrolBoat extends Ship
 
   @Override
   public void setHealth(int healthIn){
+	System.out.println("in here updating health");
     health = healthIn;
 
     if(health < 0)

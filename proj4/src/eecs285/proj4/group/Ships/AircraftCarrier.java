@@ -17,13 +17,13 @@ public class AircraftCarrier extends Ship
   
   public int getSpeed()
   {
-    return 1;
+    return 2;
   }
 
   @Override
   public int getAttackPower()
   {
-    return 15;
+    return 25;
   }
 
   @Override
@@ -56,7 +56,7 @@ public class AircraftCarrier extends Ship
 //Radius from the center of the ship determined by the Location
   @Override
   public int getAttackRadius(){
-    return 5;
+    return 6;
   }
 
   @Override

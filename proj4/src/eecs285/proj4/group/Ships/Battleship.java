@@ -15,13 +15,13 @@ public class Battleship extends Ship
   @Override
   public int getSpeed()
   {
-    return 2;
+    return 3;
   }
 
   @Override
   public int getAttackPower()
   {
-    return 8;
+    return 20;
   }
 
   @Override
@@ -55,7 +55,7 @@ public class Battleship extends Ship
 //Radius from the center of the ship determined by the Location
   @Override
   public int getAttackRadius(){
-    return 4;
+    return 5;
   }
 
   @Override
