@@ -165,7 +165,7 @@ public class Board
 	  return opponentShipList.isEmpty();
   }
 
-  public boolean isAttacklocationInRange(Ship ship, Location location)
+  public boolean isAttackLocationInRange(Ship ship, Location location)
   {
     int size = ship.getSize();
     int y = location.getY();
@@ -323,7 +323,7 @@ public class Board
 
   public boolean attack(Ship ship, Location location)
   {
-    if(isAttacklocationInRange(ship,location))
+    if(isAttackLocationInRange(ship, location))
     {
       System.out.println("ATTACK!!!!");
       return true;

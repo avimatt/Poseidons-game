@@ -44,8 +44,6 @@ public class Player
 //---------------------------------------------------------------
   public void attackLoc(Ship curShip, Location targetLoc, GamePlay game)
   {
-    if (myBoard.isLocOccupied(targetLoc))
-    {
       Ship targetShip = null;
       targetShip = myBoard.getShip(targetLoc);
       if ( targetShip != null)
@@ -76,7 +74,6 @@ public class Player
       game.getStatusPanel().updateStatusPanel();
       //TODO: If targetShip died, either it broadcasts its dead state
       //to ImageBoard or Player tells ImageBoard about it.
-    }
   }
   //TODO: output message about what happened
  
