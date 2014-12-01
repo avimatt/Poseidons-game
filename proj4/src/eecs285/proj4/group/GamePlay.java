@@ -166,6 +166,8 @@ public class GamePlay implements Runnable{
         if(player.getBoard().attack(screen.getPanelSelecetedShip(), clickLoc))
         {
           screen.setAttack(false);
+          player.attackLoc(screen.getPanelSelecetedShip(), clickLoc);
+          
         }
       }
 

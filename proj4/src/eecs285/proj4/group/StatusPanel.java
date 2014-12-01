@@ -194,7 +194,7 @@ public class StatusPanel extends JPanel
     //function
     String totalHealthString = "100";
     totalHealthField.setText(totalHealthString +" % ");
-    getHealthColor(totalHealthField,100,100);
+    getHealthColor(totalHealthField,100);
     
     //needs a function that returns the amount of actions left
     //have it return an int.
@@ -210,7 +210,7 @@ public class StatusPanel extends JPanel
     //function  
     String totalHealthString = "100";
     totalHealthField.setText(totalHealthString +" %");
-    getHealthColor(totalHealthField,100,100);
+    getHealthColor(totalHealthField,100);
     
     //needs a function that returns the amount of actions left
     //have it return an int.
@@ -231,9 +231,9 @@ public class StatusPanel extends JPanel
     moveButton.setEnabled(true);
     cancelSelection.setEnabled(true);
     
-    int health = (ship.getHealth()/ship.getOriginalHealth()) * 100;
-    healthOfShipField.setText(" " + health + " %");
-    getHealthColor(healthOfShipField,health,ship.getOriginalHealth());
+    double health = ((double)ship.getHealth()/(double)ship.getOriginalHealth()) * 100;
+    healthOfShipField.setText(" " + (int)health + " %");
+    getHealthColor(healthOfShipField,health);
     
     selectedShip = ship;
     
@@ -261,12 +261,12 @@ public class StatusPanel extends JPanel
 
 //---------------------------------------------------------------
   //used to change the background color of the health fields
-  private static void getHealthColor(JTextField healthField, int healthPoints, int orginalHealth)
+  private static void getHealthColor(JTextField healthField, double health)
   { 
-    double ratio = healthPoints / orginalHealth;
-    ratio = ratio * 100;
+   double ratio;   //= healthPoints / orginalHealth;
+   ratio = health;
     
-    System.out.println(ratio);
+   // System.out.println(ratio);
     
     int GREENBACK = 70;
     int YELLOWBACK = 30;
