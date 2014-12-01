@@ -155,7 +155,7 @@ public class GamePlay implements Runnable{
  
 //---------------------------------------------------------------
   public void waitForTurn(){
-	  while(network.readMessage(this)){  }
+	  while(network.readMessage(this)){ System.out.println("recieving..."); }
   }
   
 //---------------------------------------------------------------  
