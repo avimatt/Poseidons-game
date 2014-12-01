@@ -228,8 +228,21 @@ public class StatusPanel extends JPanel
     {
       attackButton.setEnabled(true);
     }
-    moveButton.setEnabled(true);
-    cancelSelection.setEnabled(true);
+    
+    //disables the move and attack button for dead ships
+    if(ship.getHealth() <= 0)
+    {
+      attackButton.setEnabled(false);
+      moveButton.setEnabled(false);
+      cancelSelection.setEnabled(false);
+    }
+    else
+    {
+      attackButton.setEnabled(true);
+      moveButton.setEnabled(true);
+      cancelSelection.setEnabled(true);
+    }
+   
     
     double health = ((double)ship.getHealth()/(double)ship.getOriginalHealth()) * 100;
     healthOfShipField.setText(" " + (int)health + " %");
