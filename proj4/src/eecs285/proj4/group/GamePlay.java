@@ -111,7 +111,6 @@ public class GamePlay implements Runnable{
 	  if(actionsLeft == 0){
 		  System.out.println("finished all actions");
 		  status.setEnd();
-		  yourTurn = false;
 	  }
 	  status.updateStatusPanel();
   }
@@ -120,6 +119,9 @@ public class GamePlay implements Runnable{
 	  return actionsLeft;
   }
   
+  public void setYourTurn(boolean value){
+	  yourTurn = value;
+  }
 
 //---------------------------------------------------------------  
   public ImageBoard getBoardImage()

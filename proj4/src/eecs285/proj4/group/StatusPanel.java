@@ -364,6 +364,7 @@ public class StatusPanel extends JPanel
 		if(e.getSource() == endTurnButton){
 			game.getNetwork().sendEndTurn();
 			endTurnButton.setEnabled(false);
+			game.setYourTurn(false);
 		}
 	}
 	  
