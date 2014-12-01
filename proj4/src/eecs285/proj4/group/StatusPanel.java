@@ -247,9 +247,9 @@ public class StatusPanel extends JPanel
     }
    
     
-    double health = ((double)ship.getHealth()/(double)ship.getOriginalHealth()) * 100;
-    healthOfShipField.setText(" " + (int)health + " %");
-    getHealthColor(healthOfShipField,health);
+    double healthShip = ((double)ship.getHealth()/(double)ship.getOriginalHealth()) * 100;
+    healthOfShipField.setText(" " + (int)healthShip + " %");
+    getHealthColor(healthOfShipField,healthShip);
     
     selectedShip = ship;
     
