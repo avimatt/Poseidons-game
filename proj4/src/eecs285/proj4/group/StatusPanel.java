@@ -303,6 +303,27 @@ public class StatusPanel extends JPanel
  
   }
   
+//---------------------------------------------------------------
+  public void setNotYourTurn(){
+	  attackButton.setEnabled(false);
+	  moveButton.setEnabled(false);
+	  cancelSelection.setEnabled(false);
+	  endTurnButton.setEnabled(false);
+  }
+  
+//---------------------------------------------------------------  
+  public void setYourTurn(){
+	  attackButton.setEnabled(true);
+	  moveButton.setEnabled(true);
+	  cancelSelection.setEnabled(true);
+	  endTurnButton.setEnabled(true);
+  }
+  
+  public void setEnd(){
+	  endTurnButton.setEnabled(true);
+  }
+  
+//---------------------------------------------------------------  
   class StatusAction implements ActionListener {
 
 	@Override
@@ -335,6 +356,9 @@ public class StatusPanel extends JPanel
 		if(e.getSource() == helpButton)
 		{
 		  new HelpGUI();
+		}
+		if(e.getSource() == endTurnButton){
+			game.getNetwork().sendEndTurn();
 		}
 	}
 	  

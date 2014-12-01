@@ -38,9 +38,10 @@ public abstract class Ship
   }
   
 //---------------------------------------------------------------
-  public void takeHit(int attackPower)
+  public int takeHit(int attackPower)
   {
     setHealth(getHealth() - attackPower);
+    return getHealth();
   }
   
 //---------------------------------------------------------------

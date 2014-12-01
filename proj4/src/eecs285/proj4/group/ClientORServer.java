@@ -184,11 +184,11 @@ public class ClientORServer {
 //---------------------------------------------------------------	
 	/**
 	 * Reads all types of messages that can be sent
-	 * - Returns 0 for everything besides end turn
+	 * - Returns 1 for everything besides end turn
 	 * 
 	 * @param game
 	 */
-	public int readMessage(GamePlay game){
+	public boolean readMessage(GamePlay game){
 		Vector< Byte > byteVec = new Vector< Byte >();
 		byte [] byteAry;
 		byte recByte;
@@ -242,10 +242,8 @@ public class ClientORServer {
 					game.getStatusPanel().setLog("Your opponent has finished setting up");
 					game.getStatusPanel().setLog("Please wait for them to go");
 				}
-				
-				game.setIsServer(isServer);
-				
-				return 0;
+								
+				return true;
 			}
 			if(receivedString.contentEquals("attack_hit_action")){
 				Ship attackedShip = game.getPlayer().getBoard().getOpponentShip(input.readInt());
@@ -261,13 +259,13 @@ public class ClientORServer {
 				}
 				// update the log to say the ship has been hit 
 				
-				return 0;
+				return true;
 			}
 			if(receivedString.contentEquals("attack_miss_action")){
 				// update the log to say that there was an attack and it missed
 				game.getStatusPanel().setLog("You were attacked but the attack missed");
 				
-				return 0;
+				return true;
 			}
 			if(receivedString.contentEquals("move_ship")){
 				Ship movedShip = game.getPlayer().getBoard().getOpponentShip(input.readInt());
@@ -278,10 +276,10 @@ public class ClientORServer {
 				// may want to re-render the board to show the moved ship immediately as 
 				// opposed to the next time they hover their mouse over a tile
 				
-				return 0;
+				return true;
 			}
 			if(receivedString.contentEquals("end_turn")){
-				return 1;
+				return false;
 			}
 		}
 		catch (IOException ioe)
@@ -289,7 +287,7 @@ public class ClientORServer {
 			System.out.println("ERROR: receiving string from socket");
 			System.exit(8);
 		}
-		return 0;
+		return true;
 	}
 	
 }

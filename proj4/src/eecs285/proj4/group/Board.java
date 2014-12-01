@@ -298,12 +298,14 @@ public class Board
     return false;
   }
 
-  public boolean moveShip(Ship ship, Location location)
+  public boolean moveShip(Ship ship, Location location, GamePlay game)
   {
     if(isMoveValid(ship, location))
     {
       System.out.println("valid move!");
       ship.setCurrentLocation(location);
+      game.getNetwork().sendShipMove(ship);
+      game.decrementActions();
       return true;
     }
     //error message when a ship's move in invalid

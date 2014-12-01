@@ -18,16 +18,21 @@ public class GamePlay implements Runnable{
   private JPanel boardImagePanel;
   public static boolean update = false;
   
-  @SuppressWarnings("unused")
-  private boolean isServer;
+  private int actionsLeft = 3;
+  private boolean yourTurn = false;
 
   private ClientORServer network;
   private Player player;
+  
+  boolean gameOver = false;
+  
+  private GamePlay game;
   //private Board state;
 
   public GamePlay(ClientORServer networkIn)
   {
-  	    
+  	game = this;    
+	
     GamePanel = new JPanel();
     GamePanel.setLayout(new BorderLayout());
     
@@ -80,8 +85,8 @@ public class GamePlay implements Runnable{
   }
 
 //---------------------------------------------------------------  
-  public void setIsServer(boolean server){
-	  isServer = server;
+  public boolean getYourTurn(){
+	  return yourTurn;
   }
   
 //---------------------------------------------------------------  
@@ -99,6 +104,14 @@ public class GamePlay implements Runnable{
 		  boardImage.paintComponent(boardImage.getGraphics());
 	  }
   }
+  
+//---------------------------------------------------------------
+  public void decrementActions(){
+	  actionsLeft--;
+	  if(actionsLeft == 0){
+		  status.setEnd();
+	  }
+  }
 
 //---------------------------------------------------------------  
   public ImageBoard getBoardImage()
@@ -106,13 +119,41 @@ public class GamePlay implements Runnable{
     return boardImage;
   }
   
+//---------------------------------------------------------------  
+  public void playGame(boolean server){
+	  // send start positions
+	  network.sendStartLocations(player.getBoard().getShips(), server);
+	  // receive start positions
+	  network.readMessage(this);
+	  // display board
+	  run();
+	  
+	  yourTurn = !server;
+	  System.out.println(yourTurn);
+	  
+	  //while(!gameOver){
+		  if(!yourTurn){
+			  status.setNotYourTurn();
+			  // function for waiting for response
+			  waitForTurn();
+			  yourTurn = true;
+			  status.setYourTurn();
+		  }
+	  //}
+  }
+ 
+//---------------------------------------------------------------
+  public void waitForTurn(){
+	  while(network.readMessage(this)){}
+  }
+  
+//---------------------------------------------------------------  
   public class BoardListener extends MouseAdapter
   {
 
 	//---------------------------------------------------------------
     public void mouseMoved(MouseEvent e)
     {
-
 
       boardImage.updateBoard(player);
       //Converts x pixel coordinate to x tile coordinate
@@ -149,28 +190,39 @@ public class GamePlay implements Runnable{
       Ship selectedShip;
 
       Screen screen = boardImage.getScreen();
-
-      // if the move button has been pressed
-      if(screen.getMoveSelected())
-      {
-        if(player.getBoard().moveShip(screen.getPanelSelecetedShip(), clickLoc))
-        {
-          screen.setMove(false);
-        }
-
+      if(yourTurn){
+	      // if the move button has been pressed
+	      if(screen.getMoveSelected())
+	      {
+	        if(player.getBoard().moveShip(screen.getPanelSelecetedShip(), clickLoc, game))
+	        {
+	          screen.setMove(false);
+	        }
+	
+	      }
+	
+	      // if the attack button has been pressed
+	      else if(screen.getAttackSelected())
+	      {
+	        if(player.getBoard().attack(screen.getPanelSelecetedShip(), clickLoc))
+	        {
+	          screen.setAttack(false);
+	          player.attackLoc(screen.getPanelSelecetedShip(), clickLoc, game);
+	        }
+	      }
+	      else
+	      {
+	        try
+	        {
+	           selectedShip = boardImage.identifyPlayerShip(clickLoc, player.getBoard());
+	           status.updateStatusPanel(selectedShip);
+	        }
+	        catch(Exception e1)
+	        {
+	          System.out.println("No Ship at Location: " + clickLoc.getX() + "," + clickLoc.getY());
+	        }
+	      }
       }
-
-      // if the attack button has been pressed
-      else if(screen.getAttackSelected())
-      {
-        if(player.getBoard().attack(screen.getPanelSelecetedShip(), clickLoc))
-        {
-          screen.setAttack(false);
-          player.attackLoc(screen.getPanelSelecetedShip(), clickLoc);
-          
-        }
-      }
-
       else
       {
         try
