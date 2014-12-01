@@ -16,7 +16,7 @@ public class PatrolBoat extends Ship
   @Override
   public int getSpeed()
   {
-    return 6;
+    return 5;
   }
 
   @Override
