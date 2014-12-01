@@ -41,6 +41,7 @@ public abstract class Ship
   public int takeHit(int attackPower)
   {
     setHealth(getHealth() - attackPower);
+    System.out.println("New Health: " + getHealth());
     return getHealth();
   }
   

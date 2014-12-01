@@ -249,7 +249,7 @@ public class ClientORServer {
 			if(receivedString.contentEquals("attack_hit_action")){
 				int x = input.readInt();
 				System.out.println(x);
-				Ship attackedShip = game.getPlayer().getBoard().getOpponentShip(x + 6);
+				Ship attackedShip = game.getPlayer().getBoard().getOpponentShip(x - 6);
 			
 		        if(attackedShip == null)
 		        {
