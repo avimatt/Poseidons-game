@@ -37,7 +37,7 @@ public class Board
   }
   
 //--------------------------------------------------------------- 
-  public Ship getShip(Location curLoc) throws Exception
+  public Ship getShip(Location curLoc)
   {
     for (Ship curShip : shipList)
     {
@@ -53,11 +53,11 @@ public class Board
         }  
       }
     }
-    throw new Exception("No ship there");
+    return null;
   }
   
 //---------------------------------------------------------------
-  public Ship getOpponentShip(Location curLoc) throws Exception
+  public Ship getOpponentShip(Location curLoc)
   {
 	  for (Ship curShip : opponentShipList)
 	  {
@@ -72,7 +72,7 @@ public class Board
 	      }  
 	    }
 	  }
-	  throw new Exception("No ship there");
+	  return null;
   }
   
 //---------------------------------------------------------------  
@@ -225,53 +225,54 @@ public class Board
         return false;
       }
 
-      try
-      {
         Ship checkShip = getShip(location);
+      if(checkShip != null)
+      {
         if(checkShip.getID() != ship.getID())
         {
         return false;
         }
       }
-
-      catch (Exception exception)
+      for(int xx = 0; xx <= xRange; ++xx)
       {
-        
-      }
-
-    }
-
-    for(int xx = 0; xx <= xRange; ++xx)
-    {
-      for(int yy = 0; yy <= yRange; ++yy)
-      {
-        Location checkUpLoc = new Location(basePoint.getX() + xx, basePoint.getY() + yy);
-        Location checkDownLoc = new Location(basePoint.getX() + xx, basePoint.getY() - yy);
-        Location checkUpBackLoc = new Location(basePoint.getX() - xx, basePoint.getY() + yy);
-        Location checkDownBackLoc = new Location(basePoint.getX() - xx, basePoint.getY() - yy);
-
-        if(location.compareLoc(checkUpLoc) || location.compareLoc(checkDownLoc)
-            || location.compareLoc(checkUpBackLoc) || location.compareLoc(checkDownBackLoc))
+        for(int yy = 0; yy <= yRange; ++yy)
         {
-        	if(ship.getSize() == 1){
-        		if(!isLocOccupied(location)){
-        			return true;
-        		}
-        	} else if(ship.getSize() == 2){
+          Location checkUpLoc = new Location(basePoint.getX() + xx, basePoint.getY() + yy);
+          Location checkDownLoc = new Location(basePoint.getX() + xx, basePoint.getY() - yy);
+          Location checkUpBackLoc = new Location(basePoint.getX() - xx, basePoint.getY() + yy);
+          Location checkDownBackLoc = new Location(basePoint.getX() - xx, basePoint.getY() - yy);
+
+          if(location.compareLoc(checkUpLoc) || location.compareLoc(checkDownLoc)
+              || location.compareLoc(checkUpBackLoc) || location.compareLoc(checkDownBackLoc))
+          {
+        	  if(ship.getSize() == 1)
+            {
+        		  if(!isLocOccupied(location))
+              {
+        			  return true;
+        		  }
+        	  }
+            else if(ship.getSize() == 2)
+            {
         		Location upLoc = new Location(location.getX() + 1, location.getY());
-        		if(!isLocOccupied(location) && !isLocOccupied(upLoc)){
-        			return true;
-        		}
-        	} else if(ship.getSize() == 3){
+              if(!isLocOccupied(location) && !isLocOccupied(upLoc))
+              {
+        			  return true;
+        		  }
+        	  }
+            else if(ship.getSize() == 3)
+            {
         		Location upOneLoc = new Location(location.getX() + 1, location.getY());
         		Location upTwoLoc = new Location(location.getX() + 2, location.getY());
-        		if(!isLocOccupied(location) && !isLocOccupied(upOneLoc) && !isLocOccupied(upTwoLoc)){
-        			return true;
-        		}
-        	}
+        		  if(!isLocOccupied(location) && !isLocOccupied(upOneLoc) && !isLocOccupied(upTwoLoc))
+              {
+        			  return true;
+        		  }
+        	  }
+          }
         }
+        --yRange;
       }
-      --yRange;
     }
 
     return false;

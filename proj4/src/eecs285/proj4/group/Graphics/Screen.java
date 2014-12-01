@@ -157,59 +157,69 @@ public class Screen extends BufferedImage{
           Location checkDownBackLoc = new Location(basePoint.getX() - x, basePoint.getY() - y);
 
           // Check upwards logic
-          try
+          Ship potential = board.getShip(checkUpLoc);
+          if(potential != null)
           {
-            Ship potential = board.getShip(checkUpLoc);
+
             render(potential, 0, 0);
           }
-          catch (Exception exception)
+          else
           {
-        	try {
         		Ship potentialEnemy = board.getOpponentShip(checkUpLoc);
-        		render(potentialEnemy, 0, 0);
-        	} catch (Exception e){
+            if(potentialEnemy != null)
+              render(potentialEnemy, 0, 0);
+
+            else {
         		g.drawImage(Sprite.OCEANTILE, checkUpLoc.getX() * Sprite.getSPRITESIZE(), checkUpLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
-        	}
+            }
           }
-          try
+          potential = board.getShip(checkDownLoc);
+          if(potential != null)
           {
-            Ship potential = board.getShip(checkDownLoc);
             render(potential, 0, 0);
           }
-          catch (Exception exception)
+          else
           {
-        	try {
         		Ship potentialEnemy = board.getOpponentShip(checkDownLoc);
-          		render(potentialEnemy, 0, 0);
-          	} catch (Exception e){
+            if(potentialEnemy != null)
+            {
+              render(potentialEnemy, 0, 0);
+          	}
+            else
+            {
           		g.drawImage(Sprite.OCEANTILE, checkDownLoc.getX() * Sprite.getSPRITESIZE(), checkDownLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
           	}
           }
-          try
+          potential = board.getShip(checkUpBackLoc);
+          if(potential != null)
           {
-            Ship potential = board.getShip(checkUpBackLoc);
             render(potential, 0, 0);
           }
-          catch (Exception exception)
+          else
           {
-        	try {
-          		Ship potentialEnemy = board.getOpponentShip(checkUpBackLoc);
-          		render(potentialEnemy, 0, 0);
-          	} catch (Exception e){
+            Ship potentialEnemy = board.getOpponentShip(checkUpBackLoc);
+            if(potentialEnemy != null)
+            {
+              render(potentialEnemy, 0, 0);
+            }
+            else
+            {
           		g.drawImage(Sprite.OCEANTILE, checkUpBackLoc.getX() * Sprite.getSPRITESIZE(), checkUpBackLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
-          	}          
+          	}
           }
-          try
+          potential = board.getShip(checkDownBackLoc);
+          if(potential != null)
           {
-            Ship potential = board.getShip(checkDownBackLoc);
             render(potential, 0, 0);
           }
-          catch (Exception exception)
+          else
           {
-        	try {
-          		Ship potentialEnemy = board.getOpponentShip(checkDownBackLoc);
-          		render(potentialEnemy, 0, 0);
-          	} catch (Exception e){
+            Ship potentialEnemy = board.getOpponentShip(checkDownBackLoc);
+            if(potentialEnemy != null)
+            {
+              render(potentialEnemy, 0, 0);
+          	} else
+            {
           		g.drawImage(Sprite.OCEANTILE, checkDownBackLoc.getX() * Sprite.getSPRITESIZE(), checkDownBackLoc.getY() * Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), Sprite.getSPRITESIZE(), null);
           	}          
           }
