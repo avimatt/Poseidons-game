@@ -71,6 +71,7 @@ public class Player
     	  game.getNetwork().sendAttackHit(targetShip);
       }
       game.decrementActions();
+      game.getStatusPanel().updateStatusPanel();
       //TODO: If targetShip died, either it broadcasts its dead state
       //to ImageBoard or Player tells ImageBoard about it.
     }

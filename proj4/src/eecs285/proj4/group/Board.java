@@ -82,7 +82,9 @@ public class Board
   
 //---------------------------------------------------------------  
   public Ship getOpponentShip(int id){
+    System.out.println("Looking for ID: " + id);
 	  for(Ship curShip : opponentShipList){
+      System.out.println("ID: " + curShip.getID());
 		  if(curShip.getID() == id){
 			  return curShip;
 		  }

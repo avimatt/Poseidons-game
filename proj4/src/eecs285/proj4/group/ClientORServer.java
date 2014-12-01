@@ -249,7 +249,14 @@ public class ClientORServer {
 			}
 			if(receivedString.contentEquals("attack_hit_action")){
 				int x = input.readInt();
-				Ship attackedShip = game.getPlayer().getBoard().getOpponentShip(input.readInt());
+        System.out.println(x);
+				Ship attackedShip = game.getPlayer().getBoard().getOpponentShip(x);
+
+        if(attackedShip == null)
+        {
+          System.out.println("Attacked Ship is Null");
+        }
+
 				int newShipHealth = input.readInt();
 				int damageTaken = attackedShip.getHealth() - newShipHealth;
 				attackedShip.setHealth(newShipHealth);
