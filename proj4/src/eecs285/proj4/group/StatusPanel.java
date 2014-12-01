@@ -199,7 +199,7 @@ public class StatusPanel extends JPanel
     
     //needs a function that returns the amount of actions left
     //have it return an int.
-    actionLeftField = new JLabel(Integer.toString(game.getActionsLeft()));
+    actionLeftField.setText(Integer.toString(game.getActionsLeft()));
     
   }
   
@@ -217,7 +217,7 @@ public class StatusPanel extends JPanel
     
     //needs a function that returns the amount of actions left
     //have it return an int.
-    actionLeftField = new JLabel(Integer.toString(game.getActionsLeft()));
+    actionLeftField.setText(Integer.toString(game.getActionsLeft()));
     
     currentShipLabel.setText("Ship: " + ship.getShipType());
     attackPower.setText("Attack Strength: " + ship.getAttackPower()
