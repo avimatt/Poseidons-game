@@ -282,7 +282,7 @@ public class ClientORServer {
 				
 				movedShip.setCurrentLocation(newLoc);
 				
-				game.getBoardImage().updateBoard(game.getPlayer());
+				game.run();
 				// may want to re-render the board to show the moved ship immediately as 
 				// opposed to the next time they hover their mouse over a tile
 				
