@@ -17,29 +17,15 @@ public class ImageBoard extends JPanel{
 
   private Screen screen;
 
-//  private Board board;
-
-  public ImageBoard(/*Board inBoard*/)
+  public ImageBoard()
   {
-
     Dimension size = new Dimension(width * scale, height * scale);
     setPreferredSize(size);
-
-   // board = inBoard;
-
     setDoubleBuffered(true);
     screen= new Screen(width, height);
-
-
   }
-
 
 //---------------------------------------------------------------
-  public void paint(Graphics g)
-  {
-
-  }
-
   public void paintComponent( Graphics g)
   {
     g.drawImage(screen, 0, 0, getWidth(), getHeight(), null);
@@ -54,12 +40,6 @@ public class ImageBoard extends JPanel{
   {
     screen.clear ();
     screen.render(player);
-  }
-
-//---------------------------------------------------------------
-  public void drawObject()
-  {
-
   }
 
 //---------------------------------------------------------------

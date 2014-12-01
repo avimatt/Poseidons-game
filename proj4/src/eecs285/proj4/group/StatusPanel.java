@@ -82,7 +82,6 @@ public class StatusPanel extends JPanel
     //total health of fleet 
     totalHealthPan = new JPanel (new FlowLayout());
     totalHealthLabel = new JLabel ("Total Fleet Health: ");
-    //need a function getTotalFleetHealth that returns the total health points
     totalHealthField= new JTextField(5);
     totalHealthField.setText(" 100 %");
     totalHealthField.setBackground(Color.GREEN);
@@ -93,7 +92,6 @@ public class StatusPanel extends JPanel
     
     actionsLeftPan = new JPanel(new FlowLayout());
     actionLeftTitle = new JLabel("Actions Left: ");
-    //need function that can get actions left////////////
     actionLeftField = new JLabel(Integer.toString(game.getActionsLeft()));
     actionLeftField.setFont(currentShipF);
     actionsLeftPan.add(actionLeftTitle);
@@ -171,19 +169,9 @@ public class StatusPanel extends JPanel
     mainPan.add(lowerPan, BorderLayout.SOUTH);
     
     totalPan.add(mainPan,BorderLayout.NORTH);
-    //totalPan.add(new JLabel("  "), BorderLayout.CENTER);
     totalPan.add(actionLogPan,BorderLayout.SOUTH);
    
-    
-    add(totalPan);
-    
-    //test the status panel
-    /*
-    setLog("hey");
-    setLog("hey1");
-    setLog("hey2");
-    setLog("This is a very long line to test things out blah, blah");
-    */
+    add(totalPan); 
    
   }
   
@@ -281,11 +269,9 @@ public class StatusPanel extends JPanel
   //used to change the background color of the health fields
   private static void getHealthColor(JTextField healthField, double health)
   { 
-   double ratio;   //= healthPoints / orginalHealth;
+   double ratio;   
    ratio = health;
-    
-   // System.out.println(ratio);
-    
+        
     int GREENBACK = 70;
     int YELLOWBACK = 30;
     //will be red once health is below YELLOWBACK

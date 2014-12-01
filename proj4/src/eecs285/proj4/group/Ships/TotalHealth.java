@@ -19,11 +19,13 @@ public class TotalHealth
     
   }
   
+//---------------------------------------------------------------
   public int getTotalFleetHealth()
   {
     return 325; 
   }
   
+//---------------------------------------------------------------
   public int getFleetHealth(Player play)
   {
 	int health = 0;
@@ -35,9 +37,4 @@ public class TotalHealth
     return health;
   }
   
-  public void endGame(){
-	  for(Ship ship : shipList){
-		  ship.setHealth(0);
-	  }
-  }
 }

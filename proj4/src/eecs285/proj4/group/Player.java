@@ -17,15 +17,6 @@ public class Player
   }
 
 //---------------------------------------------------------------
-  
-  // TODO is this ever used anywhere??????????????
-  
-  /*public Ship getPlayerShip(int shipNumber) throws Exception
-  {
-    return myBoard.getShip(shipNumber, ID);
-  }*/
-
-//---------------------------------------------------------------
   public int getID()
   {
     return ID;
@@ -36,9 +27,6 @@ public class Player
   public void moveShip(Ship curShip, Location newLoc)
   {
     curShip.setCurrentLocation(newLoc);
-    //TODO: tell ImageBoard to update ?
-    //I suggest that Ships have a broadcast function
-    //which they use to tell ImageBoard to update
   }
   
 //---------------------------------------------------------------
@@ -72,10 +60,7 @@ public class Player
       }
       game.decrementActions();
       game.getStatusPanel().updateStatusPanel();
-      //TODO: If targetShip died, either it broadcasts its dead state
-      //to ImageBoard or Player tells ImageBoard about it.
   }
-  //TODO: output message about what happened
  
 //---------------------------------------------------------------
   public void setActionsLeft(int actions)
@@ -83,11 +68,13 @@ public class Player
     actionsLeft = actions;
   }
 
+//---------------------------------------------------------------
   public int getActionsLeft()
   {
     return actionsLeft;
   }
 
+//---------------------------------------------------------------
   public Board getBoard(){
 	  return myBoard;
   }

@@ -121,9 +121,7 @@ public class SetupWindow extends JFrame{
 					  }
 					  
 				  };
-				  
 				  t.start();
-//				  game.playGame(server);
 			  }
 			  catch (Exception exception)
 			  {

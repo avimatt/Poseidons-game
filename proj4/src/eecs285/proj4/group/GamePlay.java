@@ -25,10 +25,7 @@ public class GamePlay implements Runnable{
   private ClientORServer network;
   private Player player;
   
-  private GamePlay game;
-  //private Board state;
-  
-  boolean winner = false;
+  private GamePlay game;  
 
   public GamePlay(ClientORServer networkIn)
   {
@@ -110,7 +107,6 @@ public class GamePlay implements Runnable{
   public void decrementActions(){
 	  actionsLeft--;
 	  if(actionsLeft == 0){
-		  System.out.println("finished all actions");
 		  status.setEnd();
 	  }
 	  status.updateStatusPanel();
@@ -123,7 +119,7 @@ public class GamePlay implements Runnable{
   
   public void setActionsLeft(int actions)
   {
-    actionsLeft = actions;
+     actionsLeft = actions;
   }
   
   public void setYourTurn(boolean value){
@@ -134,11 +130,6 @@ public class GamePlay implements Runnable{
   public ImageBoard getBoardImage()
   {
     return boardImage;
-  }
-  
-//---------------------------------------------------------------  
-  public void setWinner(){
-	  winner = true;
   }
   
 //---------------------------------------------------------------  
@@ -166,15 +157,12 @@ public class GamePlay implements Runnable{
  
 //---------------------------------------------------------------
   public void waitForTurn(){
-	  int x = 1;
 	  while(true){ 
-		  System.out.println("attempting to recieving: " + x); 
 		  if(!network.readMessage(this)){
 			  break;
 		  }
 		  status.updateStatusPanel();
 		  boardImage.paintComponent(boardImage.getGraphics());
-		  x++;
 	  }
   }
   
@@ -192,12 +180,6 @@ public class GamePlay implements Runnable{
 
       //Converts y pixel coordinate to y tile coordinate
       int y = (int)Math.floor(e.getY() / (Sprite.getSPRITESIZE() * ImageBoard.scale));
-
-
-	  //Location movedLoc = new Location( x, y);
-      //System.out.println("Moved: X: " + movedLoc.getX() + " Y: " + movedLoc.getY());
-
-      //GamePlay.update = true;
 
       Graphics g = boardImage.getScreen().getGraphics();
 
@@ -222,7 +204,6 @@ public class GamePlay implements Runnable{
 
       Screen screen = boardImage.getScreen();
       if(yourTurn && actionsLeft != 0){
-    	  System.out.println("its your turn!");
 	      // if the move button has been pressed
 	      if(screen.getMoveSelected())
 	      {
@@ -259,7 +240,6 @@ public class GamePlay implements Runnable{
       {
         try
         {
-        	System.out.println("its not your turn!");
            selectedShip = boardImage.identifyPlayerShip(clickLoc, player.getBoard());
            status.updateStatusPanel(selectedShip);
         }

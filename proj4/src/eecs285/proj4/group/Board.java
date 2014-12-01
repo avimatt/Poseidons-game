@@ -82,9 +82,7 @@ public class Board
   
 //---------------------------------------------------------------  
   public Ship getOpponentShip(int id){
-    System.out.println("Looking for ID: " + id);
 	  for(Ship curShip : opponentShipList){
-      System.out.println("ID: " + curShip.getID());
 		  if(curShip.getID() == id){
 			  return curShip;
 		  }
@@ -165,6 +163,7 @@ public class Board
 	  return opponentShipList.isEmpty();
   }
 
+//---------------------------------------------------------------  
   public boolean isAttackLocationInRange(Ship ship, Location location)
   {
     int size = ship.getSize();
@@ -173,7 +172,7 @@ public class Board
     int yRange;
     int xRange = yRange = ship.getAttackRadius();
     Location current = ship.getCurrentLocation();
-    Location basePoint;// = ship.getCurrentLocation(); 
+    Location basePoint;
 
     for(int i = 0; i < size; ++i)
     {
@@ -209,6 +208,7 @@ public class Board
     return false;
   }
 
+//---------------------------------------------------------------  
   public boolean isMoveValid(Ship ship, Location location)
   {
     int size = ship.getSize();
@@ -267,31 +267,6 @@ public class Board
           if(location.compareLoc(checkUpLoc) || location.compareLoc(checkDownLoc)
               || location.compareLoc(checkUpBackLoc) || location.compareLoc(checkDownBackLoc))
             {
-              /*
-        	  if(ship.getSize() == 1)
-            {
-        		  if(!isLocOccupied(location))
-              {
-        			  return true;
-        		  }
-        	  }
-            else if(ship.getSize() == 2)
-            {
-        		Location upLoc = new Location(location.getX() + 1, location.getY());
-              if(!isLocOccupied(location) && !isLocOccupied(upLoc))
-              {
-        			  return true;
-        		  }
-        	  }
-            else if(ship.getSize() == 3)
-            {
-        		Location upOneLoc = new Location(location.getX() + 1, location.getY());
-        		Location upTwoLoc = new Location(location.getX() + 2, location.getY());
-        		  if(!isLocOccupied(location) && !isLocOccupied(upOneLoc) && !isLocOccupied(upTwoLoc))
-              {
-        			  return true;
-        		  }
-        	  }*/
               return true;
           }
         }
@@ -299,7 +274,8 @@ public class Board
       }
     return false;
   }
-
+  
+//---------------------------------------------------------------  
   public boolean moveShip(Ship ship, Location location, GamePlay game)
   {
     if(isMoveValid(ship, location))
@@ -321,6 +297,7 @@ public class Board
 
   }
 
+//---------------------------------------------------------------  
   public boolean attack(Ship ship, Location location)
   {
     if(isAttackLocationInRange(ship, location))

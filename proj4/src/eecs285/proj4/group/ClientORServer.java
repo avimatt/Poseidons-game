@@ -246,7 +246,6 @@ public class ClientORServer {
 					// create opponents ships
 					Ship curShip = Ship.shipFactory(receivedString);
 					curShip.setID(input.readInt() + 6);
-					System.out.println(curShip.getShipType() + " has id: " + curShip.getID());
 					curShip.setCurrentLocation(new Location(input.readInt(),input.readInt()));
 					game.getPlayer().getBoard().addOpponentShip(curShip);
 				}
@@ -265,11 +264,6 @@ public class ClientORServer {
 				int x = input.readInt();
 				System.out.println(x);
 				Ship attackedShip = game.getPlayer().getBoard().getShip(x - 6);
-			
-		        if(attackedShip == null)
-		        {
-		          System.out.println("Attacked Ship is Null");
-		        }
 
 				int newShipHealth = input.readInt();
 				int damageTaken = attackedShip.getHealth() - newShipHealth;
@@ -309,9 +303,6 @@ public class ClientORServer {
 				return false;
 			}
 			if(receivedString.contentEquals("end_game")){
-				TotalHealth health = new TotalHealth();
-				health.endGame();
-				game.setWinner();
 				JOptionPane.showMessageDialog(null, "You have won!!! :)", "Game Over", JOptionPane.INFORMATION_MESSAGE);
 				System.exit(0);
 			}

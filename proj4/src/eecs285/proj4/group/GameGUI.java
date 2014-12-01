@@ -28,7 +28,6 @@ public class GameGUI
 
     gameOptionsFrame = new JFrame("Start Menu");
     //creates new Jpanel to put buttons in
-    //setSize(400,800);
     gameOptions = new JPanel();
     gameOptions.setLayout(new GridLayout(5,1));
     //makes the Jpanel see-thru so you can see the picture
@@ -72,14 +71,10 @@ public class GameGUI
     {
       if (e.getSource() == startGameButton)
       {
-	      // I think we can always use port 8080 and it should be fine	      
 	      // Start Server (which blocks until other player connects)
 	      network = new ClientORServer(ClientORServer.getIpAddress(), 8000);
 	      ServerThread thread = new ServerThread();
 	      thread.start();
-	      
-	      //passing in the server/client and letting it know
-	      //whether its the client or the server
 	      createAndDisplayGame();
 	      @SuppressWarnings("unused")
 		StartServerWindow ssw = new StartServerWindow(game);
@@ -88,14 +83,10 @@ public class GameGUI
       {
         String ipAddress = JOptionPane.showInputDialog(null, "Enter your "
             + "friends IP address: ", 
-            "Join Game", JOptionPane.QUESTION_MESSAGE);
-        // maybe do some error checking on the ipAddress passed in
-        
+            "Join Game", JOptionPane.QUESTION_MESSAGE);        
         // Start Client 
         network = new ClientORServer(ipAddress, 8000);
-        network.startClient();
-        
-        // passing in the server/client and letting it know whether its the 
+        network.startClient();        
         //client or the server 
         createAndDisplayGame();
         @SuppressWarnings("unused")
@@ -124,12 +115,7 @@ public class GameGUI
       gameScreen.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
       game.run();
     }
-  //---------------------------------------------------------------
-  
-    void saySomething(String eventDescription, MouseEvent e)
-    {
 
-    }
   //---------------------------------------------------------------
     class ServerThread extends Thread {
     	public void run(){
