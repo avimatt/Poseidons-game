@@ -220,19 +220,34 @@ public class Board
 
     for(int i = 0; i < size; ++i)
     {
-      if(((x + i) < 0) || (y < 0) || ((x + i) > 22) || (y > 19))
+      if((x < 0) || (y < 0) || ((x + 2) > 22) || (y > 19))
       {
         return false;
       }
 
-        Ship checkShip = getShip(location);
+      Location checkLoc = new Location(location.getX() + i, location.getY());
+      Ship checkShip = getShip(checkLoc);
+      if(checkShip != null)
+      {
+        if(checkShip.getID() != ship.getID())
+          {
+            //if ship is in location, and it is not the same ship the move is invalid
+            return false;
+          }
+      }
+
+      checkShip = getOpponentShip(checkLoc);
       if(checkShip != null)
       {
         if(checkShip.getID() != ship.getID())
         {
-        return false;
+          //if ship is in location, and it is not the same ship the move is invalid
+          return false;
         }
       }
+
+
+    }
       for(int xx = 0; xx <= xRange; ++xx)
       {
         for(int yy = 0; yy <= yRange; ++yy)
@@ -244,7 +259,8 @@ public class Board
 
           if(location.compareLoc(checkUpLoc) || location.compareLoc(checkDownLoc)
               || location.compareLoc(checkUpBackLoc) || location.compareLoc(checkDownBackLoc))
-          {
+            {
+              /*
         	  if(ship.getSize() == 1)
             {
         		  if(!isLocOccupied(location))
@@ -268,13 +284,12 @@ public class Board
               {
         			  return true;
         		  }
-        	  }
+        	  }*/
+              return true;
           }
         }
         --yRange;
       }
-    }
-
     return false;
   }
 

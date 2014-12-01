@@ -47,25 +47,23 @@ public class Player
     if (myBoard.isLocOccupied(targetLoc))
     {
       Ship targetShip = null;
-      try
-      {
         targetShip = myBoard.getShip(targetLoc);
-        if (targetShip.getHealth() <= 0)
+        if ( targetShip != null)
+        {
+          return;
+        }
+      targetShip = myBoard.getOpponentShip(targetLoc);
+      if((targetShip != null) && (targetShip.getHealth() <= 0))
         {
           //target ship is dead
           return;
         }
-      }
-      catch( Exception e )
-      {
-        //something other than ship at targetLoc
-      }
       targetShip.takeHit(curShip.getAttackPower());
       //TODO: If targetShip died, either it broadcasts its dead state
       //to ImageBoard or Player tells ImageBoard about it.
     }
-  //TODO: output message about what happened
   }
+  //TODO: output message about what happened
  
 //---------------------------------------------------------------
   public void setActionsLeft(int actions)
