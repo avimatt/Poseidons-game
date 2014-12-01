@@ -22,7 +22,7 @@ public class PatrolBoat extends Ship
   @Override
   public int getAttackPower()
   {
-    return 0;
+    return 2;
   }
 
   @Override
@@ -53,7 +53,7 @@ public class PatrolBoat extends Ship
 //Radius from the center of the ship determined by the Location
   @Override
   public int getAttackRadius(){
-    return 0;
+    return 2;
   }
 
   @Override
