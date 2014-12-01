@@ -289,6 +289,8 @@ public class ClientORServer {
 				return true;
 			}
 			if(receivedString.contentEquals("end_turn")){
+				game.getStatusPanel().setLog("Your opponent has finished their turn");
+				game.getStatusPanel().setLog("It is now your turn");
 				return false;
 			}
 		}
