@@ -94,7 +94,7 @@ public class StatusPanel extends JPanel
     actionsLeftPan = new JPanel(new FlowLayout());
     actionLeftTitle = new JLabel("Actions Left: ");
     //need function that can get actions left////////////
-    actionLeftField = new JLabel("5");
+    actionLeftField = new JLabel(Integer.toString(game.getActionsLeft()));
     actionLeftField.setFont(currentShipF);
     actionsLeftPan.add(actionLeftTitle);
     actionsLeftPan.add(actionLeftField);
@@ -199,7 +199,7 @@ public class StatusPanel extends JPanel
     
     //needs a function that returns the amount of actions left
     //have it return an int.
-    actionLeftField = new JLabel("5");
+    actionLeftField = new JLabel(Integer.toString(game.getActionsLeft()));
     
   }
   
@@ -217,7 +217,7 @@ public class StatusPanel extends JPanel
     
     //needs a function that returns the amount of actions left
     //have it return an int.
-    actionLeftField = new JLabel("5");
+    actionLeftField = new JLabel(Integer.toString(game.getActionsLeft()));
     
     currentShipLabel.setText("Ship: " + ship.getShipType());
     attackPower.setText("Attack Strength: " + ship.getAttackPower()
@@ -320,7 +320,11 @@ public class StatusPanel extends JPanel
   }
   
   public void setEnd(){
+	  System.out.println("enabling end turn button");
 	  endTurnButton.setEnabled(true);
+	  attackButton.setEnabled(false);
+	  moveButton.setEnabled(false);
+	  cancelSelection.setEnabled(false);
   }
   
 //---------------------------------------------------------------  
@@ -359,6 +363,7 @@ public class StatusPanel extends JPanel
 		}
 		if(e.getSource() == endTurnButton){
 			game.getNetwork().sendEndTurn();
+			endTurnButton.setEnabled(false);
 		}
 	}
 	  

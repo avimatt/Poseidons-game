@@ -105,7 +105,25 @@ public class SetupWindow extends JFrame{
 			  dispose();
 			  try
 			  {
-				  game.playGame(server);
+				// send start positions
+				  game.getNetwork().sendStartLocations(game.getPlayer().getBoard().getShips(), server);
+				  // receive start positions
+				  game.getNetwork().readMessage(game);
+				  // display board
+				  game.run();
+				  
+				  Thread t = new Thread(){
+					  
+					  @Override
+					  public void run()
+					  {
+						  game.playGame(server);
+					  }
+					  
+				  };
+				  
+				  t.start();
+//				  game.playGame(server);
 			  }
 			  catch (Exception exception)
 			  {

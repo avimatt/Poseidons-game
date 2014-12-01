@@ -200,6 +200,7 @@ public class ClientORServer {
 			recByte = input.readByte();
 			while (recByte != 0)
 			{
+				System.out.println("asdf");
 				byteVec.add(recByte);
 				recByte = input.readByte();
 			}

@@ -109,9 +109,17 @@ public class GamePlay implements Runnable{
   public void decrementActions(){
 	  actionsLeft--;
 	  if(actionsLeft == 0){
+		  System.out.println("finished all actions");
 		  status.setEnd();
+		  yourTurn = false;
 	  }
+	  status.updateStatusPanel();
   }
+  
+  public int getActionsLeft(){
+	  return actionsLeft;
+  }
+  
 
 //---------------------------------------------------------------  
   public ImageBoard getBoardImage()
@@ -121,17 +129,11 @@ public class GamePlay implements Runnable{
   
 //---------------------------------------------------------------  
   public void playGame(boolean server){
-	  // send start positions
-	  network.sendStartLocations(player.getBoard().getShips(), server);
-	  // receive start positions
-	  network.readMessage(this);
-	  // display board
-	  run();
 	  
 	  yourTurn = !server;
 	  System.out.println(yourTurn);
-	  
-	  //while(!gameOver){
+
+	  while(!gameOver){
 		  if(!yourTurn){
 			  status.setNotYourTurn();
 			  // function for waiting for response
@@ -139,12 +141,12 @@ public class GamePlay implements Runnable{
 			  yourTurn = true;
 			  status.setYourTurn();
 		  }
-	  //}
+	  }
   }
  
 //---------------------------------------------------------------
   public void waitForTurn(){
-	  while(network.readMessage(this)){}
+	  while(network.readMessage(this)){	  }
   }
   
 //---------------------------------------------------------------  
