@@ -200,7 +200,6 @@ public class ClientORServer {
 			recByte = input.readByte();
 			while (recByte != 0)
 			{
-				System.out.println("asdf");
 				byteVec.add(recByte);
 				recByte = input.readByte();
 			}
@@ -231,7 +230,7 @@ public class ClientORServer {
 					
 					// create opponents ships
 					Ship curShip = Ship.shipFactory(receivedString);
-					curShip.setID(input.readInt());
+					curShip.setID(input.readInt() + 6);
 					System.out.println(curShip.getShipType() + " has id: " + curShip.getID());
 					curShip.setCurrentLocation(new Location(input.readInt(),input.readInt()));
 					game.getPlayer().getBoard().addOpponentShip(curShip);
@@ -249,13 +248,13 @@ public class ClientORServer {
 			}
 			if(receivedString.contentEquals("attack_hit_action")){
 				int x = input.readInt();
-        System.out.println(x);
-				Ship attackedShip = game.getPlayer().getBoard().getOpponentShip(x);
-
-        if(attackedShip == null)
-        {
-          System.out.println("Attacked Ship is Null");
-        }
+				System.out.println(x);
+				Ship attackedShip = game.getPlayer().getBoard().getOpponentShip(x + 6);
+			
+		        if(attackedShip == null)
+		        {
+		          System.out.println("Attacked Ship is Null");
+		        }
 
 				int newShipHealth = input.readInt();
 				int damageTaken = attackedShip.getHealth() - newShipHealth;
@@ -278,11 +277,12 @@ public class ClientORServer {
 				return true;
 			}
 			if(receivedString.contentEquals("move_ship")){
-				Ship movedShip = game.getPlayer().getBoard().getOpponentShip(input.readInt());
+				Ship movedShip = game.getPlayer().getBoard().getOpponentShip(input.readInt() + 6);
 				Location newLoc = new Location(input.readInt(),input.readInt());
 				
 				movedShip.setCurrentLocation(newLoc);
 				
+				game.getBoardImage().updateBoard(game.getPlayer());
 				// may want to re-render the board to show the moved ship immediately as 
 				// opposed to the next time they hover their mouse over a tile
 				
