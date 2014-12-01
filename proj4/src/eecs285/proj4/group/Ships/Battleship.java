@@ -33,11 +33,16 @@ public class Battleship extends Ship
   public int getHealth()
   {
     return health;
+
   }
 
   @Override
   public void setHealth(int healthIn){
     health = healthIn;
+    if(health < 0)
+    {
+      health = 0;
+    }
   }
   
   

@@ -39,6 +39,10 @@ public class Submarine extends Ship
   @Override
   public void setHealth(int healthIn){
     health = healthIn;
+    if(health < 0)
+    {
+      health = 0;
+    }
   }
   
   
