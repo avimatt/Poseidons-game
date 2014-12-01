@@ -9,6 +9,7 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 import eecs285.proj4.group.Ships.Ship;
+import eecs285.proj4.group.Ships.TotalHealth;
 
 @SuppressWarnings("serial")
 public class StatusPanel extends JPanel
@@ -208,9 +209,11 @@ public class StatusPanel extends JPanel
     //totalHealthString needs a get totalHealth function
     //have it return an int to be used in getHealthColor 
     //function  
-    String totalHealthString = "100";
-    totalHealthField.setText(totalHealthString +" %");
-    getHealthColor(totalHealthField,100);
+    TotalHealth health = new TotalHealth();
+    double fleetRatio = ((double)health.getFleetHealth(player)/
+        (double)health.getTotalFleetHealth())*100;
+    totalHealthField.setText((int)fleetRatio +" %");
+    getHealthColor(totalHealthField,fleetRatio);
     
     //needs a function that returns the amount of actions left
     //have it return an int.

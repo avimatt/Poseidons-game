@@ -24,6 +24,11 @@ public class Board
 	opponentShipList = new ArrayList<Ship>();
   }
 
+  public ArrayList<Ship> getShipArray()
+  {
+    return shipList;
+  }
+  
 //---------------------------------------------------------------
   public Ship getShip(int shipId)
   {
