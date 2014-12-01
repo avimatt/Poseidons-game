@@ -42,23 +42,34 @@ public class Player
   }
   
 //---------------------------------------------------------------
-  public void attackLoc(Ship curShip, Location targetLoc)
+  public void attackLoc(Ship curShip, Location targetLoc, StatusPanel status, ClientORServer network)
   {
     if (myBoard.isLocOccupied(targetLoc))
     {
       Ship targetShip = null;
-        targetShip = myBoard.getShip(targetLoc);
-        if ( targetShip != null)
-        {
-          return;
-        }
+      targetShip = myBoard.getShip(targetLoc);
+      if ( targetShip != null)
+      {
+    	  status.setLog("Your attack has missed all enemy ships");
+    	  network.sendAttackMiss();
+    	  return;
+      }
       targetShip = myBoard.getOpponentShip(targetLoc);
-      if((targetShip != null) && (targetShip.getHealth() <= 0))
-        {
-          //target ship is dead
-          return;
-        }
-      targetShip.takeHit(curShip.getAttackPower());
+      if((targetShip != null))
+      {
+    	  if(targetShip.getHealth() <= 0){
+    		//target ship is dead
+    		status.setLog("You have attacked an already dead ship");
+    		network.sendAttackMiss();
+    		return;
+    	  }
+    	  if(targetShip.takeHit(curShip.getAttackPower()) == 0){
+    		  status.setLog("You have sunk one of their ships");
+    	  } else {
+    		  status.setLog("You have hit one of their ships");
+    	  }
+    	  network.sendAttackHit(targetShip);
+      }
       //TODO: If targetShip died, either it broadcasts its dead state
       //to ImageBoard or Player tells ImageBoard about it.
     }
