@@ -52,6 +52,7 @@ public class Player
       {
     	  game.getStatusPanel().setLog("Your attack has missed all enemy ships");
     	  game.getNetwork().sendAttackMiss();
+        game.decrementActions();
     	  return;
       }
       targetShip = myBoard.getOpponentShip(targetLoc);
@@ -61,6 +62,7 @@ public class Player
     		//target ship is dead
     		  game.getStatusPanel().setLog("You have attacked an already dead ship");
     		  game.getNetwork().sendAttackMiss();
+          game.decrementActions();
     		return;
     	  }
     	  if(targetShip.takeHit(curShip.getAttackPower()) == 0){
