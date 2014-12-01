@@ -150,6 +150,11 @@ public class Screen extends BufferedImage{
 //    g.setColor(Color.BLUE);
 //    g.fillOval((ship.getCurrentLocation().getX() - xRange) * 16, (ship.getCurrentLocation().getY() - yRange) * 16, 2 * xRange * 16, 2 * yRange * 16);
 
+    if(ship.getHealth() == 0)
+    {
+      return;
+    }
+
     for(int s = 0; s < ship.getSize(); ++s)
     {
       Location basePoint = new Location(ship.getCurrentLocation().getX() + s, ship.getCurrentLocation().getY());
