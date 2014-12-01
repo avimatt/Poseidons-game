@@ -155,7 +155,7 @@ public class GamePlay implements Runnable{
  
 //---------------------------------------------------------------
   public void waitForTurn(){
-	  while(network.readMessage(this)){	  }
+	  while(network.readMessage(this)){  }
   }
   
 //---------------------------------------------------------------  
@@ -201,7 +201,8 @@ public class GamePlay implements Runnable{
       Ship selectedShip;
 
       Screen screen = boardImage.getScreen();
-      if(yourTurn){
+      if(yourTurn && actionsLeft != 0){
+    	  System.out.println("its your turn!");
 	      // if the move button has been pressed
 	      if(screen.getMoveSelected())
 	      {
@@ -238,6 +239,7 @@ public class GamePlay implements Runnable{
       {
         try
         {
+        	System.out.println("its not your turn!");
            selectedShip = boardImage.identifyPlayerShip(clickLoc, player.getBoard());
            status.updateStatusPanel(selectedShip);
         }
