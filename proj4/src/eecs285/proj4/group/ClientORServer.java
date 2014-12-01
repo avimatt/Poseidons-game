@@ -232,6 +232,7 @@ public class ClientORServer {
 					// create opponents ships
 					Ship curShip = Ship.shipFactory(receivedString);
 					curShip.setID(input.readInt());
+					System.out.println(curShip.getShipType() + " has id: " + curShip.getID());
 					curShip.setCurrentLocation(new Location(input.readInt(),input.readInt()));
 					game.getPlayer().getBoard().addOpponentShip(curShip);
 				}
@@ -247,6 +248,7 @@ public class ClientORServer {
 				return true;
 			}
 			if(receivedString.contentEquals("attack_hit_action")){
+				int x = input.readInt();
 				Ship attackedShip = game.getPlayer().getBoard().getOpponentShip(input.readInt());
 				int newShipHealth = input.readInt();
 				int damageTaken = attackedShip.getHealth() - newShipHealth;
