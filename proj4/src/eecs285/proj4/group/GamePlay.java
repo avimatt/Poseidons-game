@@ -3,6 +3,7 @@ package eecs285.proj4.group;
 import eecs285.proj4.group.Graphics.Screen;
 import eecs285.proj4.group.Graphics.Sprite;
 import eecs285.proj4.group.Ships.Ship;
+import eecs285.proj4.group.Ships.TotalHealth;
 
 import javax.swing.*;
 
@@ -23,8 +24,6 @@ public class GamePlay implements Runnable{
 
   private ClientORServer network;
   private Player player;
-  
-  boolean gameOver = false;
   
   private GamePlay game;
   //private Board state;
@@ -141,7 +140,9 @@ public class GamePlay implements Runnable{
 	  yourTurn = !server;
 	  System.out.println(yourTurn);
 
-	  while(!gameOver){
+	  TotalHealth health = new TotalHealth();
+	  
+	  while(health.getFleetHealth(player) != 0){
 		  if(!yourTurn){
 			  status.setNotYourTurn();
 			  // function for waiting for response
