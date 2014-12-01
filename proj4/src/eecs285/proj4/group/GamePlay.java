@@ -115,8 +115,14 @@ public class GamePlay implements Runnable{
 	  status.updateStatusPanel();
   }
   
-  public int getActionsLeft(){
+  public int getActionsLeft()
+  {
 	  return actionsLeft;
+  }
+  
+  public void setActionsLeft(int actions)
+  {
+    actionsLeft = actions;
   }
   
   public void setYourTurn(boolean value){
